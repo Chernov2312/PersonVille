@@ -1,0 +1,16 @@
+.custom-bg-base{
+    background-color: #FFE9E9;
+}
+
+.custom-bg-button, .custom-bg-footer{
+    background-color: #8290DA;
+}
+.cursor-circle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: gray;
+    pointer-events: none;
+    z-index: 9999;
+}

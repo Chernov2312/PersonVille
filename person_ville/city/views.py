@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 
-def city_view(request):
+def city(request):
     return render(request, 'city/city.html')

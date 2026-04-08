@@ -1,10 +1,8 @@
 {% extends "base.html" %}
-{% load static i18n %}
-
-{% block title %}{% trans "Главная страница" %}{% endblock %}
+{% block title %}"Главная страница"{% endblock %}
 
 {% block content %}
 <div class="container">  
-    <button>Пройти тест</button>
+    <a href="{% url 'tests:first'%}" class="custom-button rounded-pill">Пройти тест</a>
 </div>
 {% endblock %}

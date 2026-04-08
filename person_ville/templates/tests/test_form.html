@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head %}<link rel="stylesheet" href="{% static 'css/user_form.css' %}">{% endblock head %}
-{% block title %}Меню авторизации{% endblock %}
+{% block title %}Тест{% endblock %}
 
 {% block content %}
     <div class="container-md-5 mt-5">
         <div class="row justify-content-md-center">
             <div class="col-md-3"></div>
             <div class="col-md-4 bg-container rounded-3 shadow p-0">
-                <h1 class="bg-head rounded-top-3 p-2">Отправить</h1>
+                <h1 class="bg-head rounded-top-3 p-2">Вступительное тестирование</h1>
                 <form action="" method="post">
                     {% csrf_token %}
                     <div class="form-error">{{ form.non_field_errors }}</div>
@@ -21,7 +21,7 @@
                         </div>
                         {% endfor %}
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary">Войти</button>
+                            <button type="submit" class="btn btn-primary">Отправить</button>
                         </div>
                     </div>
                 </form>

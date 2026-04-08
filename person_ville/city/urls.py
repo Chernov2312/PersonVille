@@ -1,8 +1,8 @@
 from django.urls import path
 
-from city.views import city_view
+from city.views import city
 
 app_name = 'city'
 urlpatterns = [
-    path('', city_view, name='city'),
+    path('', city, name='city'),
 ]

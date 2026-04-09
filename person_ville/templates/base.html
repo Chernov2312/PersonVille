@@ -11,15 +11,18 @@
       
     {% endblock head %}
   </head>
-  <body class="custom-bg-base">
-    <header>
+  <body>
+    <header class="row">
       {% include "includes/header.html" %}
     </header>
+    <div class="row test test-2">
         {% block content %}
         Ничего
-        {% endblock content %}
-    <footer>
+        {% endblock content %}</div>
+    <footer class="row">
+      <div>
       {% include "includes/footer.html" %}
+      </div>
     </footer>
     <script src="{% static 'js/cursor.js' %}"></script>
   </body>

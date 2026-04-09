@@ -12,7 +12,13 @@ class Answer(models.Model):
         super().save(*args, **kwargs)
 
 
+class Questions(models.Model):
+    question = models.CharField(max_length=200, null=False)
+    description = models.CharField(max_length=200, null=True)
+    cost = models.IntegerField(null=False)
+
+
 class Quiz(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=False)
-    answers = models.ManyToManyField(Answer, blank=True)
+    questions = models.ManyToManyField(Questions, blank=True)

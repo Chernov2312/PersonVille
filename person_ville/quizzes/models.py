@@ -1,18 +1,16 @@
 from django.db import models
+from core.models import BaseUpdate
+from city.models import Street
 
 
-class Answer(models.Model):
-    text = models.CharField(max_length=200, null=False)
-    counter = models.IntegerField(default=0)
-
-
-class Questions(models.Model):
-    question = models.CharField(max_length=200, null=False)
-    description = models.CharField(max_length=200, null=True)
+class Answer(BaseUpdate):
+    name = models.CharField(max_length=40, null=False)
+    description = models.CharField(max_length=200, null=False)
     cost = models.IntegerField(null=False)
 
 
-class Quiz(models.Model):
-    name = models.CharField(max_length=100)
+class Quiz(BaseUpdate):
+    street = models.ForeignKey(Street, on_delete=models.CASCADE, null=True)
+    question = models.CharField(max_length=100)
     description = models.TextField(null=False)
-    questions = models.ManyToManyField(Questions, blank=True)
+    answers = models.ManyToManyField(Answer, related_name='quizzes')

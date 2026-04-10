@@ -1,20 +1,16 @@
 from django.db import models
+from core.models import BaseUpdate
 
 
-class House(models.Model):
+class City(BaseUpdate):
     name = models.CharField(max_length=40, null=False)
-    houses_description = models.CharField(max_length=200, null=True)
-    street = models.CharField(max_length=40, null=True)
-
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super().save(*args, **kwargs)
+    description = models.CharField(max_length=200, null=False)
 
 
-class City(models.Model):
+class Street(BaseUpdate):
     name = models.CharField(max_length=40, null=False)
-    houses = models.ManyToManyField(House, blank=True)
-
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super().save(*args, **kwargs)
+    description = models.CharField(max_length=200, null=False)
+    number_of_houses = models.IntegerField(null=False)
+    city = models.ForeignKey(
+        City, on_delete=models.CASCADE, related_name='streets',
+    )

@@ -52,3 +52,4 @@ erDiagram
     Quiz ||--o{ AnswerHistory : "has"
     User ||--o{ AnswerHistory : "makes"
     Street ||--o{ AnswerHistory : "for"
+```

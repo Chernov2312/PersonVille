@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'city.apps.CityConfig',
+    'users.apps.UsersConfig',
 ] + (['debug_toolbar'] if DEBUG else [])
 
 MIDDLEWARE = [

@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from quises.models import Answer
 
 
 class Charackter(models.Model):
@@ -13,8 +12,9 @@ class User(AbstractUser):
     age = models.IntegerField(null=True, blank=True)
     role = models.CharField(max_length=30, null=False)
     city = models.CharField(max_length=40, null=True)
-    answers = models.ManyToManyField(Answer, blank=True)
-    charackter = models.ForeignKey(Charackter, on_delete=models.CASCADE, null=True)
+    charackter = models.ForeignKey(
+        Charackter, on_delete=models.CASCADE, null=True,
+    )
 
     def save(self, *args, **kwargs):
         self.full_clean()

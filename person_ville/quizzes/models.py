@@ -1,6 +1,7 @@
 from django.db import models
-from core.models import BaseUpdate
+
 from city.models import Street
+from core.models import BaseUpdate
 
 
 class Answer(BaseUpdate):

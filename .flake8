@@ -15,4 +15,4 @@ exclude =
 
 max-line-length = 79
 import-order-style = google
-application-import-names = core,person_ville,users,
+application-import-names = core,person_ville,users,quizzes,city,homepage

@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'city.apps.CityConfig',
     'users.apps.UsersConfig',
+    'quizzes.apps.QuizzesConfig',
 ] + (['debug_toolbar'] if DEBUG else [])
 
 MIDDLEWARE = [
@@ -107,5 +108,7 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+AUTH_USER_MODEL = 'users.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -1,8 +1,9 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from quizzes.models import Quiz, Answer
+
 from city.models import City
 from core.models import BaseUpdate
+from quizzes.models import Answer, Quiz
 
 
 class Character(models.Model):
@@ -19,7 +20,7 @@ class User(AbstractUser, BaseUpdate):
         on_delete=models.CASCADE,
         null=True,
     )
-    cities = models.OneToManyField(City, related_name='users')
+    cities = models.ForeignKey(City, related_name='users', on_delete=models.CASCADE, null=True)
 
     def save(self, *args, **kwargs):
         self.full_clean()

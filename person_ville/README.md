@@ -1,3 +1,6 @@
+## ER-диаграмма базы данных
+
+```mermaid
 erDiagram
     City {
         int id PK
@@ -28,7 +31,6 @@ erDiagram
     AnswerHistory {
         int id PK
         char user_answer
-        bool is_correct
         int points_earned
         datetime answered_at
         int user_id FK

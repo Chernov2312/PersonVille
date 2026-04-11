@@ -1,6 +1,5 @@
-from django.urls import path
-
 from city.views import city
+from django.urls import path
 
 app_name = 'city'
 urlpatterns = [

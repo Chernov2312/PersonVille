@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}<link rel="stylesheet" href="{% static 'css/user_form.css' %}">{% endblock head %}
+{% block title %}Тест{% endblock %}
+
+{% block content %}
+    <div class="container-md-5 mt-5">
+        <div class="row justify-content-md-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-4 bg-container rounded-3 shadow p-0">
+                {% if request.path == 'user/register/' %}{% endif %}
+                <h1 class="bg-head rounded-top-3 p-2"></h1>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-error">{{ form.non_field_errors }}</div>
+                    <div class="row justify-content-md-center p-3">
+                        {% for f in form %}
+                        <div class="col-md-12 mb-3">
+                            <div class="form-label" for="{{ f.id_for_label }}">{{f.label}}:</div>
+                            {{ f }}
+                            <div class="form-error">{{ f.errors }}</div>
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-12">
+                            <button type="submit" class="btn custom-button"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+{% endblock %}

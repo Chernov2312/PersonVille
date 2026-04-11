@@ -13,14 +13,16 @@ class Character(models.Model):
 
 
 class User(AbstractUser, BaseUpdate):
-    role = models.CharField(max_length=30, null=False)
+    role = models.CharField(max_length=30, null=False, default='player')
     city = models.CharField(max_length=40, null=True)
     character = models.ForeignKey(
         Character,
         on_delete=models.CASCADE,
         null=True,
     )
-    cities = models.ForeignKey(City, related_name='users', on_delete=models.CASCADE, null=True)
+    cities = models.ForeignKey(
+        City, related_name='users', on_delete=models.CASCADE, null=True,
+    )
 
     def save(self, *args, **kwargs):
         self.full_clean()

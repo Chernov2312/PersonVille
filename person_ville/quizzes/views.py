@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.urls import reverse
 
 
 def first(request):
-    return render(request, 'quizzes/first_test_form.html')
+    if request.POST:
+        return redirect(reverse('city:city'))
+    return render(request, 'quizzes/table_form.html')

@@ -7,7 +7,6 @@ erDiagram
         string username
         string email
         string password
-        int age
         string role
         string city
         datetime created_at
@@ -34,6 +33,7 @@ erDiagram
         string name
         string description
         int number_of_houses
+        string style
         datetime created_at
         datetime updated_at
         int city_id FK

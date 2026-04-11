@@ -2,23 +2,19 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from users.forms import AuthorizationForm, RegisterForm
-from users.utils import check_password, hash_password
 
 
 def registration(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
+        print(form.errors)
         if form.is_valid():
-            if (
-                form.cleaned_data['password']
-                == form.cleaned_data['confirm_password']
-            ):
-                form.changed_data['password'] = hash_password(
-                    form.cleaned_data['password'],
-                )
-                form.save()
-                return redirect(reverse('homepage:main'))
-    context = {'form': RegisterForm()}
+            form.save()
+            print('Пользователь успешно зарегистрирован')
+            return redirect(reverse('main:main'))
+    else:
+        form = RegisterForm()
+    context = {'form': form, 'title': 'Регистрация'}
     template = 'user/user_form.html'
     return render(request=request, template_name=template, context=context)
 
@@ -27,14 +23,9 @@ def authorization(request):
     if request.method == 'POST':
         form = AuthorizationForm(request.POST)
         if form.is_valid():
-            if check_password(
-                form.cleaned_data['email'], form.cleaned_data['password'],
-            ):
-                return redirect(reverse('homepage:main'))
-            else:
-                form.add_error(
-                    'password', 'Неверный пароль или логин',
-                )
-    context = {'form': AuthorizationForm()}
+            return redirect(reverse('main:main'))
+    else:
+        form = AuthorizationForm() 
+    context = {'form': form, 'title': 'Авторизация'}
     template = 'user/user_form.html'
     return render(request=request, template_name=template, context=context)

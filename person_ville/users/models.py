@@ -4,6 +4,7 @@ from django.db import models
 from city.models import City
 from core.models import BaseUpdate
 from quizzes.models import Answer, Quiz
+from users.manager import UserManager
 
 
 class Character(models.Model):
@@ -13,18 +14,21 @@ class Character(models.Model):
 
 
 class User(AbstractUser, BaseUpdate):
+    objects = UserManager()
     role = models.CharField(max_length=30, null=False, default='player')
-    city = models.CharField(max_length=40, null=True)
+    city = models.CharField(max_length=40, null=True, blank=True)
     character = models.ForeignKey(
         Character,
         on_delete=models.CASCADE,
         null=True,
+        blank=True,
     )
     cities = models.ForeignKey(
         City,
         related_name='users',
         on_delete=models.CASCADE,
         null=True,
+        blank=True,
     )
 
     def save(self, *args, **kwargs):

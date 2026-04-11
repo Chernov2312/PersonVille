@@ -2,7 +2,7 @@ __all__ = ()
 from django.apps import AppConfig
 
 
-class CityConfig(AppConfig):
+class DataConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'city'
-    verbose_name = 'Город'
+    name = 'data'
+    verbose_name = 'Данные'

@@ -1,8 +1,10 @@
 import os
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
 import environ
-import person_ville.utils
+
+from person_ville.utils import str_to_bool
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -11,7 +13,7 @@ env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, './../.env'), overwrite=False)
 SECRET_KEY = env.str('DJANGO_SECRET_KEY', default='secret')
 
-DEBUG = person_ville.utils.str_to_bool(
+DEBUG = str_to_bool(
     env.str('DJANGO_DEBUG', default='False'),
 )
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['*'])
@@ -26,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'city.apps.CityConfig',
     'users.apps.UsersConfig',
+    'data.apps.DataConfig',
 ] + (['debug_toolbar'] if DEBUG else [])
 
 MIDDLEWARE = [
@@ -88,17 +91,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = 'ru'
 USE_I18N = True
+LANGUAGES = [
+    ('ru', _('Русский')),
+    ('en', _('English')),
+]
 
-USE_TZ = True
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
+
+USE_L10N = True
+
+USE_TZ = True
+TIME_ZONE = 'UTC'
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [

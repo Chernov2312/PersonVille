@@ -13,7 +13,9 @@ class User(AbstractUser):
     role = models.CharField(max_length=30, null=False)
     city = models.CharField(max_length=40, null=True)
     charackter = models.ForeignKey(
-        Charackter, on_delete=models.CASCADE, null=True,
+        Charackter,
+        on_delete=models.CASCADE,
+        null=True,
     )
 
     def save(self, *args, **kwargs):

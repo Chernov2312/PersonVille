@@ -7,7 +7,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls')),
     path('city/', include('city.urls')),
-    path('test/', include('tests.urls')),
+    path('quiz/', include('quizzes.urls')),
+    path('user/', include('users.urls')),
 ]
 if settings.DEBUG:
     from debug_toolbar.toolbar import debug_toolbar_urls

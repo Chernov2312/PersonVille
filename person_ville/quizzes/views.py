@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.urls import reverse
 
-# Create your views here.
+
+def first(request):
+    if request.POST:
+        return redirect(reverse('city:city'))
+    return render(request, 'quizzes/table_form.html')

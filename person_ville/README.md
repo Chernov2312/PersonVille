@@ -2,54 +2,77 @@
 
 ```mermaid
 erDiagram
+    User {
+        int id PK
+        string username
+        string email
+        string password
+        string role
+        string city
+        datetime created_at
+        datetime updated_at
+    }
+    
+    Character {
+        int id PK
+        string quality_name
+        int quality_count
+        string description
+    }
+    
     City {
         int id PK
         string name
-        text description
+        string description
         datetime created_at
+        datetime updated_at
     }
     
     Street {
         int id PK
         string name
-        smallint street_index
+        string description
+        int number_of_houses
+        string style
         datetime created_at
+        datetime updated_at
         int city_id FK
-        int quiz_id FK
     }
     
     Quiz {
         int id PK
-        text question
-        string option_a
-        string option_b
-        string option_c
-        int points_cost
+        string question
+        text description
         datetime created_at
+        datetime updated_at
+        int street_id FK
+    }
+    
+    Answer {
+        int id PK
+        string name
+        string description
+        int cost
+        datetime created_at
+        datetime updated_at
     }
     
     AnswerHistory {
         int id PK
-        char user_answer
-        int points_earned
-        datetime answered_at
-        int user_id FK
-        int street_id FK
         int quiz_id FK
+        int selected_answer_id FK
+        int user_id FK
     }
     
-    User {
-        int id PK
-        string username
-        string email
-        int total_points
-        datetime date_joined
-        int current_city_id FK
-    }
+    %% Relationships
+    User ||--o{ AnswerHistory : "has"
+    Quiz ||--o{ AnswerHistory : "appears in"
+    Answer ||--o{ AnswerHistory : "selected as"
     
-    City ||--o{ Street : "has"
-    Street ||--|| Quiz : "has"
-    Quiz ||--o{ AnswerHistory : "has"
-    User ||--o{ AnswerHistory : "makes"
-    Street ||--o{ AnswerHistory : "for"
+    User }o--|| Character : "has"
+    User ||--o{ City : "lives in (OneToManyField)" 
+    City ||--o{ Street : "contains"
+    Street ||--o{ Quiz : "located at"
+    Quiz ||--o{ Answer : "has (ManyToMany)"
+    Answer }o--|| Quiz : "belongs to"
 ```

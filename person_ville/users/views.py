@@ -1,16 +1,19 @@
+from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from users.forms import AuthorizationForm, RegisterForm
 
 
+def character(request):
+    return render(request, 'user/character.html')
+
+
 def registration(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        print(form.errors)
         if form.is_valid():
             form.save()
-            print('Пользователь успешно зарегистрирован')
             return redirect(reverse('main:main'))
     else:
         form = RegisterForm()
@@ -23,6 +26,7 @@ def authorization(request):
     if request.method == 'POST':
         form = AuthorizationForm(request.POST)
         if form.is_valid():
+            login(request, form.user)
             return redirect(reverse('main:main'))
     else:
         form = AuthorizationForm()

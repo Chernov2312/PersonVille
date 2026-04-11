@@ -18,6 +18,7 @@ DEBUG = str_to_bool(
 )
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['*'])
 
+AUTH_USER_MODEL = 'users.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -27,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'city.apps.CityConfig',
+    'quizzes.apps.QuizzesConfig',
     'users.apps.UsersConfig',
     'data.apps.DataConfig',
 ] + (['debug_toolbar'] if DEBUG else [])

@@ -25,7 +25,7 @@ def authorization(request):
         if form.is_valid():
             return redirect(reverse('main:main'))
     else:
-        form = AuthorizationForm() 
+        form = AuthorizationForm()
     context = {'form': form, 'title': 'Авторизация'}
     template = 'user/user_form.html'
     return render(request=request, template_name=template, context=context)

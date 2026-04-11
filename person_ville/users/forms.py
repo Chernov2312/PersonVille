@@ -21,7 +21,8 @@ class AuthorizationForm(forms.Form):
             user = User.objects.get_user_by_email(cleaned_data['login'])
         if not user:
             self.add_error(
-                'login', 'Пользователь с таким логином или email не найден',
+                'login',
+                'Пользователь с таким логином или email не найден',
             )
         elif not check_password(cleaned_data['password'], user.password):
             self.add_error('password', 'Неверный пароль')
@@ -29,17 +30,43 @@ class AuthorizationForm(forms.Form):
 
 
 class RegisterForm(UserCreationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(
+        label='Логин', widget=forms.TextInput(attrs={'class': 'form-control'}),
+    )
+    password1 = forms.CharField(
+        label='Пароль',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+    )
+    password2 = forms.CharField(
+        label='Повтор пароля',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+    )
+
     class Meta:
         model = User
         fields = ['username', 'email']
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите имя'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'example@mail.ru'}),
-            'password1': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Придумайте пароль'}),
-            'password2': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Повторите пароль'}),
+            'username': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Введите имя'},
+            ),
+            'email': forms.EmailInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'example@mail.ru',
+                },
+            ),
+            'password1': forms.PasswordInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Придумайте пароль',
+                },
+            ),
+            'password2': forms.PasswordInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Повторите пароль',
+                },
+            ),
         }
         labels = {
             'username': 'Имя пользователя',

@@ -10,7 +10,11 @@
             <a class="nav-link custom-button rounded-pill text-white text-decoration-none" href="/admin/">Админ панель</a>
           </li>
         {% endif %}
-
+        {% if user.role = 'player' %}
+          <li class="nav-item">
+            <a class="nav-link custom-button rounded-pill text-white text-decoration-none" href="/admin/">{{user.username}}</a>
+          </li>
+        {% endif %}
         <li class="nav-item">
           {% if request.resolver_match.view_name == 'main:main' %}
             <span class="nav-link active custom-inactive rounded-pill text-white">На главную</span>

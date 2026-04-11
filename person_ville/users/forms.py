@@ -14,8 +14,13 @@ class AuthorizationForm(forms.Form):
 
 
 class RegisterForm(forms.ModelForm):
-    password_confirm = forms.CharField(widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'Подтвердите пароль'}),
+    password_confirm = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Подтвердите пароль',
+            },
+        ),
         label='Подтверждение пароля',
     )
 
@@ -23,18 +28,22 @@ class RegisterForm(forms.ModelForm):
         model = User
         fields = [
             'username',
+            'email',
             'password',
             'password_confirm',
         ]
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'password': forms.PasswordInput(attrs={'class': 'form-control'}),
         }
         labels = {
             'username': 'Ваше имя',
+            'email': 'Email',
             'password': 'Пароль',
         }
         help_texts = {
             'username': 'Ваше имя',
+            'email': 'Ваша почта',
             'password': 'Пароль',
         }

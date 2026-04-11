@@ -21,7 +21,10 @@ class User(AbstractUser, BaseUpdate):
         null=True,
     )
     cities = models.ForeignKey(
-        City, related_name='users', on_delete=models.CASCADE, null=True,
+        City,
+        related_name='users',
+        on_delete=models.CASCADE,
+        null=True,
     )
 
     def save(self, *args, **kwargs):

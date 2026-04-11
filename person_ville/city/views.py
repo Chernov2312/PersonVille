@@ -1,5 +1,6 @@
-__all__ = ()
 from django.shortcuts import render
+
+__all__ = ['city']
 
 
 def city(request):

@@ -1,5 +1,6 @@
-__all__ = ()
 from django.db import models
+
+__all__ = ['BaseUpdate']
 
 
 class BaseUpdate(models.Model):

@@ -3,6 +3,8 @@ from django.urls import reverse
 
 from quizzes.forms import AnswerForm
 
+__all__ = ['first']
+
 
 def first(request, number):
     if request.method == 'POST':

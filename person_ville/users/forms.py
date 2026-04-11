@@ -31,7 +31,8 @@ class AuthorizationForm(forms.Form):
 
 class RegisterForm(UserCreationForm):
     username = forms.CharField(
-        label='Логин', widget=forms.TextInput(attrs={'class': 'form-control'}),
+        label='Логин',
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
     )
     password1 = forms.CharField(
         label='Пароль',

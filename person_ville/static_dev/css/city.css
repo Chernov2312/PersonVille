@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.city-background {
+    background-image: url("/static/images/map.png");
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.9);
+}
+
+.city-background .container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.city-background .d-flex {
+    position: absolute;
+    width: 100%;
+}
+
+.city-background .justify-content-center {
+    top: 20%;
+    left: 0;
+    right: 0;
+}
+
+.city-background .justify-content-between {
+    top: 40%;
+    left: 0;
+    right: 0;
+    padding: 0 20%;
+}
+
+.city-background .justify-content-evenly {
+    top: 65%;
+    left: 0;
+    right: 0;
+    padding: 0 10%;
+}
+.city-background .justify-content-end{
+    top: 20%;
+    left: 0;
+    right: 0;
+    padding: 0 20%;
+}
+.city-background .bd-highlight {
+    background-image: url('/static/images/base.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 15vh;
+    aspect-ratio: 1 / 1;
+}
+
+.city-background .cheburek {
+    background-image: url('/static/images/cheburek.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 5vh;
+    height: 10vh;
+    display: block;
+    position: relative;
+    transition: all 0.15s ease;
+}
+
+.city-background .cheburek::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.city-background .cheburek:hover::before {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.city-background .cheburek:hover {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+    transform: scale(1.05);
+}
+.cross{
+    background-image: url('/static/images/cross.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 7vh;
+    height: 7vh;
+}
+.bd-highlight:hover {
+    filter: drop-shadow(0 0 10px rgba(0,0,0,1));
+    transition-duration: 0.15s;
+}

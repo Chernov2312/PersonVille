@@ -1,16 +1,38 @@
+__all__ = ['EntryAnswerForm', 'StreetCorrectionForm']
+
 from django import forms
 
-__all__ = ('AnswerForm',)
+
+ENTRY_ANSWER_CHOICES = [
+    (1, 'Совсем не похоже'),
+    (2, 'Скорее не похоже'),
+    (3, 'И да, и нет'),
+    (4, 'Скорее похоже'),
+    (5, 'Очень похоже'),
+]
 
 
-class AnswerForm(forms.Form):
+class EntryAnswerForm(forms.Form):
     answer = forms.ChoiceField(
-        choices=[
-            ('answer1', 'Ответ 1'),
-            ('answer2', 'Ответ 2'),
-            ('answer3', 'Ответ 3'),
-        ],
+        choices=ENTRY_ANSWER_CHOICES,
         widget=forms.RadioSelect,
-        label='Выберите ответ',
-        required=True,
+        label='',
+        error_messages={
+            'required': 'Выбери один вариант ответа.',
+        },
     )
+
+
+class StreetCorrectionForm(forms.Form):
+    answer = forms.ChoiceField(
+        choices=[],
+        widget=forms.RadioSelect,
+        label='',
+        error_messages={
+            'required': 'Выбери один вариант ответа.',
+        },
+    )
+
+    def __init__(self, *args, choices=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['answer'].choices = choices or []

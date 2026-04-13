@@ -1,12 +1,83 @@
 {% extends "base.html" %}
+
 {% block title %}"Главная страница"{% endblock %}
 
+{% block head %}
+<style>
+    .homepage-hero {
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .homepage-title {
+        margin-bottom: 24px;
+        color: #1f2430;
+        font-size: 46px;
+        font-weight: 500;
+        line-height: 1.1;
+    }
+
+    .homepage-test-button {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 14px 34px;
+        background-color: #7f8bdc;
+        color: #ffffff;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .homepage-test-button:hover {
+        color: #ffffff;
+        text-decoration: none;
+        opacity: 0.92;
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 991px) {
+        .homepage-title {
+            font-size: 44px;
+        }
+
+        .homepage-test-button {
+            padding: 12px 28px;
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .homepage-hero {
+            padding-top: 24px;
+        }
+
+        .homepage-title {
+            font-size: 32px;
+            margin-bottom: 18px;
+        }
+
+        .homepage-test-button {
+            padding: 11px 24px;
+            font-size: 16px;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="container ">
-    <div class="row justify-content-md-center mt-5">
-        <div class="col-md-6 text-center">
-            <h1>Добро пожаловать в PersonVille!</h1>
-            <a class="custom-button rounded-pill" href="{% url 'quizzes:first' number=1%}">Пройти тест</a>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-8 homepage-hero">
+            <h1 class="homepage-title">Добро пожаловать в PersonVille!</h1>
+            <a
+                class="homepage-test-button"
+                href="{% url 'quizzes:first' %}?reset=1"
+            >
+                Пройти тест
+            </a>
         </div>
     </div>
 </div>

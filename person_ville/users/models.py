@@ -3,7 +3,8 @@ from django.db import models
 
 from city.models import City
 from core.models import BaseUpdate
-from quizzes.models import Answer, Quiz
+from quizzes.models import Answer
+from quizzes.models import Quiz
 from users.manager import UserManager
 
 
@@ -15,8 +16,15 @@ class Character(models.Model):
 
 class User(AbstractUser, BaseUpdate):
     objects = UserManager()
+
+    email = models.EmailField(
+        unique=True,
+        null=False,
+        blank=False,
+    )
     role = models.CharField(max_length=30, null=False, default='player')
     city = models.CharField(max_length=40, null=True, blank=True)
+    is_email_verified = models.BooleanField(default=False)
     character = models.ForeignKey(
         Character,
         on_delete=models.CASCADE,

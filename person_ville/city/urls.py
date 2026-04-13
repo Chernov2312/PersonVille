@@ -1,8 +1,13 @@
+__all__ = ['urlpatterns', 'app_name']
+
 from django.urls import path
 
-from city.views import city
+from city import views
+
 
 app_name = 'city'
+
 urlpatterns = [
-    path('', city, name='city'),
+    path('', views.city_view, name='city'),
+    path('<str:trait>/', views.street_view, name='street'),
 ]

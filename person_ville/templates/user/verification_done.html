@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6 bg-container rounded-3 shadow p-4 text-center">
+            <h1 class="bg-head rounded-top-3 p-2 text-center">
+                {{ title }}
+            </h1>
+
+            <p class="mt-4">{{ message }}</p>
+
+            {% if login_url %}
+                <a class="btn custom-button mt-3" href="{{ login_url }}">
+                    Перейти ко входу
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

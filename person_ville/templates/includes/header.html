@@ -1,44 +1,114 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-light bgcolor">
-  <div class="container">
+<style>
+  .site-navbar {
+    position: relative;
+    z-index: 3000;
+  }
 
+  .site-navbar .container,
+  .site-navbar .collapse,
+  .site-navbar .navbar-nav,
+  .site-navbar .nav-item,
+  .site-navbar .nav-link {
+    position: relative;
+    z-index: 3001;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bgcolor site-navbar">
+  <div class="container">
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto align-items-center gap-2 flex-nowrap">
         {% if user.is_staff %}
           <li class="nav-item">
-            <a class="nav-link custom-button rounded-pill text-white text-decoration-none" href="/admin/">Админ панель</a>
+            <a
+              class="nav-link custom-button rounded-pill text-white
+                     text-decoration-none px-3 py-2"
+              href="/admin/"
+            >
+              Админ панель
+            </a>
           </li>
         {% endif %}
 
         <li class="nav-item">
-          {% if request.resolver_match.view_name == 'main:main' %}
-            <span class="nav-link active custom-inactive rounded-pill text-white">На главную</span>
-          {% else %}
-            <a class="nav-link custom-button rounded-pill text-white text-decoration-none" href="{% url 'main:main' %}">На главную</a>
-          {% endif %}
+          <a
+            class="nav-link custom-button rounded-pill text-white
+                   text-decoration-none px-3 py-2"
+            href="{% url 'main:main' %}"
+          >
+            На главную
+          </a>
         </li>
-        <li class="nav-item">
-          {% if user.role != 'player' %}
-            <a class="nav-link custom-button rounded-pill text-white text-decoration-none" href="{% url 'user:registration' %}">Регистрация</a>
-            <a class="nav-link custom-button rounded-pill text-white text-decoration-none" href="{% url 'user:authorization' %}">Войти</a>
-          {% endif %}
-        </li>
-        {% if user.role == 'player' %}
+
+        {% if user.is_authenticated %}
           <li class="nav-item">
             {% if request.resolver_match.view_name == 'user:character' %}
-              <span class="nav-link active custom-inactive rounded-pill text-white">Персонаж</span>
+              <span
+                class="nav-link active custom-inactive rounded-pill
+                       text-white px-3 py-2"
+              >
+                Персонаж
+              </span>
             {% else %}
-              <a class="nav-link custom-button rounded-pill text-white text-decoration-none" href="{% url 'user:character' %}">Персонаж</a>
+              <a
+                class="nav-link custom-button rounded-pill text-white
+                       text-decoration-none px-3 py-2"
+                href="{% url 'user:character' %}"
+              >
+                Персонаж
+              </a>
             {% endif %}
           </li>
 
           <li class="nav-item">
             {% if request.resolver_match.view_name == 'city:city' %}
-              <span class="nav-link active custom-inactive rounded-pill text-white">Город</span>
+              <span
+                class="nav-link active custom-inactive rounded-pill
+                       text-white px-3 py-2"
+              >
+                Город
+              </span>
             {% else %}
-              <a class="nav-link custom-button rounded-pill text-white text-decoration-none" href="{% url 'city:city' %}">Город</a>
+              <a
+                class="nav-link custom-button rounded-pill text-white
+                       text-decoration-none px-3 py-2"
+                href="{% url 'city:city' %}"
+              >
+                Город
+              </a>
             {% endif %}
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link custom-button rounded-pill text-white
+                     text-decoration-none px-3 py-2"
+              href="{% url 'user:logout' %}"
+            >
+              Выйти
+            </a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a
+              class="nav-link custom-button rounded-pill text-white
+                     text-decoration-none px-3 py-2"
+              href="{% url 'user:registration' %}"
+            >
+              Регистрация
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link custom-button rounded-pill text-white
+                     text-decoration-none px-3 py-2"
+              href="{% url 'user:authorization' %}"
+            >
+              Войти
+            </a>
           </li>
         {% endif %}
       </ul>

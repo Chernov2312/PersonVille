@@ -2,18 +2,18 @@ __all__ = ['city_view', 'street_view']
 
 from django.http import Http404
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 
 def city_view(request):
     city_result = request.session.get('city_result')
 
-    if not city_result:
-        return redirect('quizzes:first')
-
-    return HttpResponse(
-        'Город собран. Фронт улиц будет подключён позже.',
-    )
+    #if not city_result:
+    #    return redirect('quizzes:first')
+    
+    template = 'city/city.html'
+    context = {}
+    return render(request=request, template_name=template, context=context)
 
 
 def street_view(request, trait):

@@ -1,36 +1,81 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang='ru'>
+<html lang="ru">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <link
+      rel="stylesheet"
+      href="{% static 'css/bootstrap.min.css' %}"
+    >
     <title>{% block title %}PersoneVille{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'css/pages_styles.css' %}">
+    <link
+      rel="stylesheet"
+      href="{% static 'css/pages_styles.css' %}"
+    >
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    >
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
       rel="stylesheet"
     >
-    {% block head %}
-      
-    {% endblock head %}
+    {% block head %}{% endblock head %}
   </head>
   <body>
     <header class="row">
       {% include "includes/header.html" %}
     </header>
-    <div class="row test test-2">
-        {% block content %}
-        Ничего
-        {% endblock content %}
-    </div>
-    <footer class="row">
-      <div>
-      {% include "includes/footer.html" %}
+
+    {% if messages %}
+      <div class="container mt-3">
+        {% for message in messages %}
+          <div
+            class="alert alert-warning text-center rounded-4 shadow-sm"
+          >
+            {{ message }}
+          </div>
+        {% endfor %}
       </div>
-    </footer>
+    {% endif %}
+
+    <main
+      class="
+        page-content
+        {% if request.resolver_match.namespace == 'city' %}
+          page-content-city
+        {% else %}
+          page-content-default
+        {% endif %}
+      "
+    >
+      {% if request.resolver_match.namespace != 'city' %}
+        <div class="row test test-2">
+      {% endif %}
+
+      {% block content %}
+      Ничего
+      {% endblock content %}
+
+      {% if request.resolver_match.namespace != 'city' %}
+        </div>
+      {% endif %}
+    </main>
+
+    {% if request.resolver_match.view_name == 'main:main' %}
+      <footer class="row">
+        <div>
+          {% include "includes/footer.html" %}
+        </div>
+      </footer>
+    {% endif %}
+
     <script src="{% static 'js/cursor.js' %}"></script>
   </body>
 </html>

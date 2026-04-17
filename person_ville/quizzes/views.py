@@ -3,11 +3,12 @@ __all__ = [
     'street_correction',
     'reset_quiz_progress',
     'close_test',
+    'restart_test',
 ]
 
+from django.contrib import messages
 from django.http import Http404
-from django.shortcuts import redirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from city.managers import apply_street_correction
 from city.managers import build_city_from_scores
@@ -33,10 +34,27 @@ def first(request):
         reset_quiz_progress(request)
         return redirect('quizzes:first')
 
+    city_result = request.session.get('city_result')
+    if city_result:
+        messages.info(
+            request,
+            'Тест уже пройден. '
+            'Начните заново или перейдите к итоговому персонажу',
+        )
+        return redirect('main:main')
+
     entry_answers = request.session.get('entry_answers', {})
     current_index = request.session.get('entry_question_index', 0)
 
     if current_index >= len(questions):
+        if not request.user.is_authenticated:
+            messages.warning(
+                request,
+                'Войдите в аккаунт или зарегистрируйтесь, '
+                'чтобы открыть карту города и сохранить свой результат',
+            )
+            return redirect('user:authorization')
+
         scored_traits = score_entry_answers(quiz_data, entry_answers)
         city_result = build_city_from_scores(quiz_data, scored_traits)
 
@@ -140,3 +158,8 @@ def street_correction(request, trait):
 def close_test(request):
     reset_quiz_progress(request)
     return redirect('main:main')
+
+
+def restart_test(request):
+    reset_quiz_progress(request)
+    return redirect('quizzes:first')

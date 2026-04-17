@@ -10,16 +10,13 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
-from django.shortcuts import redirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.utils.encoding import force_bytes
-from django.utils.encoding import force_str
-from django.utils.http import urlsafe_base64_decode
-from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
-from users.forms import AuthorizationForm
-from users.forms import RegisterForm
+from quizzes.views import reset_quiz_progress
+from users.forms import AuthorizationForm, RegisterForm
 from users.models import User
 
 
@@ -70,6 +67,17 @@ def authorization(request):
                 )
             else:
                 login(request, user)
+
+                city_result = request.session.get('city_result')
+                entry_answers = request.session.get('entry_answers', {})
+                current_index = request.session.get('entry_question_index', 0)
+
+                if city_result:
+                    return redirect('city:city')
+
+                if entry_answers or current_index > 0:
+                    return redirect('quizzes:first')
+
                 return redirect(reverse('main:main'))
     else:
         form = AuthorizationForm()
@@ -142,5 +150,6 @@ def send_verification_email(request, user):
 
 
 def logout_view(request):
+    reset_quiz_progress(request)
     logout(request)
     return redirect('main:main')

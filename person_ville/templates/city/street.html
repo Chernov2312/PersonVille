@@ -1,9 +1,132 @@
+{% extends "base.html" %}
 {% load static %}
-<div class='container-fluid'>
-    <div class={{street.style}}>
-        <h3>{{street.name}}</h3>
-        <div class="row bg-street">
-            {{street.image.safe}}
+
+{% block title %}{{ street.name }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/city.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="street-page street-{{ street.trait }}">
+    <div class="street-scene">
+        <img
+            src="{% static street.image %}"
+            alt="{{ street.name }}"
+            class="street-image"
+        >
+
+        <a href="{% url 'city:city' %}" class="street-back-link">
+            ← К карте
+        </a>
+
+        <div class="street-header-board">
+            <div class="street-header-title">{{ street.name }}</div>
+            <div class="street-header-subtitle">{{ street.subtitle }}</div>
         </div>
+
+        {% for house in street.houses %}
+            <div class="street-door-card door-{{ house.position }}">
+                {% if city_result.is_finalized %}
+                    <div class="street-door-sign is-locked is-completed">
+                        <span class="street-door-text">
+                            {{ house.base_text }}
+                        </span>
+                        <span class="street-door-status">
+                            Пройдено
+                        </span>
+                    </div>
+                {% else %}
+                    <a
+                        href="{% url 'city:street' trait=street.trait %}?house={{ house.house_id }}"
+                        class="street-door-sign {% if house.completed %}is-completed{% endif %}"
+                    >
+                        <span class="street-door-text">
+                            {{ house.base_text }}
+                        </span>
+                        <span class="street-door-status">
+                            {% if house.completed %}
+                                Пройдено
+                            {% else %}
+                                Не пройдено
+                            {% endif %}
+                        </span>
+                    </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        {% if active_house %}
+            <div class="street-modal">
+                <div class="street-modal-backdrop"></div>
+
+                <div class="question-board">
+                    <a
+                        href="{% url 'city:street' trait=street.trait %}"
+                        class="question-close"
+                        aria-label="Закрыть"
+                    ></a>
+
+                    <div class="question-inner">
+                        <div class="question-title">
+                            Насколько этот тезис про тебя?
+                        </div>
+                        <div class="question-house-text">
+                            {{ active_house.base_text }}
+                        </div>
+
+                        <form
+                            method="post"
+                            novalidate
+                            onsubmit="return validateHouseAnswer()"
+                            action="{% url 'city:house_question' trait=street.trait house_id=active_house.house_id %}"
+                        >
+                            {% csrf_token %}
+
+                            <div class="question-options">
+                                {% for option in answer_options %}
+                                    <label class="question-option">
+                                        <input
+                                            type="radio"
+                                            name="answer"
+                                            value="{{ option.value }}"
+                                            {% if active_house.answer_value == option.value %}checked{% endif %}
+                                        >
+                                        <span>{{ option.label }}</span>
+                                    </label>
+                                {% endfor %}
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="question-save-button"
+                            >
+                                {% if active_house.answer_value %}
+                                    Изменить ответ
+                                {% else %}
+                                    Сохранить ответ
+                                {% endif %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 </div>
+
+<script>
+    function validateHouseAnswer() {
+        const selected = document.querySelector(
+            '.question-board input[name="answer"]:checked'
+        );
+
+        if (!selected) {
+            alert('Выберите вариант ответа');
+            return false;
+        }
+
+        return true;
+    }
+</script>
+{% endblock %}

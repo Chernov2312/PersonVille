@@ -16,6 +16,32 @@
   }
 </style>
 
+<script>
+  function confirmLogout(hasCityResult) {
+    if (hasCityResult) {
+      return confirm(
+        "Вы уверены, что хотите выйти?\n\nТекущий город будет сброшен"
+      );
+    }
+
+    return confirm("Вы уверены, что хотите выйти из аккаунта?");
+  }
+
+  function openCharacterFromHeader(event) {
+    if (event) {
+      event.preventDefault();
+    }
+
+    if (typeof openCharacterModal === "function") {
+      openCharacterModal();
+      return false;
+    }
+
+    window.location.href = "{% url 'city:city' %}";
+    return false;
+  }
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-light bgcolor site-navbar">
   <div class="container">
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -23,8 +49,7 @@
         {% if user.is_staff %}
           <li class="nav-item">
             <a
-              class="nav-link custom-button rounded-pill text-white
-                     text-decoration-none px-3 py-2"
+              class="nav-link custom-button rounded-pill text-white text-decoration-none px-3 py-2"
               href="/admin/"
             >
               Админ панель
@@ -34,8 +59,7 @@
 
         <li class="nav-item">
           <a
-            class="nav-link custom-button rounded-pill text-white
-                   text-decoration-none px-3 py-2"
+            class="nav-link custom-button rounded-pill text-white text-decoration-none px-3 py-2"
             href="{% url 'main:main' %}"
           >
             На главную
@@ -43,49 +67,51 @@
         </li>
 
         {% if user.is_authenticated %}
-          <li class="nav-item">
-            {% if request.resolver_match.view_name == 'user:character' %}
-              <span
-                class="nav-link active custom-inactive rounded-pill
-                       text-white px-3 py-2"
-              >
-                Персонаж
-              </span>
-            {% else %}
-              <a
-                class="nav-link custom-button rounded-pill text-white
-                       text-decoration-none px-3 py-2"
-                href="{% url 'user:character' %}"
-              >
-                Персонаж
-              </a>
-            {% endif %}
-          </li>
+          {% if request.session.city_result %}
+            <li class="nav-item">
+              {% if request.resolver_match.view_name == 'city:city' %}
+                <a
+                  class="nav-link custom-button rounded-pill text-white text-decoration-none px-3 py-2"
+                  href="{% url 'city:city' %}"
+                  onclick="return openCharacterFromHeader(event)"
+                >
+                  Персонаж
+                </a>
+              {% else %}
+                <a
+                  class="nav-link custom-button rounded-pill text-white text-decoration-none px-3 py-2"
+                  href="{% url 'city:city' %}"
+                >
+                  Персонаж
+                </a>
+              {% endif %}
+            </li>
 
-          <li class="nav-item">
-            {% if request.resolver_match.view_name == 'city:city' %}
-              <span
-                class="nav-link active custom-inactive rounded-pill
-                       text-white px-3 py-2"
-              >
-                Город
-              </span>
-            {% else %}
+            <li class="nav-item">
               <a
-                class="nav-link custom-button rounded-pill text-white
-                       text-decoration-none px-3 py-2"
+                class="nav-link {% if request.resolver_match.view_name == 'city:city' %}active custom-inactive{% else %}custom-button{% endif %} rounded-pill text-white text-decoration-none px-3 py-2"
                 href="{% url 'city:city' %}"
               >
                 Город
               </a>
-            {% endif %}
-          </li>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link custom-button rounded-pill text-white text-decoration-none px-3 py-2"
+                href="{% url 'quizzes:restart' %}"
+                onclick="return confirm('Вы уверены, что хотите начать заново?\n\nТекущий город будет сброшен')"
+              >
+                Начать заново
+              </a>
+            </li>
+          {% endif %}
 
           <li class="nav-item">
             <a
-              class="nav-link custom-button rounded-pill text-white
-                     text-decoration-none px-3 py-2"
+              class="nav-link custom-button rounded-pill text-white text-decoration-none px-3 py-2"
               href="{% url 'user:logout' %}"
+              onclick="return confirmLogout({% if request.session.city_result %}true{% else %}false{% endif %})"
             >
               Выйти
             </a>
@@ -93,8 +119,7 @@
         {% else %}
           <li class="nav-item">
             <a
-              class="nav-link custom-button rounded-pill text-white
-                     text-decoration-none px-3 py-2"
+              class="nav-link custom-button rounded-pill text-white text-decoration-none px-3 py-2"
               href="{% url 'user:registration' %}"
             >
               Регистрация
@@ -103,8 +128,7 @@
 
           <li class="nav-item">
             <a
-              class="nav-link custom-button rounded-pill text-white
-                     text-decoration-none px-3 py-2"
+              class="nav-link custom-button rounded-pill text-white text-decoration-none px-3 py-2"
               href="{% url 'user:authorization' %}"
             >
               Войти

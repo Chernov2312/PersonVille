@@ -29,6 +29,7 @@
         font-weight: 600;
         line-height: 1;
         transition: opacity 0.2s ease, transform 0.2s ease;
+        border: none;
     }
 
     .homepage-test-button:hover {
@@ -65,6 +66,25 @@
         }
     }
 </style>
+
+<script>
+    function handleTestStart(hasCityResult) {
+        if (!hasCityResult) {
+            window.location.href = "{% url 'quizzes:first' %}?reset=1";
+            return false;
+        }
+
+        const restart = confirm(
+            "Тест уже пройден.\n\nНажмите Да, чтобы начать заново.\nНажмите Нет, чтобы вернуться"
+        );
+
+        if (restart) {
+            window.location.href = "{% url 'quizzes:restart' %}";
+        }
+
+        return false;
+    }
+</script>
 {% endblock %}
 
 {% block content %}
@@ -72,9 +92,11 @@
     <div class="row justify-content-md-center">
         <div class="col-md-8 homepage-hero">
             <h1 class="homepage-title">Добро пожаловать в PersonVille!</h1>
+
             <a
                 class="homepage-test-button"
-                href="{% url 'quizzes:first' %}?reset=1"
+                href="#"
+                onclick="return handleTestStart({% if request.session.city_result %}true{% else %}false{% endif %})"
             >
                 Пройти тест
             </a>

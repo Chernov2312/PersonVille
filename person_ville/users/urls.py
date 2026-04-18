@@ -9,7 +9,6 @@ from users.views import (
 )
 
 app_name = 'user'
-
 urlpatterns = [
     path('authorization/', authorization, name='authorization'),
     path('logout/', logout_view, name='logout'),

@@ -1,6 +1,5 @@
+__all__ = 'HomepageTestCase'
 from django.test import TestCase
-
-__all__ = ['HomepageTestCase']
 
 
 class HomepageTestCase(TestCase):

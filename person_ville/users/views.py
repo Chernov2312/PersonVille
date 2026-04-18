@@ -1,10 +1,10 @@
-__all__ = [
+__all__ = (
     'authorization',
     'character',
     'logout_view',
     'registration',
     'verify_email',
-]
+)
 
 from django.contrib.auth import login, logout
 from django.contrib.auth.tokens import default_token_generator
@@ -104,8 +104,7 @@ def verify_email(request, uidb64, token):
         context = {
             'title': 'Почта подтверждена',
             'message': (
-                'Ваш аккаунт подтверждён. '
-                'Теперь вы можете войти в систему.'
+                'Ваш аккаунт подтверждён. ' 'Теперь вы можете войти в систему.'
             ),
             'login_url': reverse('user:authorization'),
         }

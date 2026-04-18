@@ -1,4 +1,4 @@
-__all__ = ['RegisterForm', 'AuthorizationForm']
+__all__ = ('RegisterForm', 'AuthorizationForm')
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm

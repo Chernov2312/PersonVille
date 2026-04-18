@@ -1,23 +1,19 @@
-import os
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
 import environ
 
-from person_ville.utils import str_to_bool
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, './../.env'), overwrite=False)
+env.read_env(BASE_DIR.parent / '.env')
 SECRET_KEY = env.str('DJANGO_SECRET_KEY', default='secret')
-
-DEBUG = str_to_bool(
-    env.str('DJANGO_DEBUG', default='False'),
+DEBUG = env.bool('DJANGO_DEBUG', default=False)
+ALLOWED_HOSTS = env.list(
+    'DJANGO_ALLOWED_HOSTS',
+    default=['localhost', '127.0.0.1'],
 )
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['*'])
-
 AUTH_USER_MODEL = 'users.User'
 
 INSTALLED_APPS = [
@@ -32,7 +28,7 @@ INSTALLED_APPS = [
     'quizzes.apps.QuizzesConfig',
     'users.apps.UsersConfig',
     'data.apps.DataConfig',
-] + (['debug_toolbar'] if DEBUG else [])
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -42,11 +38,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-] + (['debug_toolbar.middleware.DebugToolbarMiddleware'] if DEBUG else [])
-
-INTERNAL_IPS = [
-    '127.0.0.1',
 ]
+
+if DEBUG:
+    INSTALLED_APPS += ['debug_toolbar']
+    MIDDLEWARE.insert(
+        MIDDLEWARE.index('django.middleware.security.SecurityMiddleware') + 1,
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    )
+    INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'person_ville.urls'
 
@@ -96,23 +96,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 USE_I18N = True
+USE_TZ = True
+TIME_ZONE = 'UTC'
+
 LANGUAGES = [
     ('ru', _('Русский')),
     ('en', _('English')),
 ]
 
-
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
 
-USE_L10N = True
-
-USE_TZ = True
-TIME_ZONE = 'UTC'
-
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     BASE_DIR / 'static_dev',
 ]
@@ -122,8 +118,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'users.User'
-
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_BACKEND = env.str(
+    'DJANGO_EMAIL_BACKEND',
+    default='django.core.mail.backends.filebased.EmailBackend',
+)
 EMAIL_FILE_PATH = BASE_DIR / 'send_mail'
-DEFAULT_FROM_EMAIL = 'noreply@personville.local'
+DEFAULT_FROM_EMAIL = env.str(
+    'DJANGO_DEFAULT_FROM_EMAIL',
+    default='noreply@personville.local',
+)

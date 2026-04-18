@@ -1,4 +1,4 @@
-__all__ = [
+__all__ = (
     'load_quiz_data',
     'normalize_entry_answers',
     'score_entry_answers',
@@ -6,13 +6,12 @@ __all__ = [
     'apply_house_answer',
     'build_final_character',
     'apply_street_correction',
-]
+)
 
 import json
 from pathlib import Path
 
 from django.utils import timezone
-
 
 STREET_IMAGE_MAP = {
     'negative_emotionality': 'images/streets/Weather Street.png',
@@ -27,7 +26,7 @@ TRAIT_ORDER = [
     'extraversion',
     'agreeableness',
     'conscientiousness',
-    'negative_emotionality',
+    'negative emotionality',
     'openness',
 ]
 
@@ -90,14 +89,16 @@ def _build_houses(trait, houses):
     result = []
 
     for index, text in enumerate(houses[:3], start=1):
-        result.append({
-            'house_id': f'{trait}_{index}',
-            'base_text': text,
-            'final_text': text,
-            'answer_value': None,
-            'completed': False,
-            'position': index,
-        })
+        result.append(
+            {
+                'house_id': f'{trait}_{index}',
+                'base_text': text,
+                'final_text': text,
+                'answer_value': None,
+                'completed': False,
+                'position': index,
+            },
+        )
 
     return result
 
@@ -111,19 +112,21 @@ def build_city_from_scores(quiz_data, scored_traits):
         house_texts = street_data['houses'][level]
         houses = _build_houses(trait, house_texts)
 
-        streets.append({
-            'trait': trait,
-            'name': street_data['name'],
-            'subtitle': street_data['subtitle'],
-            'description': street_data['descriptions'][level],
-            'houses': houses,
-            'image': STREET_IMAGE_MAP.get(trait, ''),
-            'visual': street_data['visual'][level],
-            'score': trait_result['score'],
-            'level': level,
-            'answered_count': 0,
-            'completed': False,
-        })
+        streets.append(
+            {
+                'trait': trait,
+                'name': street_data['name'],
+                'subtitle': street_data['subtitle'],
+                'description': street_data['descriptions'][level],
+                'houses': houses,
+                'image': STREET_IMAGE_MAP.get(trait, ''),
+                'visual': street_data['visual'][level],
+                'score': trait_result['score'],
+                'level': level,
+                'answered_count': 0,
+                'completed': False,
+            },
+        )
 
     return {
         'title': quiz_data['meta']['title'],
@@ -188,11 +191,13 @@ def build_final_character(city_result, scored_traits):
         level = trait_data.get('level', 'mid')
         text = _pick_trait_allegory(quiz_data, trait, level)
 
-        trait_allegories.append({
-            'trait': trait,
-            'level': level,
-            'text': text,
-        })
+        trait_allegories.append(
+            {
+                'trait': trait,
+                'level': level,
+                'text': text,
+            },
+        )
 
     city_summary = _pick_city_summary(quiz_data, scored_traits)
     server_date = timezone.localdate().strftime('%d.%m.%Y')

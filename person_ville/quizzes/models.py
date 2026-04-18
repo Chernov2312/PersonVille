@@ -1,3 +1,4 @@
+__all__ = ('Answer', 'Quiz')
 from django.db import models
 
 from city.models import Street

@@ -1,10 +1,10 @@
-__all__ = [
+__all__ = (
     'city_view',
     'finalize_city_view',
     'street_view',
     'house_question_view',
     'character_view',
-]
+)
 
 from django.contrib import messages
 from django.http import Http404
@@ -14,7 +14,6 @@ from django.urls import reverse
 from city.managers import apply_house_answer
 from city.managers import build_final_character
 from city.managers import load_quiz_data
-
 
 STREET_SLOT_MAP = {
     'negative_emotionality': 'street-slot-top',
@@ -62,14 +61,16 @@ def _refresh_street_progress(street):
 
     for index, house in enumerate(street.get('houses', []), start=1):
         if isinstance(house, str):
-            normalized_houses.append({
-                'house_id': f'{street["trait"]}_{index}',
-                'base_text': house,
-                'final_text': house,
-                'answer_value': None,
-                'completed': False,
-                'position': index,
-            })
+            normalized_houses.append(
+                {
+                    'house_id': f'{street["trait"]}_{index}',
+                    'base_text': house,
+                    'final_text': house,
+                    'answer_value': None,
+                    'completed': False,
+                    'position': index,
+                },
+            )
         else:
             base_text = _normalize_house_text(
                 house.get('base_text', house.get('final_text', '')),
@@ -78,27 +79,25 @@ def _refresh_street_progress(street):
                 house.get('final_text', house.get('base_text', '')),
             )
 
-            normalized_houses.append({
-                'house_id': house.get(
-                    'house_id',
-                    f'{street["trait"]}_{index}',
-                ),
-                'base_text': base_text,
-                'final_text': final_text or base_text,
-                'answer_value': house.get('answer_value'),
-                'completed': house.get('completed', False),
-                'position': house.get('position', index),
-            })
+            normalized_houses.append(
+                {
+                    'house_id': house.get(
+                        'house_id',
+                        f'{street["trait"]}_{index}',
+                    ),
+                    'base_text': base_text,
+                    'final_text': final_text or base_text,
+                    'answer_value': house.get('answer_value'),
+                    'completed': house.get('completed', False),
+                    'position': house.get('position', index),
+                },
+            )
 
     street['houses'] = normalized_houses
     street['answered_count'] = sum(
-        1
-        for house in street['houses']
-        if house['completed']
+        1 for house in street['houses'] if house['completed']
     )
-    street['completed'] = (
-        street['answered_count'] == len(street['houses'])
-    )
+    street['completed'] = street['answered_count'] == len(street['houses'])
     return street
 
 
@@ -107,8 +106,7 @@ def _refresh_city_progress(city_result):
         city_result['streets'][index] = _refresh_street_progress(street)
 
     city_result['all_completed'] = all(
-        street['completed']
-        for street in city_result['streets']
+        street['completed'] for street in city_result['streets']
     )
     city_result.setdefault('is_finalized', False)
     return city_result
@@ -128,14 +126,16 @@ def city_view(request):
     street_slots = []
 
     for street in city_result['streets']:
-        street_slots.append({
-            'trait': street['trait'],
-            'name': street['name'],
-            'description': street['description'],
-            'answered_count': street['answered_count'],
-            'houses_count': len(street['houses']),
-            'slot_class': STREET_SLOT_MAP.get(street['trait'], ''),
-        })
+        street_slots.append(
+            {
+                'trait': street['trait'],
+                'name': street['name'],
+                'description': street['description'],
+                'answered_count': street['answered_count'],
+                'houses_count': len(street['houses']),
+                'slot_class': STREET_SLOT_MAP.get(street['trait'], ''),
+            },
+        )
 
     context = {
         'city_result': city_result,
@@ -181,8 +181,7 @@ def finalize_city_view(request):
 
     messages.success(
         request,
-        'Город зафиксирован. Самоотчёт сохранён, '
-        'и итоговый персонаж готов',
+        'Город зафиксирован. Самоотчёт сохранён, ' 'и итоговый персонаж готов',
     )
     return redirect('city:city')
 
@@ -289,7 +288,11 @@ def character_view(request):
     city_result = _get_city_result(request)
     final_character = request.session.get('final_character')
 
-    if (not city_result or not final_character or not city_result.get('is_finalized')):
+    if (
+        not city_result
+        or not final_character
+        or not city_result.get('is_finalized')
+    ):
         messages.info(
             request,
             'Сначала завершите город, чтобы открыть итоговую карточку.',

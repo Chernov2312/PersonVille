@@ -1,21 +1,22 @@
-__all__ = [
+__all__ = (
     'first',
     'street_correction',
     'reset_quiz_progress',
     'close_test',
     'restart_test',
-]
+)
 
 from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import redirect, render
 
-from city.managers import apply_street_correction
-from city.managers import build_city_from_scores
-from city.managers import load_quiz_data
-from city.managers import score_entry_answers
-from quizzes.forms import EntryAnswerForm
-from quizzes.forms import StreetCorrectionForm
+from city.managers import (
+    apply_street_correction,
+    build_city_from_scores,
+    load_quiz_data,
+    score_entry_answers,
+)
+from quizzes.forms import EntryAnswerForm, StreetCorrectionForm
 
 
 def reset_quiz_progress(request):

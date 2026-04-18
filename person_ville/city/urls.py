@@ -1,5 +1,3 @@
-__all__ = ['urlpatterns', 'app_name']
-
 from django.urls import path
 
 from city import views

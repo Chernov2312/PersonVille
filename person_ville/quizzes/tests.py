@@ -1,9 +1,8 @@
+__all__ = 'QuizzesTestCase'
 import http
 
 from django.test import TestCase
 from django.urls import reverse
-
-__all__ = ['QuizzesTestCase']
 
 
 class QuizzesTestCase(TestCase):

@@ -109,15 +109,11 @@
             position: absolute;
             inset: 0;
             background-image: url("{% static 'images/Character.png' %}");
-            background-size: 100% 100%;
+            background-size: 136% 126%;
             background-repeat: no-repeat;
             background-position: center;
             transform: translateY(-190px);
             z-index: 0;
-        }
-
-        .character-card-shell::before {
-            background-size: 136% 126%;
         }
 
         .character-card-header {
@@ -183,8 +179,7 @@
             border-radius: 18px;
             background: #e4c894;
             border: 1px solid rgba(91, 74, 55, 0.12);
-            transform: translateX(47px);
-            transform: translateY(-29px);
+            transform: translate(47px, -29px);
             box-shadow: none;
             backdrop-filter: none;
             -webkit-backdrop-filter: none;

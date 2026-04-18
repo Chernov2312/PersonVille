@@ -1,3 +1,4 @@
+__all__ = ('Character', 'User', 'AnswerHistory')
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -5,7 +6,7 @@ from city.models import City
 from core.models import BaseUpdate
 from quizzes.models import Answer
 from quizzes.models import Quiz
-from users.manager import UserManager
+from users.managers import UserManager
 
 
 class Character(models.Model):

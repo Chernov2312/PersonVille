@@ -1,0 +1,181 @@
+.bg-container {
+    position: relative;
+    background-image: url("/static/images/auth_scroll.png");
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    width: 98%;
+    max-width: 1200px;
+    min-height: 660px;
+    margin: 0 auto;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.auth-close {
+    position: absolute;
+    top: 118px;
+    right: 250px;
+    width: 99px;
+    height: 99px;
+    display: block;
+    background-image: url("/static/images/cross.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    z-index: 20;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.auth-close:hover {
+    transform: scale(1.08);
+}
+
+.auth-close-text {
+    display: none;
+}
+
+.scroll-content {
+    width: 42%;
+    margin: 0 auto;
+    padding-top: 12%;
+    padding-bottom: 6%;
+}
+
+.scroll-content .form-label {
+    color: #2b241d;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.scroll-content .form-control {
+    border-radius: 10px;
+    min-height: 50px;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 48px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle svg {
+    width: 22px;
+    height: 22px;
+    stroke: #5a5147;
+    transition: stroke 0.2s ease;
+}
+
+.password-toggle:hover svg {
+    stroke: #2b241d;
+}
+
+.password-toggle:focus {
+    outline: none;
+}
+
+.btn-submit {
+    display: block;
+    width: 55%;
+    min-width: 220px;
+    max-width: 320px;
+    margin: 14px auto 0;
+}
+
+@media (max-width: 1200px) {
+    .bg-container {
+        max-width: 980px;
+        min-height: 700px;
+    }
+
+    .auth-close {
+        top: 82px;
+        right: 165px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .scroll-content {
+        width: 64%;
+        padding-top: 12%;
+    }
+}
+
+@media (max-width: 991px) {
+    .bg-container {
+        max-width: 860px;
+        min-height: 620px;
+    }
+
+    .auth-close {
+        top: 78px;
+        right: 110px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .scroll-content {
+        width: 66%;
+        padding-top: 12%;
+    }
+
+    .scroll-content .form-label {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .bg-container {
+        max-width: 100%;
+        min-height: 540px;
+    }
+
+    .auth-close {
+        top: 58px;
+        right: 48px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .scroll-content {
+        width: 72%;
+        padding-top: 13%;
+        padding-bottom: 12%;
+    }
+
+    .scroll-content .form-label {
+        font-size: 0.95rem;
+    }
+
+    .scroll-content .form-control {
+        min-height: 44px;
+    }
+
+    .btn-submit {
+        width: 70%;
+        min-width: 0;
+    }
+}

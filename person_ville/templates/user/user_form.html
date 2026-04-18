@@ -1,194 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}{{ title }}{% endblock %}
+
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/user_form.css' %}">
-<style>
-    .bg-container {
-        position: relative;
-        background-image: url("{% static 'images/auth_scroll.png' %}");
-        background-size: 100% auto;
-        background-position: center top;
-        background-repeat: no-repeat;
-        background-color: transparent;
-        width: 98%;
-        max-width: 1200px;
-        min-height: 660px;
-        margin: 0 auto;
-        box-shadow: none !important;
-        border: none !important;
-    }
-
-    .auth-close {
-        position: absolute;
-        top: 118px;
-        right: 250px;
-        width: 99px;
-        height: 99px;
-        display: block;
-        background-image: url("{% static 'images/cross.png' %}");
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        text-decoration: none;
-        z-index: 20;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-    }
-
-    .auth-close:hover {
-        transform: scale(1.08);
-    }
-
-    .auth-close-text {
-        display: none;
-    }
-
-    .scroll-content {
-        width: 42%;
-        margin: 0 auto;
-        padding-top: 12%;
-        padding-bottom: 6%;
-    }
-
-    .scroll-content .form-label {
-        color: #2b241d;
-        font-family: "Source Sans 3", sans-serif;
-        font-weight: 600;
-        font-size: 1.1rem;
-        margin-bottom: 8px;
-    }
-
-    .scroll-content .form-control {
-        border-radius: 10px;
-        min-height: 50px;
-    }
-
-    .password-wrapper {
-        position: relative;
-    }
-
-    .password-wrapper input {
-        padding-right: 48px;
-    }
-
-    .password-toggle {
-        position: absolute;
-        top: 50%;
-        right: 12px;
-        transform: translateY(-50%);
-        width: 24px;
-        height: 24px;
-        border: none;
-        background: transparent;
-        padding: 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .password-toggle svg {
-        width: 22px;
-        height: 22px;
-        stroke: #5a5147;
-        transition: stroke 0.2s ease;
-    }
-
-    .password-toggle:hover svg {
-        stroke: #2b241d;
-    }
-
-    .password-toggle:focus {
-        outline: none;
-    }
-
-    .btn-submit {
-        display: block;
-        width: 55%;
-        min-width: 220px;
-        max-width: 320px;
-        margin: 14px auto 0;
-    }
-
-    @media (max-width: 1200px) {
-        .bg-container {
-            max-width: 980px;
-            min-height: 700px;
-        }
-
-        .auth-close {
-            top: 82px;
-            right: 165px;
-            width: 34px;
-            height: 34px;
-        }
-
-        .scroll-content {
-            width: 64%;
-            padding-top: 12%;
-        }
-    }
-
-    @media (max-width: 991px) {
-        .bg-container {
-            max-width: 860px;
-            min-height: 620px;
-        }
-
-        .auth-close {
-            top: 78px;
-            right: 110px;
-            width: 30px;
-            height: 30px;
-        }
-
-        .scroll-content {
-            width: 66%;
-            padding-top: 12%;
-        }
-
-        .scroll-content .form-label {
-            font-size: 1rem;
-        }
-    }
-
-    @media (max-width: 767px) {
-        .bg-container {
-            max-width: 100%;
-            min-height: 540px;
-        }
-
-        .auth-close {
-            top: 58px;
-            right: 48px;
-            width: 24px;
-            height: 24px;
-        }
-
-        .scroll-content {
-            width: 72%;
-            padding-top: 13%;
-            padding-bottom: 12%;
-        }
-
-        .scroll-content .form-label {
-            font-size: 0.95rem;
-        }
-
-        .scroll-content .form-control {
-            min-height: 44px;
-        }
-
-        .btn-submit {
-            width: 70%;
-            min-width: 0;
-        }
-    }
-</style>
 {% endblock %}
-
-{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
 <div class="container-md-5 mt-4">
@@ -205,74 +22,74 @@
                 </a>
 
                 <div class="scroll-content">
-                    <form action="" method="post">
+                    <form action="" method="post" id="authForm">
                         {% csrf_token %}
 
                         {% if form.non_field_errors %}
-                            <div class="alert-error mb-3">
-                                {% for error in form.non_field_errors %}
-                                    {{ error }}
-                                {% endfor %}
-                            </div>
+                        <div class="alert-error mb-3">
+                            {% for error in form.non_field_errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
                         {% endif %}
 
                         {% for field in form %}
-                            <div class="mb-3">
-                                <label
-                                    for="{{ field.id_for_label }}"
-                                    class="form-label"
+                        <div class="mb-3">
+                            <label
+                                for="{{ field.id_for_label }}"
+                                class="form-label"
+                            >
+                                {{ field.label }}
+                            </label>
+
+                            {% if field.name == 'password' or field.name == 'password1' or field.name == 'password2' %}
+                            <div class="password-wrapper">
+                                {{ field }}
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-field-id="{{ field.id_for_label }}"
+                                    aria-label="Показать пароль"
+                                    title="Показать пароль"
                                 >
-                                    {{ field.label }}
-                                </label>
-
-                                {% if field.name == 'password' or field.name == 'password1' or field.name == 'password2' %}
-                                    <div class="password-wrapper">
-                                        {{ field }}
-                                        <button
-                                            type="button"
-                                            class="password-toggle"
-                                            onclick="togglePassword('{{ field.id_for_label }}', this)"
-                                            aria-label="Показать пароль"
-                                            title="Показать пароль"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke-width="1.8"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    d="M2.036 12.322a1.012 1.012 0 0 1 0-.644
-                                                       C3.423 7.51 7.36 4.5 12 4.5
-                                                       c4.638 0 8.573 3.007 9.963 7.178
-                                                       .07.207.07.431 0 .644
-                                                       C20.577 16.49 16.64 19.5 12 19.5
-                                                       c-4.638 0-8.573-3.007-9.964-7.178Z"
-                                                />
-                                                <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    d="M15 12a3 3 0 1 1-6 0
-                                                       3 3 0 0 1 6 0Z"
-                                                />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                {% else %}
-                                    {{ field }}
-                                {% endif %}
-
-                                {% if field.errors %}
-                                    <ul class="errorlist">
-                                        {% for error in field.errors %}
-                                            <li>{{ error }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                {% endif %}
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.8"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.644
+                                               C3.423 7.51 7.36 4.5 12 4.5
+                                               c4.638 0 8.573 3.007 9.963 7.178
+                                               .07.207.07.431 0 .644
+                                               C20.577 16.49 16.64 19.5 12 19.5
+                                               c-4.638 0-8.573-3.007-9.964-7.178Z"
+                                        />
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M15 12a3 3 0 1 1-6 0
+                                               3 3 0 0 1 6 0Z"
+                                        />
+                                    </svg>
+                                </button>
                             </div>
+                            {% else %}
+                            {{ field }}
+                            {% endif %}
+
+                            {% if field.errors %}
+                            <ul class="errorlist">
+                                {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
                         {% endfor %}
 
                         <button
@@ -287,60 +104,8 @@
         </div>
     </div>
 </div>
-
-<script>
-    function togglePassword(inputId, button) {
-        const input = document.getElementById(inputId);
-        const svg = button.querySelector("svg");
-
-        if (!input) {
-            return;
-        }
-
-        if (input.type === "password") {
-            input.type = "text";
-            button.setAttribute("aria-label", "Скрыть пароль");
-            button.setAttribute("title", "Скрыть пароль");
-            svg.innerHTML = `
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3.98 8.223A10.477 10.477 0 0 0 1.934 11.714
-                       a1.012 1.012 0 0 0 0 .572
-                       C3.306 16.263 7.243 19.5 12 19.5
-                       c2.273 0 4.318-.74 6.02-1.977
-                       M6.228 6.228A10.451 10.451 0 0 1 12 4.5
-                       c4.757 0 8.694 3.237 10.066 7.214
-                       a1.012 1.012 0 0 1 0 .572
-                       10.489 10.489 0 0 1-1.285 2.31
-                       M6.228 6.228 3 3m3.228 3.228 3.65 3.65
-                       m7.894 7.894L21 21m-3.228-3.228-3.65-3.65
-                       m0 0a3 3 0 1 1-4.243-4.243m4.242 4.242L9.88 9.88"
-                />
-            `;
-        } else {
-            input.type = "password";
-            button.setAttribute("aria-label", "Показать пароль");
-            button.setAttribute("title", "Показать пароль");
-            svg.innerHTML = `
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M2.036 12.322a1.012 1.012 0 0 1 0-.644
-                       C3.423 7.51 7.36 4.5 12 4.5
-                       c4.638 0 8.573 3.007 9.963 7.178
-                       .07.207.07.431 0 .644
-                       C20.577 16.49 16.64 19.5 12 19.5
-                       c-4.638 0-8.573-3.007-9.964-7.178Z"
-                />
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15 12a3 3 0 1 1-6 0
-                       3 3 0 0 1 6 0Z"
-                />
-            `;
-        }
-    }
-</script>
 {% endblock %}
+
+{% block script %}
+<script src="{% static 'js/user_form.js' %}"></script>
+{% endblock script %}

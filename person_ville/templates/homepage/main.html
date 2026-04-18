@@ -1,90 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}"Главная страница"{% endblock %}
+{% block title %}Главная страница{% endblock %}
 
 {% block head %}
-<style>
-    .homepage-hero {
-        text-align: center;
-        padding-top: 40px;
-    }
-
-    .homepage-title {
-        margin-bottom: 24px;
-        color: #1f2430;
-        font-size: 46px;
-        font-weight: 500;
-        line-height: 1.1;
-    }
-
-    .homepage-test-button {
-        display: inline-block;
-        margin-top: 8px;
-        padding: 14px 34px;
-        background-color: #7f8bdc;
-        color: #ffffff;
-        border-radius: 999px;
-        text-decoration: none;
-        font-size: 20px;
-        font-weight: 600;
-        line-height: 1;
-        transition: opacity 0.2s ease, transform 0.2s ease;
-        border: none;
-    }
-
-    .homepage-test-button:hover {
-        color: #ffffff;
-        text-decoration: none;
-        opacity: 0.92;
-        transform: translateY(-1px);
-    }
-
-    @media (max-width: 991px) {
-        .homepage-title {
-            font-size: 44px;
-        }
-
-        .homepage-test-button {
-            padding: 12px 28px;
-            font-size: 18px;
-        }
-    }
-
-    @media (max-width: 767px) {
-        .homepage-hero {
-            padding-top: 24px;
-        }
-
-        .homepage-title {
-            font-size: 32px;
-            margin-bottom: 18px;
-        }
-
-        .homepage-test-button {
-            padding: 11px 24px;
-            font-size: 16px;
-        }
-    }
-</style>
-
-<script>
-    function handleTestStart(hasCityResult) {
-        if (!hasCityResult) {
-            window.location.href = "{% url 'quizzes:first' %}?reset=1";
-            return false;
-        }
-
-        const restart = confirm(
-            "Тест уже пройден.\n\nНажмите Да, чтобы начать заново.\nНажмите Нет, чтобы вернуться"
-        );
-
-        if (restart) {
-            window.location.href = "{% url 'quizzes:restart' %}";
-        }
-
-        return false;
-    }
-</script>
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -96,7 +16,13 @@
             <a
                 class="homepage-test-button"
                 href="#"
-                onclick="return handleTestStart({% if request.session.city_result %}true{% else %}false{% endif %})"
+                data-first-url="{% url 'quizzes:first' %}"
+                data-restart-url="{% url 'quizzes:restart' %}"
+                onclick="return handleTestStart(
+                    {% if request.session.city_result %}true{% else %}false{% endif %},
+                    this.dataset.firstUrl,
+                    this.dataset.restartUrl
+                )"
             >
                 Пройти тест
             </a>
@@ -104,3 +30,7 @@
     </div>
 </div>
 {% endblock %}
+
+{% block script %}
+<script src="{% static 'js/restart.js' %}"></script>
+{% endblock script %}

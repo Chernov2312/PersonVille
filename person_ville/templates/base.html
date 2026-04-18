@@ -14,7 +14,7 @@
     <title>{% block title %}PersoneVille{% endblock title %}</title>
     <link
       rel="stylesheet"
-      href="{% static 'css/pages_styles.css' %}"
+      href="{% static 'css/main_page.css' %}"
     >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
@@ -75,7 +75,7 @@
         </div>
       </footer>
     {% endif %}
-
+    {% block script %}{% endblock script %}
     <script src="{% static 'js/cursor.js' %}"></script>
   </body>
 </html>

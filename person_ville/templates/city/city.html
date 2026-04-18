@@ -17,86 +17,67 @@
         ></a>
 
         {% for street in street_slots %}
-            <a
-                href="{% url 'city:street' trait=street.trait %}"
-                class="city-street-link {{ street.slot_class }}"
-            >
-                <span class="city-street-name">{{ street.name }}</span>
-                <span class="city-street-progress">
-                    {{ street.answered_count }}/{{ street.houses_count }}
-                </span>
-            </a>
+        <a
+            href="{% url 'city:street' trait=street.trait %}"
+            class="city-street-link {{ street.slot_class }}"
+        >
+            <span class="city-street-name">{{ street.name }}</span>
+            <span class="city-street-progress">
+                {{ street.answered_count }}/{{ street.houses_count }}
+            </span>
+        </a>
         {% endfor %}
 
         <div class="city-center-box">
             {% if character_available %}
-                <a
-                    href="{% url 'city:character' %}"
-                    class="city-character-button"
-                >
-                    Персонаж
-                </a>
+            <a
+                href="{% url 'city:character' %}"
+                class="city-character-button"
+            >
+                Персонаж
+            </a>
             {% else %}
-                <button
-                    type="button"
-                    class="city-character-button"
-                    onclick="showCharacterUnavailableAlert()"
-                >
-                    Персонаж
-                </button>
+            <button
+                type="button"
+                class="city-character-button"
+                onclick="showCharacterUnavailableAlert()"
+            >
+                Персонаж
+            </button>
             {% endif %}
         </div>
 
         <div class="city-finalize-box">
             {% if city_result.is_finalized %}
-                <div class="city-finalize-state">
-                    Город зафиксирован
-                </div>
+            <div class="city-finalize-state">
+                Город зафиксирован
+            </div>
             {% elif city_result.all_completed %}
-                <form
-                    method="post"
-                    action="{% url 'city:finalize' %}"
-                    onsubmit="return confirmFinalizeCity()"
-                    class="city-finalize-form"
-                >
-                    {% csrf_token %}
-                    <button type="submit" class="city-finalize-button">
-                        Зафиксировать город
-                    </button>
-                </form>
-            {% else %}
-                <button
-                    type="button"
-                    class="city-finalize-button is-disabled"
-                    onclick="showIncompleteCityAlert()"
-                >
+            <form
+                method="post"
+                action="{% url 'city:finalize' %}"
+                onsubmit="return confirmFinalizeCity()"
+                class="city-finalize-form"
+            >
+                {% csrf_token %}
+                <button type="submit" class="city-finalize-button">
                     Зафиксировать город
                 </button>
+            </form>
+            {% else %}
+            <button
+                type="button"
+                class="city-finalize-button is-disabled"
+                onclick="showIncompleteCityAlert()"
+            >
+                Зафиксировать город
+            </button>
             {% endif %}
         </div>
     </div>
 </div>
-
-<script>
-    function showIncompleteCityAlert() {
-        alert(
-            'Пока рано фиксировать город.\n\n' +
-            'Сначала закройте тесты у всех домиков'
-        );
-    }
-
-    function confirmFinalizeCity() {
-        return confirm(
-            'Вы уверены, что хотите зафиксировать город?\n\n' +
-            'После этого вы больше не сможете изменить ответы улиц'
-        );
-    }
-
-    function showCharacterUnavailableAlert() {
-        alert(
-            'Итоговая карточка пока недоступна.\n\n' +
-            'Сначала завершите все домики и зафиксируйте город.'
-        );
-    }
-</script>
 {% endblock %}
+
+{% block script %}
+<script src="{% static 'js/city.js' %}"></script>
+{% endblock script %}

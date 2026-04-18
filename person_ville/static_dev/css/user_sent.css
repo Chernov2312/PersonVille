@@ -1,0 +1,49 @@
+.page-sent {
+    width: 100%;
+    min-height: calc(100vh - 78px);
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-image: url("/static/images/zaf.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.text {
+    position: absolute;
+    top: 44%;
+    left: 55%;
+    transform: translateX(-50%);
+    color: black;
+    padding: 12px 24px;
+    border-radius: 8px;
+    white-space: nowrap;
+    z-index: 10;
+}
+.sent-close {
+    position: absolute;
+    top: 35%;
+    right: 21%;
+    width: 99px;
+    height: 99px;
+    display: block;
+    background-image: url("/static/images/cross.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    z-index: 20;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.sent-close:hover {
+    transform: scale(1.08);
+}
+
+.sent-close-text {
+    display: none;
+}

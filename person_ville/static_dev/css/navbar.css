@@ -1,0 +1,13 @@
+.site-navbar {
+    position: relative;
+    z-index: 3000;
+}
+
+.site-navbar .container,
+.site-navbar .collapse,
+.site-navbar .navbar-nav,
+.site-navbar .nav-item,
+.site-navbar .nav-link {
+    position: relative;
+    z-index: 3001;
+}

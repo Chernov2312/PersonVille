@@ -1,22 +1,29 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}{{ title }}{% endblock %}
-
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/user_done.css' %}">
+{% endblock %}
 {% block content %}
 <div class="container mt-5">
-    <div class="row justify-content-md-center">
-        <div class="col-md-6 bg-container rounded-3 shadow p-4 text-center">
-            <h1 class="bg-head rounded-top-3 p-2 text-center">
-                {{ title }}
-            </h1>
+    <div class="bg-container">
+        <a
+            href="{% url 'main:main' %}"
+            class="sent-close"
+            aria-label="Закрыть"
+            title="Закрыть">
+        </a>
+        <div class="text">
+                <h1 class="bg-head rounded-top-3 p-2 text-center">
+                    {{ title }}
+                </h1>
+                <h3 class="mt-4">{{ message }}</h3>
+                {% if login_url %}
+                    <a class="btn custom-button mt-3" href="{{ login_url }}">
+                        Перейти ко входу
+                    </a>
+                {% endif %}
 
-            <p class="mt-4">{{ message }}</p>
-
-            {% if login_url %}
-                <a class="btn custom-button mt-3" href="{{ login_url }}">
-                    Перейти ко входу
-                </a>
-            {% endif %}
         </div>
     </div>
 </div>

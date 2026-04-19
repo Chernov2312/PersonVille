@@ -1,46 +1,8 @@
 {% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock head %}
 
-<style>
-  .site-navbar {
-    position: relative;
-    z-index: 3000;
-  }
-
-  .site-navbar .container,
-  .site-navbar .collapse,
-  .site-navbar .navbar-nav,
-  .site-navbar .nav-item,
-  .site-navbar .nav-link {
-    position: relative;
-    z-index: 3001;
-  }
-</style>
-
-<script>
-  function confirmLogout(hasCityResult) {
-    if (hasCityResult) {
-      return confirm(
-        "Вы уверены, что хотите выйти?\n\nТекущий город будет сброшен"
-      );
-    }
-
-    return confirm("Вы уверены, что хотите выйти из аккаунта?");
-  }
-
-  function openCharacterFromHeader(event) {
-    if (event) {
-      event.preventDefault();
-    }
-
-    if (typeof openCharacterModal === "function") {
-      openCharacterModal();
-      return false;
-    }
-
-    window.location.href = "{% url 'city:city' %}";
-    return false;
-  }
-</script>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark site-navbar">
   <div class="container">
@@ -139,3 +101,7 @@
     </div>
   </div>
 </nav>
+
+{% block script %}
+<script src="{% static 'js/navbar.js' %}" defer></script>
+{% endblock script %}

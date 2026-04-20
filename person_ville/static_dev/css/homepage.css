@@ -1,65 +1,163 @@
+.homepage-hero-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+    padding: 0 12px;
+}
+
 .homepage-hero {
+    width: min(980px, 90vw);
+    margin: 0 auto;
+    padding: 24px 32px 26px;
     text-align: center;
-    padding: 20px;
-    margin: 15px;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.34);
+    border-radius: 24px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
 }
 
 .homepage-title {
-    margin-bottom: 24px;
-    color: #333;
-    font-size: 46px;
+    margin: 0 0 16px;
+    color: #2f261f;
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 1.05;
+    font-family: "Cormorant Garamond", serif;
+}
+
+.homepage-description {
+    max-width: 760px;
+    margin: 0 auto 20px;
+}
+
+.homepage-description p {
+    margin: 0;
+    color: #2f261f;
+    font-size: 19px;
     font-weight: 500;
-    line-height: 1.1;
+    line-height: 1.55;
 }
 
 .homepage-test-button {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 14px 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 190px;
+    min-height: 54px;
+    margin-top: 6px;
+    padding: 12px 28px;
     background-color: #7f8bdc;
     color: #ffffff;
     border-radius: 70px;
     text-decoration: none;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1;
-    transition: opacity 0.2s ease, transform 0.2s ease;
     border: none;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.22);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
 }
 
 .homepage-test-button:hover {
     color: #ffffff;
     text-decoration: none;
-    opacity: 0.92;
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.02);
+    background-color: #8a97e6;
+    box-shadow:
+        0 0 0 3px rgba(216, 196, 147, 0.28),
+        0 0 16px rgba(255, 220, 140, 0.35),
+        0 0 28px rgba(130, 144, 218, 0.25),
+        0 4px 0 rgba(0, 0, 0, 0.22);
+}
+
+.homepage-test-button:active {
+    transform: translateY(0) scale(0.995);
 }
 
 @media (max-width: 991px) {
+    .homepage-hero {
+        width: min(92vw, 820px);
+        padding: 20px 20px 22px;
+    }
+
     .homepage-title {
-        font-size: 44px;
+        font-size: 36px;
+        margin-bottom: 14px;
+    }
+
+    .homepage-description p {
+        font-size: 17px;
+        line-height: 1.5;
     }
 
     .homepage-test-button {
-        padding: 12px 28px;
+        min-width: 180px;
+        min-height: 50px;
         font-size: 18px;
+        padding: 11px 24px;
     }
 }
 
 @media (max-width: 767px) {
     .homepage-hero {
-        padding-top: 24px;
-        padding-bottom: 30px;
+        width: 94vw;
+        padding: 16px 14px 18px;
+        border-radius: 18px;
     }
 
     .homepage-title {
-        font-size: 32px;
-        margin-bottom: 18px;
+        font-size: 30px;
+        margin-bottom: 12px;
+    }
+
+    .homepage-description p {
+        font-size: 15px;
+        line-height: 1.45;
     }
 
     .homepage-test-button {
-        padding: 11px 24px;
+        min-width: 160px;
+        min-height: 46px;
+        font-size: 17px;
+        padding: 10px 22px;
+    }
+}
+
+@media (max-width: 767px) {
+    .homepage-hero-wrap {
+        margin-top: 12px;
+        padding: 0 8px;
+    }
+
+    .homepage-hero {
+        width: 96vw;
+        padding: 18px 14px 20px;
+        border-radius: 18px;
+    }
+
+    .homepage-title {
+        font-size: 34px;
+        margin-bottom: 14px;
+    }
+
+    .homepage-description {
+        margin-bottom: 18px;
+    }
+
+    .homepage-description p {
         font-size: 16px;
+        line-height: 1.45;
+    }
+
+    .homepage-test-button {
+        min-width: 180px;
+        min-height: 50px;
+        font-size: 18px;
+        padding: 11px 24px;
     }
 }

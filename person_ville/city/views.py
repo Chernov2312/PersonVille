@@ -299,10 +299,7 @@ def character_view(request):
         )
         return redirect('city:city')
 
-    share_url = request.build_absolute_uri(reverse('city:character'))
-
     context = {
         'character': final_character,
-        'share_url': share_url,
     }
     return render(request, 'city/character.html', context)

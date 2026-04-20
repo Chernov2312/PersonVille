@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 {% endblock head %}
 
-
 <nav class="navbar navbar-expand-lg site-navbar">
   <div class="container">
     <div class="navbar-collapse" id="navbarNav">
@@ -31,18 +30,18 @@
         {% if user.is_authenticated %}
           {% if request.session.city_result %}
             <li class="nav-item">
-              {% if request.resolver_match.view_name == 'city:city' %}
+              {% if request.session.city_result.is_finalized %}
                 <a
-                  class="nav-link custom-button rounded-pill text-white text-decoration-none px-3 py-2"
-                  href="{% url 'city:city' %}"
-                  onclick="return openCharacterFromHeader(event)"
+                  class="nav-link {% if request.resolver_match.view_name == 'city:character' %}active custom-inactive{% else %}custom-button{% endif %} rounded-pill text-white text-decoration-none px-3 py-2"
+                  href="{% url 'city:character' %}"
                 >
                   Персонаж
                 </a>
               {% else %}
                 <a
                   class="nav-link custom-button rounded-pill text-white text-decoration-none px-3 py-2"
-                  href="{% url 'city:city' %}"
+                  href="#"
+                  onclick="alert('Итоговая карточка пока недоступна. Сначала завершите все домики и зафиксируйте город.'); return false;"
                 >
                   Персонаж
                 </a>

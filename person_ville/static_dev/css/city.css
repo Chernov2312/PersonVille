@@ -387,9 +387,9 @@
 }
 
 .street-extraversion .door-1 .street-door-text {
-    font-size: 18px;
-    line-height: 1.28;
-    max-width: 82%;
+    font-size: 16px;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 .street-extraversion .door-2 {
@@ -404,9 +404,9 @@
 }
 
 .street-extraversion .door-2 .street-door-text {
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.3;
-    max-width: 82%;
+    max-width: 80%;
 }
 
 .street-extraversion .door-3 {
@@ -441,9 +441,9 @@
 }
 
 .street-agreeableness .door-1 .street-door-text {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.3;
-    max-width: 82%;
+    max-width: 80%;
 }
 
 .street-agreeableness .door-2 {
@@ -458,9 +458,9 @@
 }
 
 .street-agreeableness .door-2 .street-door-text {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.3;
-    max-width: 82%;
+    max-width: 80%;
 }
 
 .street-agreeableness .door-3 {
@@ -476,7 +476,7 @@
 
 .street-agreeableness .door-3 .street-door-text {
     font-size: 17px;
-    line-height: 1.28;
+    line-height: 1.3;
     max-width: 82%;
 }
 
@@ -495,13 +495,13 @@
 }
 
 .street-conscientiousness .door-1 .street-door-text {
-    font-size: 18px;
-    line-height: 1.28;
-    max-width: 84%;
+    font-size: 16px;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 .street-conscientiousness .door-2 {
-    left: 35%;
+    left: 36%;
     top: 47%;
 }
 
@@ -512,13 +512,13 @@
 }
 
 .street-conscientiousness .door-2 .street-door-text {
-    font-size: 19px;
-    line-height: 1.28;
-    max-width: 82%;
+    font-size: 15.5px;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 .street-conscientiousness .door-3 {
-    left: 80%;
+    left: 81.5%;
     top: 53%;
 }
 
@@ -530,15 +530,15 @@
 
 .street-conscientiousness .door-3 .street-door-text {
     font-size: 16px;
-    line-height: 1.26;
-    max-width: 84%;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 
 /* ========= NEGATIVE EMOTIONALITY ========= */
 
 .street-negative_emotionality .door-1 {
-    left: 13%;
+    left: 15%;
     top: 39%;
 }
 
@@ -549,13 +549,13 @@
 }
 
 .street-negative_emotionality .door-1 .street-door-text {
-    font-size: 19px;
-    line-height: 1.28;
-    max-width: 82%;
+    font-size: 16px;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 .street-negative_emotionality .door-2 {
-    left: 29%;
+    left: 30%;
     top: 40%;
 }
 
@@ -566,9 +566,9 @@
 }
 
 .street-negative_emotionality .door-2 .street-door-text {
-    font-size: 17px;
-    line-height: 1.28;
-    max-width: 82%;
+    font-size: 15px;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 .street-negative_emotionality .door-3 {
@@ -583,9 +583,9 @@
 }
 
 .street-negative_emotionality .door-3 .street-door-text {
-    font-size: 19px;
-    line-height: 1.28;
-    max-width: 82%;
+    font-size: 16px;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 
@@ -603,9 +603,9 @@
 }
 
 .street-openness .door-1 .street-door-text {
-    font-size: 17px;
-    line-height: 1.28;
-    max-width: 82%;
+    font-size: 16px;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 .street-openness .door-2 {
@@ -620,9 +620,9 @@
 }
 
 .street-openness .door-2 .street-door-text {
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.3;
-    max-width: 82%;
+    max-width: 80%;
 }
 
 .street-openness .door-3 {
@@ -638,8 +638,8 @@
 
 .street-openness .door-3 .street-door-text {
     font-size: 16px;
-    line-height: 1.28;
-    max-width: 82%;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 .street-door-sign {
@@ -770,45 +770,87 @@
 }
 
 .question-options {
-    margin-top: 54px;
+    margin-top: 42px;
     text-align: left;
 }
 
 .question-option {
     display: flex;
     align-items: center;
-    gap: 22px;
-    margin-bottom: 24px;
-    font-size: 22px;
+    gap: 14px;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    font-size: 18px;
     line-height: 1.4;
     cursor: pointer;
+    border-radius: 14px;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease,
+        filter 0.2s ease;
+}
+
+.question-option:hover {
+    background: rgba(255, 248, 232, 0.34);
+    transform: scale(1.02);
+    box-shadow:
+        0 0 0 2px rgba(216, 196, 147, 0.18),
+        0 0 14px rgba(255, 220, 140, 0.22),
+        0 0 22px rgba(130, 144, 218, 0.18);
+    filter: brightness(1.02);
 }
 
 .question-option input {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.question-option label,
+.question-option span {
+    cursor: pointer;
 }
 
 .question-save-button {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 14px 34px;
-    background-color: #7f8bdc;
-    color: #ffffff;
-    border-radius: 70px;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
+    padding: 12px 24px;
     border: none;
+    border-radius: 8px;
+    background-color: #8290DA;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.2;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.22);
+    transition:
+        background-color 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .question-save-button:hover {
     color: #ffffff;
     text-decoration: none;
-    opacity: 0.92;
-    transform: translateY(-1px);
+    opacity: 0.96;
+    transform: translateY(-1px) scale(1.02);
+    box-shadow:
+        0 0 0 3px rgba(216, 196, 147, 0.28),
+        0 0 16px rgba(255, 220, 140, 0.35),
+        0 0 28px rgba(130, 144, 218, 0.25),
+        0 4px 0 rgba(0, 0, 0, 0.22);
+}
+
+.question-save-button:active {
+    transform: translateY(0) scale(0.995);
 }
 
 /* БЛОК ДЕКОРАЦИЙ */

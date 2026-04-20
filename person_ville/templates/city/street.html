@@ -26,6 +26,15 @@
         </div>
 
         {% for house in street.houses %}
+            {% if house.decoration_shown %}
+            <div class="decoration decoration-{{ street.trait }}-{{ house.position }}" style="display: block;">
+                <img src="{% static 'images/streets/' %}{{ street.trait }}_{{ house.position }}.png" alt="">
+            </div>
+            {% else %}
+            <div class="decoration decoration-{{ street.trait }}-{{ house.position }}" style="display: none;">
+                <img src="{% static 'images/streets/' %}{{ street.trait }}_{{ house.position }}.png" alt="">
+            </div>
+            {% endif %}
         <div class="street-door-card door-{{ house.position }}">
             {% if city_result.is_finalized %}
             <div class="street-door-sign is-locked is-completed">

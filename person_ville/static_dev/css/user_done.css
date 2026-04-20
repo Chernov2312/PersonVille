@@ -23,6 +23,26 @@
     width: 100%;
     max-width: 500px;
 }
+.btn-submit {
+    display: block;
+    margin: 8px auto;
+    padding: 14px 34px;
+    background-color: #7f8bdc;
+    color: #ffffff;
+    border-radius: 70px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    border: none;
+}
+
+.btn-submit:hover{
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
 
 .sent-close {
     position: absolute;

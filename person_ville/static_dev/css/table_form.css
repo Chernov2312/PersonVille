@@ -1,7 +1,7 @@
 .table-test {
     min-height: 100vh;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     padding: 0 24px 40px;
     background: transparent;
@@ -25,8 +25,8 @@
 
 .test-close {
     position: absolute;
-    top: 185px;
-    right: 320px;
+    top: 180px;
+    right: 300px;
     width: 89px;
     height: 89px;
     display: block;
@@ -40,7 +40,7 @@
 }
 
 .test-close:hover {
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
 
 .test-close-text {
@@ -50,15 +50,17 @@
 .test-inner {
     max-width: 580px;
     margin: 0 auto;
+    padding: 15px;
 }
 
 .test-title {
     text-align: center;
-    margin-bottom: 34px;
+    margin-top: -25px;
+    margin-bottom: 30px;
     font-size: 26px;
     line-height: 1.5;
     color: #2b241d;
-    font-family: "Cinzel", serif;
+    font-family: "Sans Serif", serif;
     font-weight: 700;
     letter-spacing: 0.2px;
 }
@@ -66,21 +68,24 @@
 .test-description {
     text-align: center;
     color: #2f261f;
-    margin-bottom: 24px;
-    font-size: 16px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    font-size: 18px;
     line-height: 1.5;
     font-family: "Source Sans 3", sans-serif;
     font-weight: 500;
 }
 
 .question-text {
-    font-size: 20px;
-    margin-bottom: 28px;
+    font-size: 28px;
+    margin-bottom: 15px;
     color: #2b241d;
     text-align: center;
     line-height: 1.4;
     font-family: "Cormorant Garamond", serif;
     font-weight: 600;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
 }
 
 .question-meta {
@@ -120,22 +125,25 @@
 }
 
 .btn-submit {
-    width: 100%;
-    padding: 12px;
-    background-color: #8290DA;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 28px;
-    font-family: "Source Sans 3", sans-serif;
+    display: block;
+    margin: 8px auto;
+    padding: 14px 34px;
+    background-color: #7f8bdc;
+    color: #ffffff;
+    border-radius: 70px;
+    text-decoration: none;
+    font-size: 20px;
     font-weight: 600;
+    line-height: 1;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    border: none;
 }
 
 .btn-submit:hover {
-    background-color: rgba(0,0,0, 0.7);
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.92;
+    transform: translateY(-1px);
 
 }
 

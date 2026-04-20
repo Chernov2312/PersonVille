@@ -14,12 +14,12 @@
             title="Закрыть">
         </a>
         <div class="text">
-                <h1 class="bg-head rounded-top-3 p-2 text-center">
+                <h1 class="bg-head rounded-top-3 p-2">
                     {{ title }}
                 </h1>
                 <h3 class="mt-4">{{ message }}</h3>
                 {% if login_url %}
-                    <a class="btn custom-button mt-3" href="{{ login_url }}">
+                    <a class="btn btn-submit mt-3" href="{{ login_url }}">
                         Перейти ко входу
                     </a>
                 {% endif %}

@@ -1,13 +1,73 @@
 .site-navbar {
-    position: relative;
-    z-index: 3000;
+    background: #FFF;
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.site-navbar .container,
-.site-navbar .collapse,
-.site-navbar .navbar-nav,
-.site-navbar .nav-item,
-.site-navbar .nav-link {
-    position: relative;
-    z-index: 3001;
+.nav-button {
+    display: inline-block;
+    padding: 10px 50px;
+    background-color: #7f8bdc;
+    color: #ffffff;
+    border-radius: 70px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.nav-button:hover {
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.nav-button[aria-current="page"] {
+    background: #4f618f;
+    border-color: #d8c493;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(79, 97, 143, 0.4);
+}
+
+.nav-button--primary {
+    background: #4f618f;
+    border-color: #d8c493;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button--danger:hover {
+    background: rgba(220, 53, 69, 0.8);
+    border-color: #ff6b6b;
+}
+
+@media (max-width: 992px) {
+    .navbar-collapse {
+        background: rgba(26, 26, 46, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    .nav-button {
+        width: 100%;
+        text-align: center;
+        margin: 0.25rem 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-nav {
+        gap: 0.5rem !important;
+    }
+
+    .nav-button {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
 }

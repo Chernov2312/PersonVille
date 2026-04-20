@@ -1,11 +1,14 @@
 .homepage-hero {
     text-align: center;
-    padding-top: 40px;
+    padding: 20px;
+    margin: 15px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
 }
 
 .homepage-title {
     margin-bottom: 24px;
-    color: #1f2430;
+    color: #333;
     font-size: 46px;
     font-weight: 500;
     line-height: 1.1;
@@ -17,7 +20,7 @@
     padding: 14px 34px;
     background-color: #7f8bdc;
     color: #ffffff;
-    border-radius: 999px;
+    border-radius: 70px;
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
@@ -47,6 +50,7 @@
 @media (max-width: 767px) {
     .homepage-hero {
         padding-top: 24px;
+        padding-bottom: 30px;
     }
 
     .homepage-title {

@@ -54,8 +54,6 @@ def first(request):
                 'Войдите в аккаунт или зарегистрируйтесь, '
                 'чтобы открыть карту города и сохранить свой результат',
             )
-            # Добавьте отладочный вывод
-            print("DEBUG: Message added", request._messages)
             return redirect('user:authorization')
 
         scored_traits = score_entry_answers(quiz_data, entry_answers)

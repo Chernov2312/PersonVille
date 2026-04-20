@@ -749,6 +749,7 @@
     margin: 0 auto;
     text-align: center;
     color: #2b241d;
+    padding: 10px;
 }
 
 .question-title {
@@ -789,29 +790,72 @@
 }
 
 .question-save-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 44px;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 14px;
-    background: #4f618f;
-    color: #f5f1e8;
+    display: inline-block;
+    margin-top: 8px;
+    padding: 14px 34px;
+    background-color: #7f8bdc;
+    color: #ffffff;
+    border-radius: 70px;
+    text-decoration: none;
     font-size: 20px;
-    line-height: 1.2;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+    font-weight: 600;
+    line-height: 1;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    border: none;
 }
 
 .question-save-button:hover {
-    box-shadow:
-        0 0 0 3px rgba(216, 196, 147, 0.35),
-        0 0 24px rgba(130, 144, 218, 0.55),
-        0 4px 0 rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.92;
+    transform: translateY(-1px);
 }
 
+/* БЛОК ДЕКОРАЦИЙ */
+.decoration {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    display: block !important; /* для отладки, потом убрать */
+}
+
+.decoration-agreeableness-3 {
+    left: 20%;
+    top: 30%;
+    width: 80px;
+    height: 80px;
+}
+.decoration-agreeableness-2 {
+    left: 70%;
+    top: 50%;
+    width: 80px;
+    height: 80px;
+}
+.decoration-agreeableness-1 {
+    left: 78%;
+    top: 94%;
+    width: 80px;
+    height: 80px;
+}
+.decoration-extraversion-1 {
+    right: 45%;
+    bottom: 85%;
+    width: 80px;
+    height: 80px;
+}
+.decoration-extraversion-2 {
+    right: 15%;
+    bottom: 25%;
+    width: 80px;
+    height: 80px;
+}
+
+.decoration-extraversion-3 {
+    left: 60%;
+    top: 50%;
+    width: 80px;
+    height: 80px;
+}
 
 @media (max-width: 1100px) {
     .city-map-shell {

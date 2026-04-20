@@ -84,10 +84,10 @@ body {
     position: absolute;
     inset: 0;
     background-image: url("/static/images/Character.png");
-    background-size: 136% 126%;
+    background-size: 133% 126%;
     background-repeat: no-repeat;
     background-position: center;
-    transform: translateY(-190px);
+    transform: translateY(-246px);
     z-index: 0;
 }
 

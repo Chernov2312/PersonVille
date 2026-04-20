@@ -1,15 +1,15 @@
 function togglePassword(inputId, button) {
     const input = document.getElementById(inputId);
-    const svg = button.querySelector("svg");
+    const svg = button.querySelector('svg');
 
-    if (!input) {
+    if (!input || !svg) {
         return;
     }
 
-    if (input.type === "password") {
-        input.type = "text";
-        button.setAttribute("aria-label", "Скрыть пароль");
-        button.setAttribute("title", "Скрыть пароль");
+    if (input.type === 'password') {
+        input.type = 'text';
+        button.setAttribute('aria-label', 'Скрыть пароль');
+        button.setAttribute('title', 'Скрыть пароль');
         svg.innerHTML = `
             <path
                 stroke-linecap="round"
@@ -28,9 +28,9 @@ function togglePassword(inputId, button) {
             />
         `;
     } else {
-        input.type = "password";
-        button.setAttribute("aria-label", "Показать пароль");
-        button.setAttribute("title", "Показать пароль");
+        input.type = 'password';
+        button.setAttribute('aria-label', 'Показать пароль');
+        button.setAttribute('title', 'Показать пароль');
         svg.innerHTML = `
             <path
                 stroke-linecap="round"
@@ -52,11 +52,13 @@ function togglePassword(inputId, button) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const toggleButtons = document.querySelectorAll('.password-toggle');
-    
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', function() {
+
+    toggleButtons.forEach((button) => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+
             const inputId = this.dataset.fieldId;
             if (inputId) {
                 togglePassword(inputId, this);

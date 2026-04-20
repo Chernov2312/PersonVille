@@ -1,24 +1,23 @@
 .bg-container {
     position: relative;
+    width: min(1200px, 96vw);
+    min-height: 860px;
+    margin: 0 auto;
     background-image: url("/static/images/auth_scroll.png");
-    background-size: 100% auto;
+    background-size: 100% 100%;
     background-position: center top;
     background-repeat: no-repeat;
     background-color: transparent;
-    width: 98%;
-    max-width: 1200px;
-    min-height: 660px;
-    margin: 0 auto;
     box-shadow: none !important;
     border: none !important;
 }
 
 .auth-close {
     position: absolute;
-    top: 118px;
-    right: 250px;
-    width: 99px;
-    height: 99px;
+    top: 108px;
+    right: 217px;
+    width: 90px;
+    height: 124px;
     display: block;
     background-image: url("/static/images/cross.png");
     background-size: contain;
@@ -31,7 +30,7 @@
 }
 
 .auth-close:hover {
-    transform: scale(1.10);
+    transform: scale(1.08);
 }
 
 .auth-close-text {
@@ -39,23 +38,36 @@
 }
 
 .scroll-content {
-    width: 42%;
+    width: min(100%, 640px);
     margin: 0 auto;
-    padding-top: 12%;
-    padding-bottom: 6%;
+    padding-top: 150px;
+    padding-bottom: 120px;
+    overflow: visible;
 }
 
 .scroll-content .form-label {
+    display: block;
     color: #2b241d;
     font-family: "Source Sans 3", sans-serif;
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.scroll-content .mb-3,
+.scroll-content .mb-4 {
+    margin-bottom: 20px !important;
 }
 
 .scroll-content .form-control {
-    border-radius: 10px;
-    min-height: 50px;
+    width: 100%;
+    border-radius: 14px;
+    min-height: 56px;
+    padding: 12px 16px;
+    font-size: 1.05rem;
+    border: 1px solid rgba(90, 81, 71, 0.18);
+    background: rgba(240, 240, 240, 0.92);
+    box-shadow: none;
 }
 
 .password-wrapper {
@@ -63,16 +75,26 @@
 }
 
 .password-wrapper input {
-    padding-right: 48px;
+    padding-right: 52px;
+}
+
+.password-wrapper input::-ms-reveal,
+.password-wrapper input::-ms-clear {
+    display: none;
+}
+
+.password-wrapper input::-webkit-credentials-auto-fill-button,
+.password-wrapper input::-webkit-textfield-decoration-container {
+    display: none !important;
 }
 
 .password-toggle {
     position: absolute;
     top: 50%;
-    right: 12px;
+    right: 14px;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     border: none;
     background: transparent;
     padding: 0;
@@ -99,113 +121,127 @@
 
 .btn-submit {
     display: block;
-    min-width: 220px;
-    max-width: 320px;
-    margin: auto;
-    padding: 14px 34px;
+    min-width: 260px;
+    max-width: 340px;
+    margin: 28px auto 0;
+    padding: 16px 34px;
     background-color: #7f8bdc;
     color: #ffffff;
-    border-radius: 70px;
+    border-radius: 999px;
     text-decoration: none;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 700;
     line-height: 1;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     border: none;
     cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.18);
 }
 
 .btn-submit:hover {
     color: #ffffff;
     text-decoration: none;
     transform: translateY(-1px);
+    box-shadow:
+        0 0 0 3px rgba(216, 196, 147, 0.28),
+        0 0 16px rgba(255, 220, 140, 0.28),
+        0 4px 0 rgba(0, 0, 0, 0.18);
 }
 
 .errorlist {
-    color: #dc3545;
-    font-size: 0.85rem;
-    margin-top: 5px;
+    color: #e35d5d;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    margin: 8px 0 0;
     padding-left: 0;
     list-style: none;
 }
 
 .errorlist li {
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 }
 
 .alert-error {
-    background-color: #f8d7da;
+    background-color: rgba(248, 215, 218, 0.85);
     border: 1px solid #f5c6cb;
     color: #721c24;
     padding: 10px 15px;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border-radius: 10px;
+    font-size: 0.92rem;
 }
 
 .form-control.is-invalid {
     border-color: #dc3545;
-    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    box-shadow: 0 0 0 0.18rem rgba(220, 53, 69, 0.15);
 }
 
 @media (max-width: 1200px) {
     .bg-container {
-        max-width: 980px;
-        min-height: 700px;
+        width: min(1080px, 96vw);
+        min-height: 780px;
     }
 
     .auth-close {
-        top: 82px;
-        right: 165px;
-        width: 34px;
-        height: 34px;
+        top: 94px;
+        right: 96px;
+        width: 42px;
+        height: 42px;
     }
 
     .scroll-content {
-        width: 64%;
-        padding-top: 12%;
+        width: min(100%, 590px);
+        padding-top: 104px;
+        padding-bottom: 96px;
     }
 }
 
 @media (max-width: 991px) {
     .bg-container {
-        max-width: 860px;
-        min-height: 620px;
+        width: min(920px, 97vw);
+        min-height: 700px;
     }
 
     .auth-close {
-        top: 78px;
-        right: 110px;
-        width: 30px;
-        height: 30px;
+        top: 82px;
+        right: 78px;
+        width: 34px;
+        height: 34px;
     }
 
     .scroll-content {
-        width: 66%;
-        padding-top: 12%;
+        width: min(100%, 520px);
+        padding-top: 90px;
+        padding-bottom: 80px;
     }
 
-    .scroll-content .form-label {
-        font-size: 1rem;
+    .scroll-content .form-control {
+        min-height: 50px;
+    }
+
+    .btn-submit {
+        font-size: 1.25rem;
+        min-width: 230px;
     }
 }
 
 @media (max-width: 767px) {
     .bg-container {
-        max-width: 100%;
-        min-height: 540px;
+        width: 100%;
+        min-height: 620px;
+        background-size: 100% 100%;
     }
 
     .auth-close {
-        top: 58px;
-        right: 48px;
-        width: 24px;
-        height: 24px;
+        top: 62px;
+        right: 42px;
+        width: 26px;
+        height: 26px;
     }
 
     .scroll-content {
-        width: 72%;
-        padding-top: 13%;
-        padding-bottom: 12%;
+        width: min(100%, 78%);
+        padding-top: 72px;
+        padding-bottom: 64px;
     }
 
     .scroll-content .form-label {
@@ -214,10 +250,19 @@
 
     .scroll-content .form-control {
         min-height: 44px;
+        font-size: 0.95rem;
+        padding: 10px 12px;
     }
 
     .btn-submit {
-        width: 70%;
+        width: 100%;
         min-width: 0;
+        max-width: 280px;
+        font-size: 1.1rem;
+        padding: 14px 24px;
+    }
+
+    .errorlist {
+        font-size: 0.82rem;
     }
 }

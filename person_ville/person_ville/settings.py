@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'city.apps.CityConfig',
     'quizzes.apps.QuizzesConfig',
     'users.apps.UsersConfig',
-    'data.apps.DataConfig',
 ]
 
 MIDDLEWARE = [

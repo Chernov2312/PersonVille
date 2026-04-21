@@ -97,7 +97,6 @@ def _build_houses(trait, houses):
                 'answer_value': None,
                 'completed': False,
                 'position': index,
-                'decoration_shown': False,
             },
         )
 
@@ -142,7 +141,6 @@ def apply_house_answer(house_data, answer_value):
     updated_house['answer_value'] = answer_value
     updated_house['completed'] = True
     updated_house['final_text'] = updated_house['base_text']
-    updated_house['decoration_shown'] = True
     return updated_house
 
 

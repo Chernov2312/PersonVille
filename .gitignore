@@ -111,3 +111,5 @@ ipython_config.py
 send_mail/
 static/
 *.pyc
+
+statistics/

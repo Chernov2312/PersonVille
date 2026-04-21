@@ -20,8 +20,5 @@
         } else {
             displayYear = clientYear;
         }
-
-
-        console.log('Final display year:', displayYear);
     });
 })();

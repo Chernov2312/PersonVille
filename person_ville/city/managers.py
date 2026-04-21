@@ -26,7 +26,7 @@ TRAIT_ORDER = [
     'extraversion',
     'agreeableness',
     'conscientiousness',
-    'negative emotionality',
+    'negative_emotionality',
     'openness',
 ]
 

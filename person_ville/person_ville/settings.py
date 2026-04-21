@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'analytics.apps.AnalyticsConfig',
     'homepage.apps.HomepageConfig',
     'city.apps.CityConfig',
     'quizzes.apps.QuizzesConfig',
@@ -37,7 +38,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'person_ville.middleware.QuizStatisticsMiddleware',
+    'analytics.middleware.QuizStatisticsMiddleware',
 ]
 
 if DEBUG:

@@ -1,4 +1,4 @@
-__all__ = 'UserManager'
+__all__ = ('UserManager',)
 from django.contrib.auth.models import BaseUserManager
 
 

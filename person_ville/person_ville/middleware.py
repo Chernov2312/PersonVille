@@ -200,18 +200,3 @@ class QuizStatisticsMiddleware:
     def _write_statistics(self, data):
         with open(self.stats_file, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
-
-
-class StatisticsViewMiddleware:
-    def __init__(self, get_response):
-        self.get_response = get_response
-
-    def __call__(self, request):
-        if request.path == '/admin/statistics/' and request.user.is_staff:
-            stats_file = (
-                Path(__file__).parent / 'statistics' / 'quiz_stats.json'
-            )
-            if stats_file.exists():
-                with open(stats_file, 'r', encoding='utf-8') as f:
-                    request.admin_statistics = json.load(f)
-        return self.get_response(request)

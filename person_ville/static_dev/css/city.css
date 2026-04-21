@@ -811,51 +811,6 @@
     transform: translateY(-1px);
 }
 
-/* БЛОК ДЕКОРАЦИЙ */
-.decoration {
-    position: absolute;
-    z-index: 1;
-    pointer-events: none;
-    display: block !important; /* для отладки, потом убрать */
-}
-
-.decoration-agreeableness-3 {
-    left: 20%;
-    top: 30%;
-    width: 80px;
-    height: 80px;
-}
-.decoration-agreeableness-2 {
-    left: 70%;
-    top: 50%;
-    width: 80px;
-    height: 80px;
-}
-.decoration-agreeableness-1 {
-    left: 78%;
-    top: 94%;
-    width: 80px;
-    height: 80px;
-}
-.decoration-extraversion-1 {
-    right: 45%;
-    bottom: 85%;
-    width: 80px;
-    height: 80px;
-}
-.decoration-extraversion-2 {
-    right: 15%;
-    bottom: 25%;
-    width: 80px;
-    height: 80px;
-}
-
-.decoration-extraversion-3 {
-    left: 60%;
-    top: 50%;
-    width: 80px;
-    height: 80px;
-}
 
 @media (max-width: 1100px) {
     .city-map-shell {

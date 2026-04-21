@@ -79,8 +79,8 @@ class QuizStatisticsMiddleware:
                     self._save_statistics(request, stats)
 
             if (
-                'quizzes:close' in request.path
-                or 'quizzes:restart' in request.path
+                'quizze/close' in request.path
+                or 'quizze/restart' in request.path
             ):
                 self._save_final_statistics(request)
 

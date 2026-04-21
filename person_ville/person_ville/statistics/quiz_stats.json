@@ -1,0 +1,2938 @@
+{
+  "su2e939kajv0es3i7it5ohrvhbfhzyrh": {
+    "session_id": "su2e939kajv0es3i7it5ohrvhbfhzyrh",
+    "user_id": 15,
+    "quiz_start_time": "2026-04-21T12:43:13.517308+00:00",
+    "quiz_completion_time": "2026-04-21T12:49:26.209310+00:00",
+    "quiz_duration_seconds": 372.692002,
+    "entry_answers_history": [
+      {
+        "timestamp": "2026-04-21T12:43:13.517348+00:00",
+        "answers_count": 15,
+        "answers": {
+          "E1": 1,
+          "E2": 5,
+          "E3": 5,
+          "A1": 4,
+          "A2": 4,
+          "A3": 4,
+          "C1": 4,
+          "C2": 4,
+          "C3": 4,
+          "N1": 4,
+          "N2": 4,
+          "N3": 4,
+          "O1": 4,
+          "O2": 4,
+          "O3": 4
+        }
+      }
+    ],
+    "scored_traits_history": [
+      {
+        "timestamp": "2026-04-21T12:49:18.417747+00:00",
+        "traits": {
+          "extraversion": {
+            "score": 7,
+            "level": "mid"
+          },
+          "agreeableness": {
+            "score": 10,
+            "level": "mid"
+          },
+          "conscientiousness": {
+            "score": 11,
+            "level": "mid"
+          },
+          "negative_emotionality": {
+            "score": 11,
+            "level": "mid"
+          },
+          "openness": {
+            "score": 11,
+            "level": "mid"
+          }
+        }
+      }
+    ],
+    "city_progress_history": [
+      {
+        "timestamp": "2026-04-21T12:43:13.536430+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:47:40.217259+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:47:40.273293+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:47:41.764208+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:47:42.643524+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:47:44.476763+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:47:44.538640+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:47:46.171999+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:32.841005+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:34.418866+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:34.472525+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:35.100281+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:35.593472+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:36.766143+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:36.822748+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:37.460142+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:38.848652+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:41.175887+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:41.840692+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:43.072120+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:43.140852+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:43.640800+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:44.167129+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:45.274123+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:45.327525+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:45.897474+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:46.716400+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:47.800914+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:47.867120+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:48.378174+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:49.158640+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:50.534388+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:51.363066+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:52.608874+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:52.688235+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:53.454643+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:54.032648+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:55.386915+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:55.448092+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:56.230986+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:56.732847+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:57.878468+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:57.951356+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:58.462627+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:48:59.323173+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:00.357256+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:01.022343+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:02.180397+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:02.264868+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:02.693915+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:05.152975+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:06.308632+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:06.361942+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:06.872937+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:07.378255+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:08.516519+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:08.570760+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:09.440804+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:10.590465+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:11.953375+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:12.748851+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:13.912840+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:13.970352+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:14.515115+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:15.086982+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 1,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:16.203726+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:16.282737+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:16.734658+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:17.317323+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 2,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:18.417783+00:00",
+        "all_completed": true,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:18.504256+00:00",
+        "all_completed": true,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:19.024190+00:00",
+        "all_completed": true,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:19.897092+00:00",
+        "all_completed": true,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-04-21T12:49:26.209245+00:00",
+        "all_completed": true,
+        "is_finalized": true,
+        "streets": [
+          {
+            "trait": "extraversion",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "agreeableness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "conscientiousness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "negative_emotionality",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          },
+          {
+            "trait": "openness",
+            "completed": true,
+            "answered_count": 3,
+            "houses_count": 3
+          }
+        ]
+      }
+    ],
+    "street_correction_history": [],
+    "final_character_result": {
+      "title": "Итог PersonVille",
+      "trait_allegories": [
+        {
+          "trait": "extraversion",
+          "level": "mid",
+          "text": "Улицы города легко меняют ритм: сегодня здесь слышны голоса и шаги, а завтра может понадобиться немного тишины."
+        },
+        {
+          "trait": "agreeableness",
+          "level": "mid",
+          "text": "Здесь умеют держать равновесие между мягкостью и твёрдостью: не забывают ни о себе, ни о тех, кто рядом."
+        },
+        {
+          "trait": "conscientiousness",
+          "level": "mid",
+          "text": "Порядок здесь ощущается не как жёсткая система, а как внутренняя опора: тут знают, когда пора собраться, и не превращают это в тяжёлую обязанность."
+        },
+        {
+          "trait": "negative emotionality",
+          "level": "mid",
+          "text": ""
+        },
+        {
+          "trait": "openness",
+          "level": "mid",
+          "text": "Новые окна здесь открывают не ради эффекта, а ради смысла: любопытство живёт рядом с опорой на реальность."
+        }
+      ],
+      "city_summary": "PersonVille держится на живом равновесии: здесь есть место и людям, и тишине, и порядку, и переменам. Его улицы не стремятся быть слишком громкими или слишком закрытыми — им важнее оставаться настоящими.",
+      "server_created_at": "21.04.2026",
+      "image_export_enabled": true,
+      "copy_link_enabled": true,
+      "download_enabled": true
+    },
+    "quiz_completed": true,
+    "total_questions_answered": 15,
+    "streets_completed_count": 5,
+    "houses_completed_count": 15
+  },
+  "h2ubwm3pp3bu5tr9rvuf2u0syd56copn": {
+    "session_id": "h2ubwm3pp3bu5tr9rvuf2u0syd56copn",
+    "user_id": null,
+    "quiz_start_time": "2026-04-21T12:55:12.128215+00:00",
+    "quiz_completion_time": "2026-04-21T12:55:12.132906+00:00",
+    "quiz_duration_seconds": 0.004691,
+    "entry_answers_history": [],
+    "scored_traits_history": [],
+    "city_progress_history": [
+      {
+        "timestamp": "2026-04-21T12:55:12.132898+00:00",
+        "all_completed": true,
+        "is_finalized": true,
+        "streets": []
+      }
+    ],
+    "street_correction_history": [],
+    "final_character_result": {
+      "name": "Итоговый персонаж",
+      "description": "Описание персонажа",
+      "traits": {
+        "negative_emotionality": 3,
+        "openness": 4
+      }
+    },
+    "quiz_completed": true,
+    "total_questions_answered": 0,
+    "streets_completed_count": 0,
+    "houses_completed_count": 0
+  },
+  "pzygoe5piqtccymoubg9sxt09n1mtpcr": {
+    "session_id": "pzygoe5piqtccymoubg9sxt09n1mtpcr",
+    "user_id": null,
+    "quiz_start_time": "2026-04-21T12:55:12.145229+00:00",
+    "quiz_completion_time": "2026-04-21T12:55:12.145342+00:00",
+    "quiz_duration_seconds": 0.000113,
+    "entry_answers_history": [],
+    "scored_traits_history": [],
+    "city_progress_history": [
+      {
+        "timestamp": "2026-04-21T12:55:12.145336+00:00",
+        "all_completed": true,
+        "is_finalized": false,
+        "streets": []
+      }
+    ],
+    "street_correction_history": [],
+    "final_character_result": {
+      "name": "Итоговый персонаж",
+      "description": "Описание персонажа",
+      "traits": {
+        "negative_emotionality": 3,
+        "openness": 4
+      }
+    },
+    "quiz_completed": true,
+    "total_questions_answered": 0,
+    "streets_completed_count": 0,
+    "houses_completed_count": 0
+  },
+  "7fmkynghgzb611l1sx1b7itz965n796g": {
+    "session_id": "7fmkynghgzb611l1sx1b7itz965n796g",
+    "user_id": null,
+    "quiz_start_time": "2026-04-21T12:55:12.159457+00:00",
+    "quiz_completion_time": "2026-04-21T12:55:12.160041+00:00",
+    "quiz_duration_seconds": 0.000584,
+    "entry_answers_history": [],
+    "scored_traits_history": [],
+    "city_progress_history": [
+      {
+        "timestamp": "2026-04-21T12:55:12.160034+00:00",
+        "all_completed": false,
+        "is_finalized": false,
+        "streets": [
+          {
+            "trait": "negative_emotionality",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 2
+          },
+          {
+            "trait": "openness",
+            "completed": false,
+            "answered_count": 0,
+            "houses_count": 1
+          }
+        ]
+      }
+    ],
+    "street_correction_history": [],
+    "final_character_result": {
+      "name": "Тестовый персонаж",
+      "description": "Описание"
+    },
+    "quiz_completed": true,
+    "total_questions_answered": 0,
+    "streets_completed_count": 0,
+    "houses_completed_count": 0
+  }
+}

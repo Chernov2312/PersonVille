@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'city.apps.CityConfig',
     'quizzes.apps.QuizzesConfig',
     'users.apps.UsersConfig',
-    'data.apps.DataConfig',
 ]
 
 MIDDLEWARE = [
@@ -38,6 +37,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'person_ville.middleware.QuizStatisticsMiddleware',
 ]
 
 if DEBUG:

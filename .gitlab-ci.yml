@@ -19,5 +19,5 @@ django_test:
   stage: test
   script:
     - pip install -r requirements/test.txt
-    - cd lyceum
+    - cd person_ville
     - python3 manage.py test

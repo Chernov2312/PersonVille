@@ -25,6 +25,14 @@
                     <form action="" method="post" id="authForm">
                         {% csrf_token %}
 
+                        {% if title %}
+                        <h1 class="form-page-title">{{ title }}</h1>
+                        {% endif %}
+
+                        {% if subtitle %}
+                        <p class="form-page-subtitle">{{ subtitle }}</p>
+                        {% endif %}
+
                         {% if form.non_field_errors %}
                         <div class="alert-error mb-3">
                             {% for error in form.non_field_errors %}
@@ -42,7 +50,7 @@
                                 {{ field.label }}
                             </label>
 
-                            {% if field.name == 'password' or field.name == 'password1' or field.name == 'password2' %}
+                            {% if field.name == 'password' or field.name == 'password1' or field.name == 'password2' or field.name == 'new_password1' or field.name == 'new_password2' %}
                             <div class="password-wrapper">
                                 {{ field }}
                                 <button

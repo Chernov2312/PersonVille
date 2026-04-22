@@ -1,0 +1,187 @@
+.history-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px 16px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.history-wrap {
+    width: min(1180px, 96vw);
+}
+
+.history-card {
+    padding: 28px 30px 32px;
+    border-radius: 26px;
+    background: rgba(255, 247, 230, 0.30);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 248, 232, 0.28);
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.history-title {
+    margin: 0 0 24px;
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 54px;
+    font-weight: 700;
+    line-height: 1.05;
+    color: #2b241d;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.history-item {
+    padding: 20px 22px;
+    border-radius: 20px;
+    background: rgba(255, 250, 240, 0.56);
+    border: 1px solid rgba(91, 74, 55, 0.12);
+}
+
+.history-item-date {
+    font-size: 14px;
+    color: #6a5845;
+    margin-bottom: 6px;
+}
+
+.history-item-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2b241d;
+    margin-bottom: 10px;
+}
+
+.history-item-summary {
+    font-size: 18px;
+    line-height: 1.55;
+    color: #322920;
+    margin-bottom: 16px;
+}
+
+.history-item-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: #8290DA;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.history-item-button:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.history-empty {
+    text-align: center;
+    font-size: 22px;
+    color: #2f261f;
+    padding: 40px 0;
+}
+
+.history-section {
+    margin-top: 28px;
+}
+
+.history-section-title {
+    margin: 0 0 14px;
+    font-size: 34px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    color: #2b241d;
+}
+
+.history-date {
+    margin-bottom: 14px;
+    font-size: 16px;
+    color: #6a5845;
+}
+
+.history-character-box {
+    padding: 18px 20px;
+    border-radius: 20px;
+    background: rgba(255, 250, 240, 0.56);
+    border: 1px solid rgba(91, 74, 55, 0.12);
+}
+
+.history-character-line {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(91, 74, 55, 0.14);
+    font-size: 18px;
+    line-height: 1.55;
+    color: #2f271f;
+    font-weight: 600;
+}
+
+.history-character-summary {
+    margin-top: 16px;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #322920;
+    font-weight: 700;
+}
+
+.history-answer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.history-answer-item {
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(255, 250, 240, 0.56);
+    border: 1px solid rgba(91, 74, 55, 0.12);
+    font-size: 17px;
+    line-height: 1.5;
+    color: #2f271f;
+}
+
+.history-street-block {
+    margin-top: 18px;
+}
+
+.history-street-title {
+    margin: 0 0 10px;
+    font-size: 24px;
+    color: #2b241d;
+    font-weight: 700;
+}
+
+@media (max-width: 767px) {
+    .history-card {
+        padding: 20px 16px 24px;
+    }
+
+    .history-title {
+        font-size: 38px;
+    }
+
+    .history-section-title {
+        font-size: 28px;
+    }
+
+    .history-item-name {
+        font-size: 20px;
+    }
+
+    .history-item-summary,
+    .history-character-line,
+    .history-character-summary,
+    .history-answer-item {
+        font-size: 16px;
+    }
+}

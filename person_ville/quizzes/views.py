@@ -157,7 +157,7 @@ def street_correction(request, trait):
 
 
 def close_test(request):
-    
+
     reset_quiz_progress(request)
     return redirect('main:main')
 

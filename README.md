@@ -25,24 +25,24 @@
 
 ### Предварительные требования
 
-- Python 3.11+
-- Git
+- [Python 3.11+](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/downloads)
 
 ### Установка и запуск
 
-1. Клонируйте репозиторий
+1. Клонирование репозитория
 
 ```bash
 git clone https://gitlab.crja72.ru/django/2026/spring/course/projects/team-3.git
 ```
 
-2. Перейдите в папку проекта
+2. Переход в папку проекта
 
 ```bash
 cd team-3
 ```
 
-3. Создайте виртуальное окружение
+3. Создание виртуального окружения
 
 Linux/macOS
 
@@ -52,11 +52,11 @@ python3 -m venv venv
 
 Windows (PowerShell)
 
-```Power Shell
+```powershell
 python -m venv venv
 ```
 
-4. Активируйте виртуальное окружение
+4. Активация виртуального окружения
 
 Linux/macOS
 
@@ -66,11 +66,11 @@ source venv/bin/activate
 
 Windows (PowerShell)
 
-```Power Shell
+```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-5. Установите зависимости
+5. Установка зависимостей
 
 Для запуска проекта
 
@@ -78,7 +78,7 @@ Windows (PowerShell)
 pip install -r requirements/prod.txt
 ```
 
-6. Настройте переменные окружения
+6. Настройка переменных окружения
 
 Linux/macOS
 
@@ -88,23 +88,35 @@ cp .env.example .env
 
 Windows (PowerShell)
 
-```Power Shell
+```powershell
 Copy-Item .env.example .env
 ```
 
-7. Примените миграции
+7. Применение миграций
 
 ```bash
 python manage.py migrate
 ```
 
-8. Создайте суперпользователя
+8. Загрузка фикстур (опционально)
+
+```bash
+python manage.py loaddata fixtures/data.json
+```
+
+9. Создание суперпользователя
 
 ```bash
 python manage.py createsuperuser
 ```
 
-9. Запустите сервер разработки
+10. Сборка статики
+
+```bash
+python manage.py collectstatic --noinput
+```
+
+11. Запуск сервера разработки
 
 ```bash
 python manage.py runserver
@@ -134,7 +146,7 @@ python manage.py runserver
 - Негативная эмоциональность
 - Открытость опыту
 
-Для каждой черты определяется один из уровней: low, mid или high.
+Для каждой черты определяется один из уровней: низкий (low), средний (mid) или высокий (high).
 
 **3. Улицы и дома**
 
@@ -292,7 +304,6 @@ erDiagram
 
 ###### Разработчики
 
-Студенты:
 ```
 Светлана Зурова
 Максим Чернов
@@ -302,3 +313,5 @@ erDiagram
 Курс: Django-разработка, 2026
 
 ---
+
+<small>© 2026 «Cheburek Team»</small>

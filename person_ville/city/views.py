@@ -6,6 +6,8 @@ __all__ = (
     'character_view',
 )
 
+from copy import deepcopy
+
 from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import redirect, render
@@ -14,6 +16,7 @@ from django.urls import reverse
 from city.managers import apply_house_answer
 from city.managers import build_final_character
 from city.managers import load_quiz_data
+from users.models import UserResultHistory
 
 STREET_SLOT_MAP = {
     'negative_emotionality': 'street-slot-top',
@@ -179,9 +182,24 @@ def finalize_city_view(request):
     request.session['final_character'] = final_character
     request.session.modified = True
 
+    if request.user.is_authenticated:
+        snapshot = _build_result_snapshot(
+            request=request,
+            city_result=city_result,
+            final_character=final_character,
+            scored_traits=scored_traits,
+        )
+
+        UserResultHistory.objects.create(
+            user=request.user,
+            title=final_character.get('title', 'Итог PersonVille'),
+            short_summary=final_character.get('city_summary', ''),
+            snapshot=snapshot,
+        )
+
     messages.success(
         request,
-        'Город зафиксирован. Самоотчёт сохранён, ' 'и итоговый персонаж готов',
+        'Город зафиксирован. Самоотчёт сохранён, и итоговый персонаж готов',
     )
     return redirect('city:city')
 
@@ -303,3 +321,21 @@ def character_view(request):
         'character': final_character,
     }
     return render(request, 'city/character.html', context)
+
+
+def _build_result_snapshot(
+    request,
+    city_result,
+    final_character,
+    scored_traits,
+):
+    return {
+        'final_character': deepcopy(final_character),
+        'city_result': deepcopy(city_result),
+        'scored_traits': deepcopy(scored_traits),
+        'entry_answers': deepcopy(request.session.get('entry_answers', {})),
+        'entry_question_index': request.session.get(
+            'entry_question_index',
+            0,
+        ),
+    }

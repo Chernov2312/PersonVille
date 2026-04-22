@@ -1,23 +1,50 @@
 __all__ = (
     'authorization',
     'character',
+    'change_email',
+    'change_password',
+    'history_detail',
+    'history_list',
     'logout_view',
     'registration',
     'verify_email',
 )
 
-from django.contrib.auth import login, logout
+from datetime import timedelta
+import random
+
+from django.contrib.auth import login, logout, update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
+from django.http import Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.http import (
+    urlsafe_base64_decode,
+    urlsafe_base64_encode,
+)
 
+from city.managers import load_quiz_data
 from quizzes.views import reset_quiz_progress
-from users.forms import AuthorizationForm, RegisterForm
-from users.models import User
+from users.forms import (
+    AuthorizationForm,
+    ChangeEmailConfirmForm,
+    ChangeEmailRequestForm,
+    ChangePasswordConfirmForm,
+    ChangePasswordRequestForm,
+    RegisterForm,
+)
+from users.models import (
+    EmailChangeCode,
+    PasswordChangeCode,
+    User,
+    UserResultHistory,
+)
 
 
 def character(request):
@@ -70,7 +97,10 @@ def authorization(request):
 
                 city_result = request.session.get('city_result')
                 entry_answers = request.session.get('entry_answers', {})
-                current_index = request.session.get('entry_question_index', 0)
+                current_index = request.session.get(
+                    'entry_question_index',
+                    0,
+                )
 
                 if city_result:
                     return redirect('city:city')
@@ -146,6 +176,536 @@ def send_verification_email(request, user):
         recipient_list=[user.email],
         fail_silently=False,
     )
+
+
+def _build_entry_answers_for_display(snapshot, quiz_data):
+    raw_answers = snapshot.get('entry_answers', {})
+    answer_options = {
+        item['value']: item['label']
+        for item in quiz_data.get('answer_options', [])
+    }
+
+    result = []
+
+    for index, question in enumerate(
+        quiz_data.get('questions', []),
+        start=1,
+    ):
+        raw_value = raw_answers.get(question['id'])
+
+        if raw_value is None:
+            answer_label = 'Нет ответа'
+        else:
+            answer_label = answer_options.get(int(raw_value), str(raw_value))
+
+        result.append(
+            {
+                'number': index,
+                'question': question['text'],
+                'answer': answer_label,
+            },
+        )
+
+    return result
+
+
+def _build_house_answers_for_display(snapshot, quiz_data):
+    city_result = snapshot.get('city_result', {})
+    streets = city_result.get('streets', [])
+    answer_options = {
+        item['value']: item['label']
+        for item in quiz_data.get('answer_options', [])
+    }
+
+    result = []
+
+    for street in streets:
+        houses_display = []
+
+        for index, house in enumerate(street.get('houses', []), start=1):
+            raw_value = house.get('answer_value')
+
+            if raw_value is None:
+                answer_label = 'Нет ответа'
+            else:
+                answer_label = answer_options.get(
+                    int(raw_value),
+                    str(raw_value),
+                )
+
+            houses_display.append(
+                {
+                    'number': index,
+                    'thesis': house.get('base_text', ''),
+                    'answer': answer_label,
+                },
+            )
+
+        result.append(
+            {
+                'street_name': street.get('name', ''),
+                'houses': houses_display,
+            },
+        )
+
+    return result
+
+
+@login_required
+def history_list(request):
+    history_items = UserResultHistory.objects.filter(user=request.user)
+
+    context = {
+        'history_items': history_items,
+        'title': 'История прохождений',
+    }
+    return render(request, 'user/history_list.html', context)
+
+
+@login_required
+def history_detail(request, history_id):
+    try:
+        history_item = UserResultHistory.objects.get(
+            pk=history_id,
+            user=request.user,
+        )
+    except UserResultHistory.DoesNotExist as error:
+        raise Http404('Прохождение не найдено.') from error
+
+    quiz_data = load_quiz_data()
+    snapshot = history_item.snapshot or {}
+    final_character = snapshot.get('final_character', {})
+
+    entry_answers = _build_entry_answers_for_display(snapshot, quiz_data)
+    house_answers = _build_house_answers_for_display(snapshot, quiz_data)
+
+    context = {
+        'history_item': history_item,
+        'character': final_character,
+        'entry_answers': entry_answers,
+        'house_answers': house_answers,
+        'title': history_item.title,
+    }
+    return render(request, 'user/history_detail.html', context)
+
+
+def _generate_code():
+    return f'{random.randint(100000, 999999)}'
+
+
+def _mask_email(email):
+    if '@' not in email:
+        return email
+
+    username, domain = email.split('@', 1)
+
+    if len(username) <= 2:
+        masked_username = username[0] + '*' * max(1, len(username) - 1)
+    else:
+        masked_username = username[:2] + '*' * (len(username) - 2)
+
+    return f'{masked_username}@{domain}'
+
+
+def _seconds_left(value):
+    if not value:
+        return 0
+
+    delta = int((value - timezone.now()).total_seconds())
+    return max(0, delta)
+
+
+def _iso_datetime(value):
+    if not value:
+        return ''
+
+    return value.isoformat()
+
+
+def _get_active_email_request(user):
+    request_obj = (
+        EmailChangeCode.objects.filter(
+            user=user,
+            is_used=False,
+        )
+        .order_by('-created_at')
+        .first()
+    )
+
+    if request_obj and not request_obj.is_expired():
+        return request_obj
+
+    return None
+
+
+def _get_active_password_request(user):
+    request_obj = (
+        PasswordChangeCode.objects.filter(
+            user=user,
+            is_used=False,
+        )
+        .order_by('-created_at')
+        .first()
+    )
+
+    if request_obj and not request_obj.is_expired():
+        return request_obj
+
+    return None
+
+
+def _build_email_context(
+    request,
+    request_form,
+    code_form,
+    active_request,
+):
+    cooldown_until = request.user.email_change_cooldown_until
+    cooldown_seconds = _seconds_left(cooldown_until)
+    resend_seconds = (
+        _seconds_left(active_request.resend_available_at)
+        if active_request
+        else 0
+    )
+
+    return {
+        'title': 'Смена email',
+        'subtitle': (
+            'Введите новый email. Код подтверждения будет отправлен '
+            'на вашу текущую почту.'
+        ),
+        'request_form': request_form,
+        'code_form': code_form,
+        'active_request': active_request,
+        'current_email_masked': _mask_email(request.user.email),
+        'is_cooldown_active': cooldown_seconds > 0,
+        'cooldown_seconds': cooldown_seconds,
+        'cooldown_until_iso': _iso_datetime(cooldown_until),
+        'is_resend_blocked': resend_seconds > 0,
+        'resend_seconds': resend_seconds,
+        'resend_until_iso': _iso_datetime(
+            active_request.resend_available_at if active_request else None,
+        ),
+    }
+
+
+def _build_password_context(
+    request,
+    request_form,
+    code_form,
+    active_request,
+):
+    cooldown_until = request.user.password_change_cooldown_until
+    cooldown_seconds = _seconds_left(cooldown_until)
+    resend_seconds = (
+        _seconds_left(active_request.resend_available_at)
+        if active_request
+        else 0
+    )
+
+    return {
+        'title': 'Смена пароля',
+        'subtitle': (
+            'Введите текущий и новый пароль. Код подтверждения будет '
+            'отправлен на вашу текущую почту.'
+        ),
+        'request_form': request_form,
+        'code_form': code_form,
+        'active_request': active_request,
+        'current_email_masked': _mask_email(request.user.email),
+        'is_cooldown_active': cooldown_seconds > 0,
+        'cooldown_seconds': cooldown_seconds,
+        'cooldown_until_iso': _iso_datetime(cooldown_until),
+        'is_resend_blocked': resend_seconds > 0,
+        'resend_seconds': resend_seconds,
+        'resend_until_iso': _iso_datetime(
+            active_request.resend_available_at if active_request else None,
+        ),
+    }
+
+
+@login_required
+def change_email(request):
+    active_request = _get_active_email_request(request.user)
+    request_form = ChangeEmailRequestForm(user=request.user)
+    code_form = ChangeEmailConfirmForm()
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        cooldown_seconds = _seconds_left(
+            request.user.email_change_cooldown_until,
+        )
+
+        if action == 'send_code':
+            if cooldown_seconds > 0 or active_request:
+                context = _build_email_context(
+                    request,
+                    request_form,
+                    code_form,
+                    active_request,
+                )
+                return render(
+                    request,
+                    'user/change_email.html',
+                    context,
+                )
+
+            request_form = ChangeEmailRequestForm(
+                request.POST,
+                user=request.user,
+            )
+
+            if request_form.is_valid():
+                code = _generate_code()
+                new_email = request_form.cleaned_data['new_email']
+
+                active_request = EmailChangeCode.objects.create(
+                    user=request.user,
+                    new_email=new_email,
+                    code=code,
+                    expires_at=timezone.now() + timedelta(minutes=10),
+                    resend_available_at=timezone.now() + timedelta(minutes=1),
+                )
+
+                send_mail(
+                    subject='Код подтверждения смены email PersonVille',
+                    message=(
+                        f'Здравствуйте, {request.user.username}!\n\n'
+                        f'Код подтверждения смены email: {code}\n\n'
+                        'Если это были не вы, проигнорируйте письмо.'
+                    ),
+                    from_email=None,
+                    recipient_list=[request.user.email],
+                    fail_silently=False,
+                )
+
+        elif action == 'resend_code':
+            if active_request:
+                can_resend = (
+                    _seconds_left(active_request.resend_available_at) == 0
+                )
+
+                if can_resend:
+                    code = _generate_code()
+                    active_request.code = code
+                    active_request.expires_at = timezone.now() + timedelta(
+                        minutes=10,
+                    )
+                    active_request.resend_available_at = (
+                        timezone.now() + timedelta(minutes=1)
+                    )
+                    active_request.save(
+                        update_fields=[
+                            'code',
+                            'expires_at',
+                            'resend_available_at',
+                        ],
+                    )
+
+                    send_mail(
+                        subject=(
+                            'Новый код подтверждения смены email PersonVille'
+                        ),
+                        message=(
+                            f'Здравствуйте, {request.user.username}!\n\n'
+                            f'Новый код подтверждения смены email: {code}\n\n'
+                            'Если это были не вы, проигнорируйте письмо.'
+                        ),
+                        from_email=None,
+                        recipient_list=[request.user.email],
+                        fail_silently=False,
+                    )
+
+        elif action == 'confirm_code':
+            code_form = ChangeEmailConfirmForm(request.POST)
+
+            if not active_request:
+                return redirect('user:change_email')
+
+            if code_form.is_valid():
+                if active_request.is_expired():
+                    code_form.add_error(
+                        'code',
+                        'Срок действия кода истёк.',
+                    )
+                elif code_form.cleaned_data['code'] != active_request.code:
+                    code_form.add_error(
+                        'code',
+                        'Неверный код подтверждения.',
+                    )
+                else:
+                    request.user.email = active_request.new_email
+                    request.user.email_change_cooldown_until = (
+                        timezone.now() + timedelta(minutes=15)
+                    )
+                    request.user.save()
+
+                    EmailChangeCode.objects.filter(
+                        user=request.user,
+                        is_used=False,
+                    ).update(is_used=True)
+
+                    context = {
+                        'title': 'Email изменён',
+                        'message': 'Ваш email успешно обновлён.',
+                    }
+                    return render(
+                        request,
+                        'user/verification_done.html',
+                        context,
+                    )
+
+    context = _build_email_context(
+        request,
+        request_form,
+        code_form,
+        active_request,
+    )
+    return render(request, 'user/change_email.html', context)
+
+
+@login_required
+def change_password(request):
+    active_request = _get_active_password_request(request.user)
+    request_form = ChangePasswordRequestForm(user=request.user)
+    code_form = ChangePasswordConfirmForm()
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        cooldown_seconds = _seconds_left(
+            request.user.password_change_cooldown_until,
+        )
+
+        if action == 'send_code':
+            if cooldown_seconds > 0 or active_request:
+                context = _build_password_context(
+                    request,
+                    request_form,
+                    code_form,
+                    active_request,
+                )
+                return render(
+                    request,
+                    'user/change_password.html',
+                    context,
+                )
+
+            request_form = ChangePasswordRequestForm(
+                request.POST,
+                user=request.user,
+            )
+
+            if request_form.is_valid():
+                code = _generate_code()
+                password_hash = make_password(
+                    request_form.cleaned_data['new_password1'],
+                )
+
+                active_request = PasswordChangeCode.objects.create(
+                    user=request.user,
+                    new_password_hash=password_hash,
+                    code=code,
+                    expires_at=timezone.now() + timedelta(minutes=10),
+                    resend_available_at=timezone.now() + timedelta(minutes=1),
+                )
+
+                send_mail(
+                    subject='Код подтверждения смены пароля PersonVille',
+                    message=(
+                        f'Здравствуйте, {request.user.username}!\n\n'
+                        f'Код подтверждения смены пароля: {code}\n\n'
+                        'Если это были не вы, проигнорируйте письмо.'
+                    ),
+                    from_email=None,
+                    recipient_list=[request.user.email],
+                    fail_silently=False,
+                )
+
+        elif action == 'resend_code':
+            if active_request:
+                can_resend = (
+                    _seconds_left(active_request.resend_available_at) == 0
+                )
+
+                if can_resend:
+                    code = _generate_code()
+                    active_request.code = code
+                    active_request.expires_at = timezone.now() + timedelta(
+                        minutes=10,
+                    )
+                    active_request.resend_available_at = (
+                        timezone.now() + timedelta(minutes=1)
+                    )
+                    active_request.save(
+                        update_fields=[
+                            'code',
+                            'expires_at',
+                            'resend_available_at',
+                        ],
+                    )
+
+                    send_mail(
+                        subject=(
+                            'Новый код подтверждения смены пароля '
+                            'PersonVille'
+                        ),
+                        message=(
+                            f'Здравствуйте, {request.user.username}!\n\n'
+                            f'Новый код подтверждения смены пароля: {code}\n\n'
+                            'Если это были не вы, проигнорируйте письмо.'
+                        ),
+                        from_email=None,
+                        recipient_list=[request.user.email],
+                        fail_silently=False,
+                    )
+
+        elif action == 'confirm_code':
+            code_form = ChangePasswordConfirmForm(request.POST)
+
+            if not active_request:
+                return redirect('user:change_password')
+
+            if code_form.is_valid():
+                if active_request.is_expired():
+                    code_form.add_error(
+                        'code',
+                        'Срок действия кода истёк.',
+                    )
+                elif code_form.cleaned_data['code'] != active_request.code:
+                    code_form.add_error(
+                        'code',
+                        'Неверный код подтверждения.',
+                    )
+                else:
+                    request.user.password = active_request.new_password_hash
+                    request.user.password_change_cooldown_until = (
+                        timezone.now() + timedelta(minutes=10)
+                    )
+                    request.user.save()
+                    update_session_auth_hash(request, request.user)
+
+                    PasswordChangeCode.objects.filter(
+                        user=request.user,
+                        is_used=False,
+                    ).update(is_used=True)
+
+                    context = {
+                        'title': 'Пароль изменён',
+                        'message': 'Ваш пароль успешно обновлён.',
+                    }
+                    return render(
+                        request,
+                        'user/verification_done.html',
+                        context,
+                    )
+
+    context = _build_password_context(
+        request,
+        request_form,
+        code_form,
+        active_request,
+    )
+    return render(request, 'user/change_password.html', context)
 
 
 def logout_view(request):

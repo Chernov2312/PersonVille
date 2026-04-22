@@ -1,4 +1,11 @@
-__all__ = ('RegisterForm', 'AuthorizationForm')
+__all__ = (
+    'RegisterForm',
+    'AuthorizationForm',
+    'ChangeEmailRequestForm',
+    'ChangeEmailConfirmForm',
+    'ChangePasswordRequestForm',
+    'ChangePasswordConfirmForm',
+)
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -11,11 +18,21 @@ class AuthorizationForm(forms.Form):
     login = forms.CharField(
         label='Логин или email',
         max_length=100,
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите логин или email',
+            },
+        ),
     )
     password = forms.CharField(
         label='Пароль',
-        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите пароль',
+            },
+        ),
     )
 
     def __init__(self, *args, **kwargs):
@@ -95,3 +112,120 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+class ChangeEmailRequestForm(forms.Form):
+    new_email = forms.EmailField(
+        label='Новый email',
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите новый email',
+            },
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super().__init__(*args, **kwargs)
+
+    def clean_new_email(self):
+        email = self.cleaned_data['new_email']
+
+        if email == self.user.email:
+            raise forms.ValidationError('Это уже ваша текущая почта.')
+
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError(
+                'Пользователь с такой почтой уже существует.',
+            )
+
+        return email
+
+
+class ChangeEmailConfirmForm(forms.Form):
+    code = forms.CharField(
+        label='Код подтверждения',
+        max_length=6,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите код из письма',
+            },
+        ),
+    )
+
+
+class ChangePasswordRequestForm(forms.Form):
+    current_password = forms.CharField(
+        label='Текущий пароль',
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите текущий пароль',
+            },
+        ),
+    )
+    new_password1 = forms.CharField(
+        label='Новый пароль',
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите новый пароль',
+            },
+        ),
+    )
+    new_password2 = forms.CharField(
+        label='Повторите новый пароль',
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Повторите новый пароль',
+            },
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super().__init__(*args, **kwargs)
+
+    def clean_current_password(self):
+        current_password = self.cleaned_data['current_password']
+
+        if not self.user.check_password(current_password):
+            raise forms.ValidationError('Текущий пароль введён неверно.')
+
+        return current_password
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get('new_password1')
+        password2 = cleaned_data.get('new_password2')
+        current_password = cleaned_data.get('current_password')
+
+        if not password1 or not password2:
+            return cleaned_data
+
+        if password1 != password2:
+            self.add_error('new_password2', 'Пароли не совпадают.')
+
+        if current_password and password1 and current_password == password1:
+            self.add_error(
+                'new_password1',
+                'Новый пароль должен отличаться от текущего.',
+            )
+
+        return cleaned_data
+
+
+class ChangePasswordConfirmForm(forms.Form):
+    code = forms.CharField(
+        label='Код подтверждения',
+        max_length=6,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите код из письма',
+            },
+        ),
+    )

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/user_history.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="history-page">
+    <div class="history-wrap">
+        <div class="history-card">
+            <h1 class="history-title">{{ character.title }}</h1>
+
+            <div class="history-section">
+                <h2 class="history-section-title">Итог PersonVille</h2>
+
+                <div
+                    class="history-date js-local-datetime"
+                    data-server-datetime="{{ history_item.created_at|date:'c' }}"
+                >
+                    {{ history_item.created_at|date:"d.m.Y H:i" }}
+                </div>
+
+                <div class="history-character-box">
+                    {% for item in character.trait_allegories %}
+                    <div class="history-character-line">
+                        {{ item.text }}
+                    </div>
+                    {% endfor %}
+
+                    <div class="history-character-summary">
+                        {{ character.city_summary }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h2 class="history-section-title">Основные ответы</h2>
+
+                <div class="history-answer-list">
+                    {% for item in entry_answers %}
+                    <div class="history-answer-item">
+                        <strong>{{ item.number }}.</strong>
+                        {{ item.question }} — <strong>{{ item.answer }}</strong>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h2 class="history-section-title">Ответы по домикам</h2>
+
+                {% for street in house_answers %}
+                <div class="history-street-block">
+                    <h3 class="history-street-title">{{ street.street_name }}</h3>
+
+                    <div class="history-answer-list">
+                        {% for item in street.houses %}
+                        <div class="history-answer-item">
+                            <strong>{{ item.number }}.</strong>
+                            {{ item.thesis }} — <strong>{{ item.answer }}</strong>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/history_time.js' %}"></script>
+{% endblock %}

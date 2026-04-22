@@ -10,6 +10,8 @@ __all__ = (
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 from users.models import User
 
@@ -205,6 +207,13 @@ class ChangePasswordRequestForm(forms.Form):
 
         if not password1 or not password2:
             return cleaned_data
+
+        if password1:
+            try:
+                validate_password(password1, user=self.user)
+                validate_password(password2, user=self.user)
+            except ValidationError as e:
+                raise forms.ValidationError(e.messages)
 
         if password1 != password2:
             self.add_error('new_password2', 'Пароли не совпадают.')

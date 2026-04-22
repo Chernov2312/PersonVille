@@ -29,7 +29,6 @@ class User(AbstractUser, BaseUpdate):
         validators=[RoleValidate()],
         verbose_name='Роль',
     )
-    city = models.CharField(max_length=40, null=True, blank=True)
     is_email_verified = models.BooleanField(default=False)
     email_change_cooldown_until = models.DateTimeField(
         null=True,

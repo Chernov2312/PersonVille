@@ -161,3 +161,36 @@
         padding: 11px 24px;
     }
 }
+/* АДАПТИВ ДЛЯ ТЕЛЕФОНОВ (homepage.css) */
+@media (max-width: 480px) {
+    .homepage-hero-wrap {
+        margin-top: 10px;
+        padding: 0 10px;
+    }
+
+    .homepage-hero {
+        width: 100%;
+        padding: 20px 16px 24px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(10px);
+    }
+
+    .homepage-title {
+        font-size: 28px;
+        line-height: 1.2;
+        margin-bottom: 16px;
+    }
+
+    .homepage-description p {
+        font-size: 15px;
+        line-height: 1.45;
+    }
+
+    .homepage-test-button {
+        min-width: 160px;
+        min-height: 48px;
+        font-size: 18px;
+        padding: 12px 26px;
+    }
+}

@@ -1,3 +1,4 @@
+/* Базовые стили */
 .bg-container {
     position: relative;
     width: min(1200px, 96vw);
@@ -175,6 +176,7 @@
     box-shadow: 0 0 0 0.18rem rgba(220, 53, 69, 0.15);
 }
 
+/* Адаптив для экранов до 1200px */
 @media (max-width: 1200px) {
     .bg-container {
         width: min(1080px, 96vw);
@@ -183,18 +185,23 @@
 
     .auth-close {
         top: 94px;
-        right: 96px;
-        width: 42px;
-        height: 42px;
+        right: 180px;
+        width: 70px;
+        height: 70px;
     }
 
     .scroll-content {
         width: min(100%, 590px);
-        padding-top: 104px;
-        padding-bottom: 96px;
+        padding-top: 120px;
+        padding-bottom: 100px;
+    }
+
+    .btn-submit {
+        font-size: 1.4rem;
     }
 }
 
+/* Адаптив для планшетов до 991px */
 @media (max-width: 991px) {
     .bg-container {
         width: min(920px, 97vw);
@@ -203,66 +210,234 @@
 
     .auth-close {
         top: 82px;
-        right: 78px;
-        width: 34px;
-        height: 34px;
+        right: 120px;
+        width: 55px;
+        height: 55px;
     }
 
     .scroll-content {
         width: min(100%, 520px);
-        padding-top: 90px;
-        padding-bottom: 80px;
+        padding-top: 100px;
+        padding-bottom: 85px;
+    }
+
+    .scroll-content .form-label {
+        font-size: 1rem;
     }
 
     .scroll-content .form-control {
         min-height: 50px;
+        font-size: 1rem;
+        padding: 10px 14px;
     }
 
     .btn-submit {
-        font-size: 1.25rem;
-        min-width: 230px;
+        font-size: 1.3rem;
+        min-width: 240px;
+        padding: 14px 30px;
     }
 }
 
+/* Адаптив для маленьких планшетов до 767px */
 @media (max-width: 767px) {
     .bg-container {
         width: 100%;
-        min-height: 620px;
+        min-height: 650px;
         background-size: 100% 100%;
     }
 
     .auth-close {
         top: 62px;
-        right: 42px;
-        width: 26px;
-        height: 26px;
+        right: 60px;
+        width: 40px;
+        height: 40px;
     }
 
     .scroll-content {
-        width: min(100%, 78%);
-        padding-top: 72px;
-        padding-bottom: 64px;
+        width: min(100%, 85%);
+        padding-top: 85px;
+        padding-bottom: 70px;
     }
 
     .scroll-content .form-label {
         font-size: 0.95rem;
+        margin-bottom: 5px;
     }
 
     .scroll-content .form-control {
-        min-height: 44px;
+        min-height: 48px;
         font-size: 0.95rem;
-        padding: 10px 12px;
+        padding: 10px 14px;
+        border-radius: 12px;
+    }
+
+    .password-toggle {
+        right: 12px;
+    }
+
+    .password-toggle svg {
+        width: 20px;
+        height: 20px;
     }
 
     .btn-submit {
         width: 100%;
         min-width: 0;
-        max-width: 280px;
-        font-size: 1.1rem;
+        max-width: 100%;
+        font-size: 1.2rem;
         padding: 14px 24px;
+        margin-top: 25px;
     }
 
     .errorlist {
-        font-size: 0.82rem;
+        font-size: 0.85rem;
+    }
+
+    .alert-error {
+        padding: 8px 12px;
+        font-size: 0.88rem;
+    }
+}
+
+/* Адаптив для телефонов до 480px */
+@media (max-width: 480px) {
+    .bg-container {
+        width: 100%;
+        min-height: 580px;
+        background-size: contain;
+        background-position: center top;
+    }
+
+    .auth-close {
+        top: 35px;
+        right: 25px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .scroll-content {
+        width: 88%;
+        padding-top: 75px;
+        padding-bottom: 55px;
+    }
+
+    .scroll-content .form-label {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+
+    .scroll-content .form-control {
+        min-height: 46px;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        border-radius: 10px;
+    }
+
+    .password-wrapper input {
+        padding-right: 45px;
+    }
+
+    .password-toggle {
+        right: 10px;
+        width: 22px;
+        height: 22px;
+    }
+
+    .password-toggle svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        max-width: 100%;
+        font-size: 1.1rem;
+        padding: 12px 20px;
+        margin-top: 22px;
+        border-radius: 50px;
+    }
+
+    .errorlist {
+        font-size: 0.8rem;
+        margin-top: 6px;
+    }
+
+    .alert-error {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+        border-radius: 8px;
+    }
+
+    .mb-3,
+    .mb-4 {
+        margin-bottom: 16px !important;
+    }
+}
+
+/* Адаптив для очень маленьких телефонов до 360px */
+@media (max-width: 360px) {
+    .bg-container {
+        min-height: 520px;
+    }
+
+    .auth-close {
+        top: 30px;
+        right: 20px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .scroll-content {
+        width: 92%;
+        padding-top: 65px;
+        padding-bottom: 45px;
+    }
+
+    .scroll-content .form-label {
+        font-size: 0.85rem;
+    }
+
+    .scroll-content .form-control {
+        min-height: 42px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .btn-submit {
+        font-size: 1rem;
+        padding: 11px 18px;
+    }
+
+    .errorlist {
+        font-size: 0.75rem;
+    }
+}
+
+/* Адаптив для альбомной ориентации на телефонах */
+@media (max-height: 600px) and (orientation: landscape) {
+    .bg-container {
+        min-height: 450px;
+    }
+
+    .scroll-content {
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+
+    .auth-close {
+        top: 25px;
+        right: 30px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .btn-submit {
+        margin-top: 15px;
+        padding: 10px 20px;
+    }
+
+    .mb-3,
+    .mb-4 {
+        margin-bottom: 12px !important;
     }
 }

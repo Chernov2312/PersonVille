@@ -20,6 +20,7 @@ class UserManager(BaseUserManager):
         user = self.model(
             username=username,
             email=self.normalize_email(email),
+            role='admin',
             **extra_fields,
         )
         user.set_password(password)

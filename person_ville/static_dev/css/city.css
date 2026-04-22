@@ -932,3 +932,236 @@
     padding: 11px 22px;
     }
 }
+/* АДАПТИВ ДЛЯ ТЕЛЕФОНОВ (city.css) */
+@media (max-width: 480px) {
+    /* --- КАРТА ГОРОДА --- */
+    .city-map-shell {
+        width: 100%;
+        height: auto;
+        min-height: 85vh;
+        background-size: cover;
+        background-position: center top;
+        border-radius: 0;
+    }
+
+    .city-close {
+        top: 10%;
+        right: 5%;
+        width: 60px;
+        height: 45px;
+    }
+
+    /* Улицы на карте */
+    .city-street-link {
+        min-width: 120px;
+        padding: 6px 8px;
+        border-radius: 10px;
+        border-width: 2px;
+        gap: 2px;
+    }
+
+    .city-street-name {
+        font-size: 13px;
+    }
+
+    .city-street-progress {
+        font-size: 10px;
+    }
+
+    /* Адаптация позиций слотов для маленького экрана */
+    .street-slot-top {
+        top: 18%;
+    }
+
+    .street-slot-left {
+        top: 38%;
+        left: 5%;
+    }
+
+    .street-slot-right {
+        top: 38%;
+        right: 5%;
+    }
+
+    .street-slot-bottom-left {
+        bottom: 22%;
+        left: 10%;
+    }
+
+    .street-slot-bottom-right {
+        bottom: 22%;
+        right: 10%;
+    }
+
+    .city-center-box {
+        top: 42%;
+        width: 160px;
+    }
+
+    .city-character-button {
+        min-width: 140px;
+        min-height: 50px;
+        font-size: 18px;
+        padding: 10px 16px;
+        border-radius: 14px;
+    }
+
+    .city-finalize-box {
+        width: 80%;
+        bottom: 2%;
+        transform: translate(-50%, 0);
+    }
+
+    .city-finalize-button,
+    .city-finalize-state {
+        min-height: 56px;
+        font-size: 16px;
+        padding: 10px 16px;
+        border-radius: 14px;
+        white-space: normal;
+    }
+
+    /* --- СТРАНИЦА УЛИЦЫ (ДОМИКИ) --- */
+    .street-page,
+    .street-scene {
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .street-image {
+        object-fit: cover;
+        min-height: 100vh;
+    }
+
+    .street-back-link {
+        top: 16px;
+        left: 16px;
+        font-size: 18px;
+        background: rgba(0,0,0,0.4);
+        padding: 6px 12px;
+        border-radius: 30px;
+        backdrop-filter: blur(4px);
+    }
+
+    .street-header-board {
+        width: 90vw;
+        padding: 30px 15px 20px;
+        min-height: auto;
+        top: 5%;
+    }
+
+    .street-header-board::before {
+        top: -50px;
+        background-size: 100% 100%;
+    }
+
+    .street-header-title {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .street-header-subtitle {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    /* Таблички домиков - общий адаптив */
+    .street-door-sign {
+        width: 180px;
+        min-height: 110px;
+        padding: 15px 8px;
+    }
+
+    .street-door-text {
+        font-size: 12px;
+        line-height: 1.2;
+        max-width: 85%;
+    }
+
+    .street-door-status {
+        font-size: 10px;
+        margin-top: 5px;
+    }
+
+    /* Корректировка позиций домиков под экран телефона */
+    /* Приближаем все к центру и чуть смещаем, чтобы не вылезали за экран */
+    [class*="street-"] [class*="door-"] {
+        left: 50% !important;
+        transform: translateX(-50%);
+        top: auto;
+    }
+
+    /* Выстраиваем их друг под другом с небольшим сдвигом для имитации глубины */
+    .street-extraversion .door-1 { top: 35%; left: 45% !important; }
+    .street-extraversion .door-2 { top: 45%; left: 55% !important; }
+    .street-extraversion .door-3 { top: 55%; left: 45% !important; }
+
+    .street-agreeableness .door-1 { top: 35%; left: 45% !important; }
+    .street-agreeableness .door-2 { top: 45%; left: 55% !important; }
+    .street-agreeableness .door-3 { top: 55%; left: 45% !important; }
+
+    .street-conscientiousness .door-1 { top: 35%; left: 45% !important; }
+    .street-conscientiousness .door-2 { top: 45%; left: 55% !important; }
+    .street-conscientiousness .door-3 { top: 55%; left: 45% !important; }
+
+    .street-negative_emotionality .door-1 { top: 35%; left: 45% !important; }
+    .street-negative_emotionality .door-2 { top: 45%; left: 55% !important; }
+    .street-negative_emotionality .door-3 { top: 55%; left: 45% !important; }
+
+    .street-openness .door-1 { top: 35%; left: 45% !important; }
+    .street-openness .door-2 { top: 45%; left: 55% !important; }
+    .street-openness .door-3 { top: 55%; left: 45% !important; }
+
+    /* --- МОДАЛЬНОЕ ОКНО ВОПРОСА --- */
+    .question-board {
+        width: 92vw;
+        min-height: auto;
+        padding: 130px 20px 50px;
+        background-size: 100% 100%;
+        top: 50%;
+    }
+
+    .question-close {
+        top: 80px;
+        right: 30px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .question-inner {
+        padding: 5px;
+        max-width: 100%;
+    }
+
+    .question-title {
+        font-size: 24px;
+        margin-top: 0;
+    }
+
+    .question-house-text {
+        margin-top: 24px;
+        font-size: 18px;
+        padding: 0 5px;
+    }
+
+    .question-options {
+        margin-top: 30px;
+    }
+
+    .question-option {
+        padding: 8px 8px;
+        margin-bottom: 8px;
+        gap: 10px;
+    }
+
+    .question-option span {
+        font-size: 15px;
+    }
+
+    .question-save-button {
+        margin-top: 20px;
+        padding: 12px 20px;
+        font-size: 16px;
+        width: 100%;
+    }
+}

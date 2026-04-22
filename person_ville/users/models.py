@@ -4,6 +4,7 @@ from django.db import models
 
 from core.models import BaseUpdate
 from users.managers import UserManager
+from users.validators import RoleValidate
 
 
 class User(AbstractUser, BaseUpdate):
@@ -14,7 +15,12 @@ class User(AbstractUser, BaseUpdate):
         null=False,
         blank=False,
     )
-    role = models.CharField(max_length=30, null=False, default='player')
+    role = models.CharField(
+        max_length=30,
+        null=False,
+        default='player',
+        validators=[RoleValidate],
+    )
     city = models.CharField(max_length=40, null=True, blank=True)
     is_email_verified = models.BooleanField(default=False)
 

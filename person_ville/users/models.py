@@ -1,4 +1,9 @@
-__all__ = 'User'
+__all__ = (
+    'User',
+    'UserResultHistory',
+    'EmailChangeCode',
+    'PasswordChangeCode',
+)
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser

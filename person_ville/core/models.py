@@ -1,4 +1,4 @@
-__all__ = 'BaseUpdate'
+__all__ = ('BaseUpdate',)
 from django.db import models
 
 

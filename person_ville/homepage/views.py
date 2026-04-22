@@ -1,4 +1,4 @@
-__all__ = ()
+__all__ = ('main')
 from django.shortcuts import render
 
 

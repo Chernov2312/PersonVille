@@ -138,54 +138,63 @@ erDiagram
         int id PK
         datetime created_at "из BaseUpdate"
         datetime updated_at "из BaseUpdate"
+        varchar username UK "уникальный"
         varchar email UK "уникальный"
-        varchar role
-        varchar city
-        boolean is_email_verified
-        datetime email_change_cooldown_until
-        datetime password_change_cooldown_until
+        varchar password "хэшированный"
+        varchar first_name "имя"
+        varchar last_name "фамилия"
+        varchar role "роль"
+        varchar city "город"
+        boolean is_email_verified "email подтвержден"
+        boolean is_active "активен"
+        boolean is_staff "персонал"
+        boolean is_superuser "суперпользователь"
+        datetime last_login "последний вход"
+        datetime date_joined "дата регистрации"
+        datetime email_change_cooldown_until "таймаут смены email"
+        datetime password_change_cooldown_until "таймаут смены пароля"
     }
 
     UserResultHistory {
         int id PK
         int user_id FK
-        varchar title
-        text short_summary
-        json snapshot
-        datetime created_at
+        varchar title "название"
+        text short_summary "краткое описание"
+        json snapshot "Город"
+        datetime created_at "дата создания"
     }
 
     EmailChangeCode {
         int id PK
         int user_id FK
-        varchar new_email
+        varchar new_email "новый email"
         varchar code "6 символов"
-        datetime created_at
-        datetime expires_at
-        datetime resend_available_at
-        boolean is_used
+        datetime created_at "дата создания"
+        datetime expires_at "срок действия"
+        datetime resend_available_at "доступность повторной отправки"
+        boolean is_used "использован"
     }
 
     PasswordChangeCode {
         int id PK
         int user_id FK
-        varchar new_password_hash
+        varchar new_password_hash "хэш нового пароля"
         varchar code "6 символов"
-        datetime created_at
-        datetime expires_at
-        datetime resend_available_at
-        boolean is_used
+        datetime created_at "дата создания"
+        datetime expires_at "срок действия"
+        datetime resend_available_at "доступность повторной отправки"
+        boolean is_used "использован"
     }
 
     CompletedQuizSession {
         int id PK
-        varchar session_key "индекс"
-        int user_id FK "NULL если аноним"
-        datetime started_at
-        datetime completed_at "индекс"
-        int duration_seconds
-        json final_character
-        datetime created_at
+        varchar session_key "сессия прохождения"
+        int user_id FK
+        datetime started_at "начало"
+        datetime completed_at "дата прохождения"
+        int duration_seconds "длительность в секундах"
+        json final_character "итоговый персонаж"
+        datetime created_at "дата создания"
     }
 ```
 ---

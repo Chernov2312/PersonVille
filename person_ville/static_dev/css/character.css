@@ -228,3 +228,82 @@ body {
         transform: none;
     }
 }
+@media (max-width: 480px) {
+    body {
+        background-size: auto 100%;
+        background-attachment: scroll;
+    }
+
+    .character-page {
+        padding: 16px 8px 20px;
+        gap: 12px;
+    }
+
+    .character-toolbar {
+        gap: 8px;
+    }
+
+    .character-toolbar-button {
+        min-height: 44px;
+        padding: 10px 16px;
+        font-size: 15px;
+        border-radius: 12px;
+    }
+
+    .character-export-wrap {
+        width: 100%;
+    }
+
+    .character-card-shell {
+        width: 100%;
+        min-height: auto;
+        padding: 60px 16px 30px;
+    }
+    .character-card-shell::before {
+        background-size: cover;
+        transform: translateY(-100px);
+        background-position: center top;
+    }
+
+    .character-card-title {
+        font-size: 28px;
+        line-height: 1.1;
+        margin-bottom: 6px;
+        word-break: break-word;
+    }
+
+    .character-card-date {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .character-trait-list {
+        gap: 4px;
+    }
+
+    .character-trait-item {
+        padding: 8px 0 10px;
+        font-size: 16px;
+        line-height: 1.45;
+        word-break: break-word;
+    }
+
+    .character-summary-box {
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 20px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        transform: none;
+    }
+
+    .character-summary-title {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .character-summary-text {
+        font-size: 15px;
+        line-height: 1.45;
+    }
+}

@@ -20,7 +20,7 @@
 ## Быстрый старт
 ### Предварительные требования
 
-- Python 3.10 или выше
+- Python 3.11 или выше
 - pip
 - Git
 
@@ -107,6 +107,7 @@ python manage.py runserver
 ## Структура проекта
 ```
 team-3/
+├── analytics                # Сбор статистики о прохождении пользователя
 ├── city/                    # Логика города, улиц, домов
 ├── core/                    # Базовые модели
 ├── homepage/                # Главная страница
@@ -126,9 +127,67 @@ team-3/
 ---
 
 ## Схема базы данных
+```mermaid
+erDiagram
+    User ||--o{ UserResultHistory : "имеет записи"
+    User ||--o{ EmailChangeCode : "запрашивает код"
+    User ||--o{ PasswordChangeCode : "запрашивает код"
+    User ||--o{ CompletedQuizSession : "проходит квиз"
 
-![ER-диаграмма](ER-diagram.png)
+    User {
+        int id PK
+        datetime created_at "из BaseUpdate"
+        datetime updated_at "из BaseUpdate"
+        varchar email UK "уникальный"
+        varchar role
+        varchar city
+        boolean is_email_verified
+        datetime email_change_cooldown_until
+        datetime password_change_cooldown_until
+    }
 
+    UserResultHistory {
+        int id PK
+        int user_id FK
+        varchar title
+        text short_summary
+        json snapshot
+        datetime created_at
+    }
+
+    EmailChangeCode {
+        int id PK
+        int user_id FK
+        varchar new_email
+        varchar code "6 символов"
+        datetime created_at
+        datetime expires_at
+        datetime resend_available_at
+        boolean is_used
+    }
+
+    PasswordChangeCode {
+        int id PK
+        int user_id FK
+        varchar new_password_hash
+        varchar code "6 символов"
+        datetime created_at
+        datetime expires_at
+        datetime resend_available_at
+        boolean is_used
+    }
+
+    CompletedQuizSession {
+        int id PK
+        varchar session_key "индекс"
+        int user_id FK "NULL если аноним"
+        datetime started_at
+        datetime completed_at "индекс"
+        int duration_seconds
+        json final_character
+        datetime created_at
+    }
+```
 ---
 
 ---

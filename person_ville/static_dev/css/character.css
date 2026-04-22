@@ -93,7 +93,7 @@ body {
 
 .character-card-header {
     margin-bottom: 26px;
-    margin-left: 80px;
+    margin-left: 20px;
 }
 
 .character-card-title {
@@ -103,14 +103,13 @@ body {
     line-height: 1.05;
     font-weight: 700;
     color: #2b241d;
-    text-align: left;
-    margin-left: 40px;
+    text-align: center;
 }
 
 .character-card-date {
     margin-top: 10px;
-    margin-left: 120px;
-    text-align: left;
+    margin-left: 20px;
+    text-align: center;
     font-size: 20px;
     line-height: 1.2;
     color: #5b4a37;
@@ -127,7 +126,7 @@ body {
     gap: 9px;
     width: 100%;
     max-width: 100%;
-    margin-left: 120px;
+    margin-left: 50px;
 }
 
 .character-trait-list {
@@ -137,7 +136,8 @@ body {
     width: 100%;
     max-width: 1080px;
     margin: 0 auto;
-    margin-left: 160px;
+    margin-left: 100px;
+    padding-left: 0;
 }
 
 .character-trait-item {
@@ -154,7 +154,7 @@ body {
 .character-summary-box {
     width: 80%;
     margin-top: 16px;
-    margin-left: 12%;
+    margin-left: 2%;
     padding: 20px 24px;
     border-radius: 18px;
     background: rgba(228, 200, 148, 0.65);
@@ -191,11 +191,6 @@ body {
 
     .character-card-title {
         font-size: 46px;
-        margin-left: 30px;
-    }
-
-    .character-card-date {
-        margin-left: 100px;
     }
 
     .character-trait-item {
@@ -207,15 +202,20 @@ body {
     }
 
     .character-card-header {
-        margin-left: 60px;
+        margin-left: 15px;
+    }
+
+    .character-card-date {
+        margin-left: 15px;
     }
 
     .character-content {
-        margin-left: 90px;
+        margin-left: 60px;
     }
 
     .character-trait-list {
-        margin-left: 130px;
+        margin-left: 80px;
+        padding-left: 0;
     }
 }
 
@@ -228,12 +228,10 @@ body {
 
     .character-card-title {
         font-size: 38px;
-        margin-left: 20px;
     }
 
     .character-card-date {
         font-size: 16px;
-        margin-left: 80px;
     }
 
     .character-trait-item {
@@ -253,15 +251,20 @@ body {
     }
 
     .character-card-header {
-        margin-left: 40px;
+        margin-left: 10px;
+    }
+
+    .character-card-date {
+        margin-left: 10px;
     }
 
     .character-content {
-        margin-left: 60px;
+        margin-left: 40px;
     }
 
     .character-trait-list {
-        margin-left: 100px;
+        margin-left: 60px;
+        padding-left: 0;
     }
 }
 
@@ -304,7 +307,7 @@ body {
     }
 
     .character-card-header {
-        margin-left: 20px;
+        margin-left: 5px;
     }
 
     .character-card-title {
@@ -312,22 +315,22 @@ body {
         line-height: 1.1;
         margin-bottom: 6px;
         word-break: break-word;
-        margin-left: 10px;
     }
 
     .character-card-date {
         font-size: 14px;
         margin-top: 5px;
-        margin-left: 40px;
+        margin-left: 5px;
     }
 
     .character-content {
-        margin-left: 30px;
+        margin-left: 20px;
     }
 
     .character-trait-list {
         gap: 4px;
-        margin-left: 50px;
+        margin-left: 25px;
+        padding-left: 0;
     }
 
     .character-trait-item {
@@ -339,7 +342,7 @@ body {
 
     .character-summary-box {
         width: 90%;
-        margin-left: 8%;
+        margin-left: 5%;
         margin-top: 20px;
         padding: 16px 18px;
         border-radius: 14px;

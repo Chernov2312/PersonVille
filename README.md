@@ -28,7 +28,7 @@
 - Python 3.11+
 - Git
 
-### Установка и запуск (dev-режим)
+### Установка и запуск
 
 1. Клонируйте репозиторий
 
@@ -72,8 +72,10 @@ Windows (PowerShell)
 
 5. Установите зависимости
 
+Для запуска проекта
+
 ```bash
-pip install -r requirements/dev.txt
+pip install -r requirements/prod.txt
 ```
 
 6. Настройте переменные окружения
@@ -155,15 +157,16 @@ python manage.py runserver
 
 #### Установка зависимостей
 
-Для запуска тестов:
+Для разработки
+
+```bash
+pip install -r requirements/dev.txt
+```
+
+Для запуска тестов
 
 ```bash
 pip install -r requirements/test.txt
-```
-
-Для разработки:
-```bash
-pip install -r requirements/dev.txt
 ```
 
 ---
@@ -284,7 +287,6 @@ erDiagram
         datetime created_at "дата создания"
     }
 ```
----
 
 ---
 

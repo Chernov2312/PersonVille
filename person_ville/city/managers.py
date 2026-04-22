@@ -5,7 +5,6 @@ __all__ = (
     'build_city_from_scores',
     'apply_house_answer',
     'build_final_character',
-    'apply_street_correction',
 )
 
 import json
@@ -211,15 +210,3 @@ def build_final_character(city_result, scored_traits):
         'copy_link_enabled': True,
         'download_enabled': True,
     }
-
-
-def apply_street_correction(street_data, quiz_data, answer_code):
-    effect = quiz_data['correction_effects'][answer_code]
-
-    updated_street = dict(street_data)
-    updated_street['correction_done'] = True
-    updated_street['correction_answer'] = answer_code
-    updated_street['correction_tone'] = effect['tone']
-    updated_street['correction_text'] = effect['text']
-
-    return updated_street

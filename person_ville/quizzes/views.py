@@ -1,22 +1,19 @@
 __all__ = (
     'first',
-    'street_correction',
     'reset_quiz_progress',
     'close_test',
     'restart_test',
 )
 
 from django.contrib import messages
-from django.http import Http404
 from django.shortcuts import redirect, render
 
 from city.managers import (
-    apply_street_correction,
     build_city_from_scores,
     load_quiz_data,
     score_entry_answers,
 )
-from quizzes.forms import EntryAnswerForm, StreetCorrectionForm
+from quizzes.forms import EntryAnswerForm
 
 
 def reset_quiz_progress(request):
@@ -88,70 +85,6 @@ def first(request):
         'question_number': current_index + 1,
         'total_questions': len(questions),
         'mode': 'entry',
-    }
-    return render(request, 'quizzes/table_form.html', context)
-
-
-def street_correction(request, trait):
-    quiz_data = load_quiz_data()
-    city_result = request.session.get('city_result')
-
-    if not city_result:
-        return redirect('quizzes:first')
-
-    streets = city_result.get('streets', [])
-    street_index = next(
-        (
-            index
-            for index, item in enumerate(streets)
-            if item['trait'] == trait
-        ),
-        None,
-    )
-
-    if street_index is None:
-        raise Http404('Улица не найдена.')
-
-    street = streets[street_index]
-    correction_test = quiz_data['street_correction_test']
-    correction_choices = [
-        (option['code'], option['label'])
-        for option in correction_test['options']
-    ]
-
-    if request.method == 'POST':
-        form = StreetCorrectionForm(
-            request.POST,
-            choices=correction_choices,
-        )
-        if form.is_valid():
-            answer_code = form.cleaned_data['answer']
-            updated_street = apply_street_correction(
-                street,
-                quiz_data,
-                answer_code,
-            )
-
-            streets[street_index] = updated_street
-            city_result['streets'] = streets
-            request.session['city_result'] = city_result
-            request.session.modified = True
-
-            return redirect('city:street', trait=trait)
-    else:
-        form = StreetCorrectionForm(
-            choices=correction_choices,
-        )
-
-    context = {
-        'form': form,
-        'street': street,
-        'test_title': correction_test['title'],
-        'test_description': correction_test['description'],
-        'question_text': correction_test['question'],
-        'question_number': 1,
-        'total_questions': 1,
-        'mode': 'street',
     }
     return render(request, 'quizzes/table_form.html', context)
 

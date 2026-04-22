@@ -146,52 +146,6 @@ class QuizzesStreetCorrectionTests(TestCase):
         session.save()
         return session
 
-    def test_street_correction_without_session_redirects(self):
-        response = self.client.get(
-            reverse(
-                'quizzes:street_correction',
-                kwargs={'trait': 'negative_emotionality'},
-            ),
-        )
-        self.assertRedirects(response, reverse('quizzes:first'))
-
-    def test_street_correction_with_invalid_trait_returns_404(self):
-        _ = self._login_with_session(
-            self.client,
-            {'city_result': self.base_city_result},
-        )
-
-        response = self.client.get(
-            reverse(
-                'quizzes:street_correction',
-                kwargs={'trait': 'invalid_trait'},
-            ),
-        )
-        self.assertEqual(response.status_code, 404)
-
-    def test_street_correction_when_no_correction_test_in_data(self):
-        _ = self._login_with_session(
-            self.client,
-            {'city_result': self.base_city_result},
-        )
-
-        if 'street_correction_test' not in self.quiz_data:
-            with self.assertRaises(KeyError):
-                self.client.get(
-                    reverse(
-                        'quizzes:street_correction',
-                        kwargs={'trait': 'negative_emotionality'},
-                    ),
-                )
-        else:
-            response = self.client.get(
-                reverse(
-                    'quizzes:street_correction',
-                    kwargs={'trait': 'negative_emotionality'},
-                ),
-            )
-            self.assertEqual(response.status_code, 200)
-
 
 class QuizzesCloseTestTests(TestCase):
     def test_close_test_clears_session_and_redirects_to_main(self):
@@ -247,10 +201,3 @@ class QuizzesUrlTests(TestCase):
     def test_restart_url_reverse(self):
         url = reverse('quizzes:restart')
         self.assertEqual(url, '/quiz/restart/')
-
-    def test_street_correction_url_reverse(self):
-        url = reverse(
-            'quizzes:street_correction',
-            kwargs={'trait': 'openness'},
-        )
-        self.assertEqual(url, '/quiz/street/openness/correction/')

@@ -12,7 +12,8 @@ exclude =
     ./.venv/*
     ./*/migrations
     manage.py
+    /static/
 
 max-line-length = 79
 import-order-style = google
-application-import-names = analytics,core,person_ville,users,quizzes,city,homepage
+application-import-names = analytics,city,core,homepage,person_ville,quizzes,users

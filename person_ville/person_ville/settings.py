@@ -24,8 +24,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'analytics.apps.AnalyticsConfig',
-    'homepage.apps.HomepageConfig',
     'city.apps.CityConfig',
+    'homepage.apps.HomepageConfig',
     'quizzes.apps.QuizzesConfig',
     'users.apps.UsersConfig',
 ]

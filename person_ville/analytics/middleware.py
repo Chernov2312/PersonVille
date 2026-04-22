@@ -1,4 +1,4 @@
-# statistics/middleware.py
+__all__ = ()
 from datetime import datetime
 
 from django.utils.timezone import now

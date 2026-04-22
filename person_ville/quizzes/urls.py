@@ -1,3 +1,4 @@
+__all__ = ()
 from django.urls import path
 
 from quizzes import views

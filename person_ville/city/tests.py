@@ -4,7 +4,6 @@ __all__ = (
     'StreetViewTests',
     'HouseQuestionViewTests',
     'CharacterViewTests',
-    'HelperFunctionTests',
 )
 from django.contrib.messages import get_messages
 from django.test import TestCase

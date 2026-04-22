@@ -1,6 +1,5 @@
 __all__ = (
     'authorization',
-    'character',
     'change_email',
     'change_password',
     'history_detail',

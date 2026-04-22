@@ -190,12 +190,57 @@
     .test-close {
         top: 104px;
         right: 105px;
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
     }
 
     .test-inner {
-        max-width: 560px;
+        max-width: 380px;
+        margin-left: 30px;
+        margin-top: 20px;
+    }
+
+    .test-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .test-description {
+        font-size: 12px;
+        margin-top: 10px;
+        margin-bottom: 8px;
+    }
+
+    .question-text {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .form-check-label {
+        font-size: 12px;
+    }
+
+    .answer-option {
+        padding: 3px 6px;
+        margin-bottom: 3px;
+    }
+
+    .btn-submit {
+        padding: 4px;
+        font-size: 11px;
+        margin-top: 12px;
+        width: 80px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .question-meta {
+        font-size: 11px;
+    }
+
+    .error-message {
+        font-size: 10px;
     }
 }
 
@@ -210,30 +255,62 @@
     .test-close {
         top: 104px;
         right: 105px;
-        width: 32px;
-        height: 32px;
+        width: 26px;
+        height: 26px;
     }
 
     .test-inner {
-        max-width: 500px;
+        max-width: 340px;
+        margin-left: 40px;
+        margin-top: 30px;
     }
 
     .test-title {
-        font-size: 24px;
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .test-description {
+        font-size: 11px;
+        margin-top: 8px;
+        margin-bottom: 6px;
     }
 
     .question-text {
-        font-size: 20px;
+        font-size: 15px;
+        margin-bottom: 6px;
     }
 
     .form-check-label {
-        font-size: 16px;
+        font-size: 11px;
+    }
+
+    .answer-option {
+        padding: 2px 5px;
+        margin-bottom: 2px;
+    }
+
+    .btn-submit {
+        padding: 3px;
+        font-size: 10px;
+        margin-top: 10px;
+        width: 70px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .question-meta {
+        font-size: 10px;
+    }
+
+    .error-message {
+        font-size: 9px;
     }
 }
 
 @media (max-width: 767px) {
     .table-test {
-        padding: 10px 12px 20px;
+        padding: 8px 10px 16px;
     }
 
     .test-card {
@@ -247,91 +324,148 @@
     .test-close {
         top: 82px;
         right: 46px;
-        width: 26px;
-        height: 26px;
+        width: 22px;
+        height: 22px;
     }
 
     .test-inner {
-        max-width: 100%;
+        max-width: 300px;
+        margin-left: 45px;
+        margin-top: 40px;
     }
 
     .test-title {
-        font-size: 22px;
+        font-size: 14px;
+        margin-bottom: 6px;
     }
 
     .test-description {
-        font-size: 14px;
+        font-size: 10px;
+        margin-top: 6px;
+        margin-bottom: 5px;
     }
 
     .question-text {
-        font-size: 18px;
+        font-size: 14px;
+        margin-bottom: 5px;
     }
 
     .form-check-label {
-        font-size: 15px;
+        font-size: 10px;
+    }
+
+    .answer-option {
+        padding: 2px 4px;
+        margin-bottom: 2px;
+    }
+
+    .btn-submit {
+        padding: 3px;
+        font-size: 9px;
+        margin-top: 8px;
+        width: 60px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .question-meta {
+        font-size: 9px;
+    }
+
+    .question-meta-bottom {
+        margin-top: 8px;
+    }
+
+    .error-message {
+        font-size: 9px;
+        margin-top: 3px;
     }
 }
+
 @media (max-width: 480px) {
     .table-test {
-        padding: 10px 0 20px;
+        padding: 8px 0 16px;
         align-items: flex-start;
     }
 
     .test-card {
         max-width: 100%;
         min-height: 600px;
-        padding: 90px 20px 50px;
+        padding: 90px 16px 45px;
         margin-top: 10px;
         background-size: 100% 100%;
     }
 
     .test-close {
         top: 50px;
-        right: 25px;
-        width: 30px;
-        height: 30px;
+        right: 20px;
+        width: 24px;
+        height: 24px;
     }
 
     .test-inner {
-        max-width: 100%;
-        padding: 0 5px;
+        max-width: 260px;
+        padding: 0 3px;
+        margin-left: 50px;
+        margin-top: 50px;
     }
 
     .test-title {
-        font-size: 20px;
-        margin-bottom: 15px;
+        font-size: 13px;
+        margin-bottom: 8px;
         margin-top: 0;
-        padding: 0 10px;
+        padding: 0 3px;
     }
 
     .test-description {
-        font-size: 14px;
-        margin: 15px 0;
+        font-size: 10px;
+        margin: 8px 0;
     }
 
     .question-text {
-        font-size: 20px;
-        padding: 5px 10px;
+        font-size: 13px;
+        padding: 2px 4px;
         background: rgba(0,0,0,0.05);
-        border-radius: 16px;
+        border-radius: 12px;
+        margin-bottom: 4px;
     }
 
     .answer-option {
-        padding: 8px 8px;
-        margin-bottom: 5px;
+        padding: 2px 4px;
+        margin-bottom: 2px;
+        border-radius: 10px;
     }
 
     .form-check-label {
-        font-size: 15px;
+        font-size: 10px;
+    }
+
+    .form-check-input {
+        margin-right: 5px;
+        transform: scale(0.8);
     }
 
     .btn-submit {
-        margin-top: 20px;
-        padding: 14px;
-        font-size: 18px;
+        margin-top: 10px;
+        padding: 2px;
+        font-size: 9px;
+        border-radius: 4px;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.22);
+        width: 55px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .question-meta-bottom {
-        margin-top: 20px;
+        margin-top: 10px;
+    }
+
+    .question-meta {
+        font-size: 9px;
+    }
+
+    .error-message {
+        font-size: 8px;
+        margin-top: 2px;
     }
 }

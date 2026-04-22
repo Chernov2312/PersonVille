@@ -1,24 +1,34 @@
-// restart.js
-function handleRestart(restartUrl, redirectUrl) {
-    if (confirm("Вы уверены, что хотите начать заново?\n\nТекущий город будет сброшен")) {
+function handleTestStart(hasCityResult, firstUrl, restartUrl) {
+    if (!hasCityResult) {
+        window.location.href = firstUrl + "?reset=1";
+        return false;
+    }
+
+    const restart = confirm(
+        "Тест уже пройден.\n\nНажмите Да, чтобы начать заново.\nНажмите Нет, чтобы остаться"
+    );
+
+    if (restart) {
         fetch(restartUrl, {
             method: 'POST',
             headers: {
                 'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json',
             },
         }).then(response => {
             if (response.redirected) {
                 window.location.href = response.url;
             } else if (response.ok) {
-                window.location.href = redirectUrl;
+                window.location.href = restartUrl;
             } else {
-                window.location.href = redirectUrl;
+                window.location.href = restartUrl;
             }
         }).catch(error => {
             console.error('Error:', error);
-            window.location.href = redirectUrl;
+            window.location.href = restartUrl;
         });
     }
+
     return false;
 }
 

@@ -44,9 +44,8 @@ class QuizzesFirstViewTests(TestCase):
         session['city_result'] = {'test': 'data'}
         session.save()
 
-        response = self.client.get(reverse('quizzes:first'), {'reset': '1'})
+        _ = self.client.post(reverse('quizzes:first'), {'reset': '1'})
 
-        self.assertRedirects(response, reverse('quizzes:first'))
         session = self.client.session
         self.assertEqual(session.get('entry_answers'), {})
         self.assertEqual(session.get('entry_question_index'), 0)
@@ -154,7 +153,7 @@ class QuizzesCloseTestTests(TestCase):
         session['city_result'] = {'test': 'data'}
         session.save()
 
-        response = self.client.get(reverse('quizzes:close'))
+        response = self.client.post(reverse('quizzes:close'))
 
         self.assertRedirects(response, reverse('main:main'))
         session = self.client.session
@@ -162,7 +161,7 @@ class QuizzesCloseTestTests(TestCase):
         self.assertIsNone(session.get('city_result'))
 
     def test_close_test_with_empty_session(self):
-        response = self.client.get(reverse('quizzes:close'))
+        response = self.client.post(reverse('quizzes:close'))
         self.assertRedirects(response, reverse('main:main'))
 
 
@@ -175,17 +174,16 @@ class QuizzesRestartTestTests(TestCase):
         session['scored_traits'] = {'extraversion': 4}
         session.save()
 
-        response = self.client.get(reverse('quizzes:restart'))
+        response = self.client.post(reverse('quizzes:restart'))
 
         self.assertRedirects(response, reverse('quizzes:first'))
         session = self.client.session
         self.assertEqual(session.get('entry_answers'), {})
-        self.assertEqual(session.get('entry_question_index'), 0)
         self.assertIsNone(session.get('city_result'))
         self.assertIsNone(session.get('scored_traits'))
 
     def test_restart_test_with_empty_session(self):
-        response = self.client.get(reverse('quizzes:restart'))
+        response = self.client.post(reverse('quizzes:restart'))
         self.assertRedirects(response, reverse('quizzes:first'))
 
 

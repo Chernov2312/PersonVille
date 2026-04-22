@@ -17,11 +17,21 @@ from quizzes.forms import EntryAnswerForm
 
 
 def reset_quiz_progress(request):
+    user_id = request.session.get('_auth_user_id')
+    user_backend = request.session.get('_auth_user_backend')
+    user_hash = request.session.get('_auth_user_hash')
+
+    request.session.flush()
+
+    if user_id:
+        request.session['_auth_user_id'] = user_id
+        request.session['_auth_user_backend'] = user_backend
+        request.session['_auth_user_hash'] = user_hash
+
     request.session['entry_answers'] = {}
     request.session['entry_question_index'] = 0
     request.session['city_result'] = None
     request.session['scored_traits'] = None
-    request.session.modified = True
 
 
 def first(request):

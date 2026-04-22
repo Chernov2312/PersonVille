@@ -99,15 +99,15 @@
               {% endif %}
             </li>
 
-            <li class="nav-item">
+          <li class="nav-item">
               <a
-                class="nav-link custom-button text-white text-decoration-none"
-                href="{% url 'quizzes:restart' %}"
-                onclick="return confirm('Вы уверены, что хотите начать заново?\n\nТекущий город будет сброшен')"
+                  class="nav-link custom-button text-white text-decoration-none"
+                  href="#"
+                  onclick="handleRestart('{% url 'quizzes:restart' %}', '{% url 'main:main' %}'); return false;"
               >
-                Начать заново
+                  Начать заново
               </a>
-            </li>
+          </li>
           {% endif %}
 
           <li class="nav-item profile-dropdown {% if request.resolver_match.namespace == 'user' %}profile-dropdown-active-page{% endif %}" id="profileDropdown">
@@ -219,4 +219,5 @@
 {% block script %}
 <script src="{% static 'js/navbar-helpers.js' %}" defer></script>
 <script src="{% static 'js/navbar.js' %}" defer></script>
+<script src="{% static 'js/restart.js' %}" defer></script>
 {% endblock script %}

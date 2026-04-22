@@ -16,7 +16,10 @@ class User(AbstractUser, BaseUpdate):
         blank=False,
     )
     role = models.CharField(
-        max_length=30, null=False, default='player', validators=[RoleValidate],
+        max_length=30,
+        null=False,
+        default='player',
+        validators=[RoleValidate],
     )
     city = models.CharField(max_length=40, null=True, blank=True)
     is_email_verified = models.BooleanField(default=False)

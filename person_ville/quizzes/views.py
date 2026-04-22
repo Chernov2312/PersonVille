@@ -4,9 +4,9 @@ __all__ = (
     'close_test',
     'restart_test',
 )
-
 from django.contrib import messages
 from django.shortcuts import redirect, render
+from django.views.decorators.http import require_POST
 
 from city.managers import (
     build_city_from_scores,
@@ -89,12 +89,13 @@ def first(request):
     return render(request, 'quizzes/table_form.html', context)
 
 
+@require_POST
 def close_test(request):
-
     reset_quiz_progress(request)
     return redirect('main:main')
 
 
+@require_POST
 def restart_test(request):
     reset_quiz_progress(request)
     return redirect('quizzes:first')

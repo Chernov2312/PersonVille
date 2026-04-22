@@ -47,10 +47,6 @@ from users.models import (
 )
 
 
-def character(request):
-    return render(request, 'user/character.html')
-
-
 def registration(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)

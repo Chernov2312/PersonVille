@@ -1,3 +1,2 @@
--r prod.txt
+-r test.txt
 black>=24.0.0
-django-debug-toolbar==6.2.0

@@ -3,8 +3,7 @@
 
 [![Django](https://img.shields.io/badge/Django-5.2-092E20?logo=django)](https://www.djangoproject.com/)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python)](https://www.python.org/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap)](https://getbootstrap.com/)
-
+[![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)](https://git-scm.com/)
 
 **PersonVille** — психологическая игра-тест, основанная на модели личности «Большая пятёрка». Пользователь проходит тест, получает профиль характера и строит свой уникальный город, где каждая улица отражает определённую черту личности.
 ## Основные возможности
@@ -15,75 +14,96 @@
 - Итоговый персонаж с описанием характера
 - Экспорт результата в PNG-карточку
 - Регистрация и авторизация пользователей
-
 ---
-## Быстрый старт
+
 ### Предварительные требования
 
-- Python 3.11 или выше
-- pip
+- Python 3.11+
 - Git
 
-### Установка
+### Установка и запуск (dev-режим)
 
+1. Клонируйте репозиторий
 
-#### 1. Клонируйте репозиторий
 ```bash
 git clone https://gitlab.crja72.ru/django/2026/spring/course/projects/team-3
 ```
+
 2. Перейдите в папку проекта
+
 ```bash
 cd team-3
 ```
+
 3. Создайте виртуальное окружение
+
+Linux/macOS
 ```bash
+python3 -m venv venv
+```
+
+Windows (PowerShell)
+
+```Power Shell
 python -m venv venv
 ```
+
 4. Активируйте виртуальное окружение
-Windows (Command Prompt):
 
-```cmd
-venv\Scripts\activate
-```
-Windows (PowerShell):
-
-```powershell
-.\venv\Scripts\Activate.ps1
-```
-macOS / Linux:
+Linux/macOS
 
 ```bash
 source venv/bin/activate
 ```
+
+Windows (PowerShell)
+
+```Power Shell
+.\venv\Scripts\Activate.ps1
+```
+
 5. Установите зависимости
+
 ```bash
-pip install -r requirements/dev.txt
+pip install -r requirements/prod.txt
 ```
-6. Создайте файл .env
+
+6. Настройте переменные окружения
+
 ```bash
-cp .env.example .env
+cp template.env .env
 ```
-Отредактируйте .env, укажите свой DJANGO_SECRET_KEY.
+
 7. Примените миграции
+
 ```bash
 python manage.py migrate
 ```
+
 8. Создайте суперпользователя
+
 ```bash
 python manage.py createsuperuser
 ```
+
 9. Запустите сервер разработки
+
 ```bash
 python manage.py runserver
 ```
-Откройте http://localhost:8000 в браузере.
+---
+После запуска сервер будет доступен по адресу:
+
+- Сайт: http://127.0.0.1:8000/
+
+- Админка: http://127.0.0.1:8000/admin/
 
 ---
 
-## Игровой процесс
+#### Игровой процесс
 **1. Входной тест**
 
-Пользователь отвечает на 15 вопросов, оценивая утверждения по шкале от 1 до 5.
+Человек проходит тест из 15 пунктов. На каждый пункт он выбирает один из 5 вариантов — от «совсем не похоже» до «очень похоже».
 
 **2. Построение города**
 
@@ -93,34 +113,51 @@ python manage.py runserver
 - Добросовестность (Conscientiousness)
 - Нейротизм (Negative Emotionality)
 - Открытость опыту (Openness)
+
 Каждая черта получает уровень: low, mid или high.
 
 **3. Улицы и дома**
 
-Для каждой черты создаётся улица с тремя домами. Каждый дом содержит уточняющее утверждение, которое пользователь может принять или отвергнуть.
+Для каждой черты создаётся улица с тремя домами. Каждый дом содержит уточняющий вопрос, на который пользователь выбирает один из пяти ответов — насколько это на него похоже.
 
 **4. Итоговый персонаж**
 
 После прохождения всех улиц формируется итоговый персонаж с описанием характера, который можно скачать в виде PNG-карточки.
+---
+
+#### Установка зависимостей
+
+Для запуска тестов:
+
+```bash
+pip install -r requirements/test.txt
+```
+
+Для разработки:
+```bash
+pip install -r requirements/dev.txt
+```
 
 ---
 ## Структура проекта
 ```
 team-3/
-├── analytics                # Сбор статистики о прохождении пользователя
-├── city/                    # Логика города, улиц, домов
-├── core/                    # Базовые модели
-├── homepage/                # Главная страница
-├── person_ville/            # Настройки проекта
-├── quizzes/                 # Логика тестов
-├── users/                   # Кастомная модель пользователя
-├── static_dev/              # Статика (CSS, JS, изображения)
-├── templates/               # HTML-шаблоны
-├── requirements/            # Зависимости
-├── .env.example             # Пример переменных окружения
-├── .flake8                  # Конфигурация линтера
+├── person_ville/                # Основная директория проекта
+│   ├── analytics/               # Сбор статистики
+│   ├── city/                    # Логика города
+│   ├── core/                    # Базовые модели
+│   ├── homepage/                # Главная страница
+│   ├── quizzes/                 # Логика тестов
+│   ├── users/                   # Модель пользователя
+│   ├── static_dev/              # Статика для разработки
+│   ├── templates/               # HTML-шаблоны
+│   ├── manage.py
+├── requirements/                # Зависимости
+├── .env.example                 # Пример переменных окружения
+├── .flake8
+├── pyproject.toml
 ├── .gitignore
-├── manage.py
+├── .gitlab-ci.yml
 └── README.md
 ```
 

@@ -10,7 +10,10 @@ __all__ = (
 import json
 from pathlib import Path
 
+from django.core.cache import cache
 from django.utils import timezone
+
+from quizzes.apps import QuizzesConfig
 
 STREET_IMAGE_MAP = {
     'negative_emotionality': 'images/streets/Weather Street.png',
@@ -31,11 +34,17 @@ TRAIT_ORDER = [
 
 
 def load_quiz_data():
-    file_path = (
-        Path(__file__).resolve().parent.parent / 'quizzes' / 'questions.json'
-    )
-    with open(file_path, 'r', encoding='utf-8') as file:
-        return json.load(file)
+    _quiz_data = cache.get('quiz')
+    if _quiz_data is None:
+        file_path = (
+            Path(__file__).resolve().parent.parent
+            / QuizzesConfig.name
+            / 'questions.json'
+        )
+        with open(file_path, 'r', encoding='utf-8') as file:
+            _quiz_data = json.load(file)
+        cache.set('quiz', _quiz_data, timeout=None)
+    return _quiz_data
 
 
 def normalize_entry_answers(raw_answers):

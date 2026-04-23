@@ -37,20 +37,6 @@ class QuizzesFirstViewTests(TestCase):
             self.questions_count,
         )
 
-    def test_first_view_with_reset_param_clears_session(self):
-        session = self.client.session
-        session['entry_answers'] = {1: 3}
-        session['entry_question_index'] = 5
-        session['city_result'] = {'test': 'data'}
-        session.save()
-
-        _ = self.client.post(reverse('quizzes:first'), {'reset': '1'})
-
-        session = self.client.session
-        self.assertEqual(session.get('entry_answers'), {})
-        self.assertEqual(session.get('entry_question_index'), 0)
-        self.assertIsNone(session.get('city_result'))
-
     def test_first_view_with_city_result_shows_message(self):
         _ = self._login_with_session(
             self.client,

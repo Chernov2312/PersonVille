@@ -5,13 +5,15 @@ __all__ = (
     'build_city_from_scores',
     'apply_house_answer',
     'build_final_character',
-    'apply_street_correction',
 )
 
 import json
 from pathlib import Path
 
+from django.core.cache import cache
 from django.utils import timezone
+
+from quizzes.apps import QuizzesConfig
 
 STREET_IMAGE_MAP = {
     'negative_emotionality': 'images/streets/Weather Street.png',
@@ -32,11 +34,17 @@ TRAIT_ORDER = [
 
 
 def load_quiz_data():
-    file_path = (
-        Path(__file__).resolve().parent.parent / 'quizzes' / 'questions.json'
-    )
-    with open(file_path, 'r', encoding='utf-8') as file:
-        return json.load(file)
+    _quiz_data = cache.get('quiz')
+    if _quiz_data is None:
+        file_path = (
+            Path(__file__).resolve().parent.parent
+            / QuizzesConfig.name
+            / 'questions.json'
+        )
+        with open(file_path, 'r', encoding='utf-8') as file:
+            _quiz_data = json.load(file)
+        cache.set('quiz', _quiz_data, timeout=None)
+    return _quiz_data
 
 
 def normalize_entry_answers(raw_answers):
@@ -211,15 +219,3 @@ def build_final_character(city_result, scored_traits):
         'copy_link_enabled': True,
         'download_enabled': True,
     }
-
-
-def apply_street_correction(street_data, quiz_data, answer_code):
-    effect = quiz_data['correction_effects'][answer_code]
-
-    updated_street = dict(street_data)
-    updated_street['correction_done'] = True
-    updated_street['correction_answer'] = answer_code
-    updated_street['correction_tone'] = effect['tone']
-    updated_street['correction_text'] = effect['text']
-
-    return updated_street

@@ -1,4 +1,4 @@
-__all__ = ('EntryAnswerForm', 'StreetCorrectionForm')
+__all__ = ('EntryAnswerForm',)
 from django import forms
 
 REQUIRED_ERROR_MESSAGE = {'required': 'Выбери один вариант ответа.'}
@@ -18,17 +18,3 @@ class EntryAnswerForm(forms.Form):
         label='',
         error_messages=REQUIRED_ERROR_MESSAGE,
     )
-
-
-class StreetCorrectionForm(forms.Form):
-    answer = forms.ChoiceField(
-        choices=[],
-        widget=forms.RadioSelect,
-        label='',
-        error_messages=REQUIRED_ERROR_MESSAGE,
-    )
-
-    def __init__(self, *args, choices=None, **kwargs):
-        super().__init__(*args, **kwargs)
-        if choices is not None:
-            self.fields['answer'].choices = choices

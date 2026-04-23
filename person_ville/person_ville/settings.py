@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'analytics.apps.AnalyticsConfig',
     'city.apps.CityConfig',
+    'core.apps.CoreConfig',
     'homepage.apps.HomepageConfig',
     'quizzes.apps.QuizzesConfig',
     'users.apps.UsersConfig',
@@ -97,6 +98,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-RU'
 USE_I18N = True
+
 USE_TZ = True
 TIME_ZONE = 'UTC'
 
@@ -108,7 +110,7 @@ LANGUAGES = [
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'collect_static'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static_dev',
@@ -116,6 +118,13 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    },
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

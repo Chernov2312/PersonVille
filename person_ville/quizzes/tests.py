@@ -37,21 +37,6 @@ class QuizzesFirstViewTests(TestCase):
             self.questions_count,
         )
 
-    def test_first_view_with_reset_param_clears_session(self):
-        session = self.client.session
-        session['entry_answers'] = {1: 3}
-        session['entry_question_index'] = 5
-        session['city_result'] = {'test': 'data'}
-        session.save()
-
-        response = self.client.get(reverse('quizzes:first'), {'reset': '1'})
-
-        self.assertRedirects(response, reverse('quizzes:first'))
-        session = self.client.session
-        self.assertEqual(session.get('entry_answers'), {})
-        self.assertEqual(session.get('entry_question_index'), 0)
-        self.assertIsNone(session.get('city_result'))
-
     def test_first_view_with_city_result_shows_message(self):
         _ = self._login_with_session(
             self.client,
@@ -146,52 +131,6 @@ class QuizzesStreetCorrectionTests(TestCase):
         session.save()
         return session
 
-    def test_street_correction_without_session_redirects(self):
-        response = self.client.get(
-            reverse(
-                'quizzes:street_correction',
-                kwargs={'trait': 'negative_emotionality'},
-            ),
-        )
-        self.assertRedirects(response, reverse('quizzes:first'))
-
-    def test_street_correction_with_invalid_trait_returns_404(self):
-        _ = self._login_with_session(
-            self.client,
-            {'city_result': self.base_city_result},
-        )
-
-        response = self.client.get(
-            reverse(
-                'quizzes:street_correction',
-                kwargs={'trait': 'invalid_trait'},
-            ),
-        )
-        self.assertEqual(response.status_code, 404)
-
-    def test_street_correction_when_no_correction_test_in_data(self):
-        _ = self._login_with_session(
-            self.client,
-            {'city_result': self.base_city_result},
-        )
-
-        if 'street_correction_test' not in self.quiz_data:
-            with self.assertRaises(KeyError):
-                self.client.get(
-                    reverse(
-                        'quizzes:street_correction',
-                        kwargs={'trait': 'negative_emotionality'},
-                    ),
-                )
-        else:
-            response = self.client.get(
-                reverse(
-                    'quizzes:street_correction',
-                    kwargs={'trait': 'negative_emotionality'},
-                ),
-            )
-            self.assertEqual(response.status_code, 200)
-
 
 class QuizzesCloseTestTests(TestCase):
     def test_close_test_clears_session_and_redirects_to_main(self):
@@ -200,7 +139,7 @@ class QuizzesCloseTestTests(TestCase):
         session['city_result'] = {'test': 'data'}
         session.save()
 
-        response = self.client.get(reverse('quizzes:close'))
+        response = self.client.post(reverse('quizzes:close'))
 
         self.assertRedirects(response, reverse('main:main'))
         session = self.client.session
@@ -208,7 +147,7 @@ class QuizzesCloseTestTests(TestCase):
         self.assertIsNone(session.get('city_result'))
 
     def test_close_test_with_empty_session(self):
-        response = self.client.get(reverse('quizzes:close'))
+        response = self.client.post(reverse('quizzes:close'))
         self.assertRedirects(response, reverse('main:main'))
 
 
@@ -221,17 +160,16 @@ class QuizzesRestartTestTests(TestCase):
         session['scored_traits'] = {'extraversion': 4}
         session.save()
 
-        response = self.client.get(reverse('quizzes:restart'))
+        response = self.client.post(reverse('quizzes:restart'))
 
         self.assertRedirects(response, reverse('quizzes:first'))
         session = self.client.session
         self.assertEqual(session.get('entry_answers'), {})
-        self.assertEqual(session.get('entry_question_index'), 0)
         self.assertIsNone(session.get('city_result'))
         self.assertIsNone(session.get('scored_traits'))
 
     def test_restart_test_with_empty_session(self):
-        response = self.client.get(reverse('quizzes:restart'))
+        response = self.client.post(reverse('quizzes:restart'))
         self.assertRedirects(response, reverse('quizzes:first'))
 
 
@@ -247,10 +185,3 @@ class QuizzesUrlTests(TestCase):
     def test_restart_url_reverse(self):
         url = reverse('quizzes:restart')
         self.assertEqual(url, '/quiz/restart/')
-
-    def test_street_correction_url_reverse(self):
-        url = reverse(
-            'quizzes:street_correction',
-            kwargs={'trait': 'openness'},
-        )
-        self.assertEqual(url, '/quiz/street/openness/correction/')

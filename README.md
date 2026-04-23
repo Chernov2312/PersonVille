@@ -1,8 +1,11 @@
 # PersonVille || team 3
-[![pipeline status](https://gitlab.crja72.ru/django/2026/spring/course/projects/team-3/badges/main/pipeline.svg)](https://gitlab.crja72.ru/django/2026/spring/course/projects/team-3/-/commits/main)
+
+[![pipeline status](https://gitlab.crja72.ru/django/2026/spring/course/projects/team-3/badges/main/pipeline.svg?key_text=lint&test)](https://gitlab.crja72.ru/django/2026/spring/course/projects/team-3/-/commits/main)
 
 [![Django](https://img.shields.io/badge/Django-5.2-092E20?logo=django)](https://www.djangoproject.com/)
+
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python)](https://www.python.org/)
+
 [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)](https://git-scm.com/)
 
 **PersonVille** — психологическая игра-тест, основанная на модели личности «Большая пятёрка».
@@ -16,9 +19,9 @@
 - уточняющие вопросы по домам на каждой улице
 - итоговый профиль PersonVille с описанием характера
 - история зафиксированных прохождений
-- смена email по коду подтверждения
+- смена электронной почты по коду подтверждения
 - смена пароля по коду подтверждения
-- регистрация, авторизация и подтверждение email
+- регистрация, авторизация и подтверждение электронной почты
 - административная панель Django
 
 ---

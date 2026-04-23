@@ -8,9 +8,8 @@ __all__ = (
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.utils import timezone
 
-from core.models import BaseUpdate
+from core.models import BaseChange, BaseUpdate
 from users.managers import UserManager
 from users.validators import RoleValidate
 
@@ -28,8 +27,8 @@ class User(AbstractUser, BaseUpdate):
         null=False,
         default='player',
         validators=[RoleValidate()],
+        verbose_name='Роль',
     )
-    city = models.CharField(max_length=40, null=True, blank=True)
     is_email_verified = models.BooleanField(default=False)
     email_change_cooldown_until = models.DateTimeField(
         null=True,
@@ -45,7 +44,7 @@ class User(AbstractUser, BaseUpdate):
         super().save(*args, **kwargs)
 
 
-class UserResultHistory(models.Model):
+class UserResultHistory(BaseUpdate):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -62,10 +61,6 @@ class UserResultHistory(models.Model):
     snapshot = models.JSONField(
         verbose_name='Снимок результата',
     )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name='Дата создания',
-    )
 
     class Meta:
         verbose_name = 'История прохождения'
@@ -76,41 +71,25 @@ class UserResultHistory(models.Model):
         return f'{self.user.username}: {self.title}'
 
 
-class EmailChangeCode(models.Model):
+class EmailChangeCode(BaseUpdate, BaseChange):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='email_change_codes',
     )
     new_email = models.EmailField()
-    code = models.CharField(max_length=6)
-    created_at = models.DateTimeField(auto_now_add=True)
-    expires_at = models.DateTimeField()
-    resend_available_at = models.DateTimeField()
-    is_used = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']
 
-    def is_expired(self):
-        return timezone.now() > self.expires_at
 
-
-class PasswordChangeCode(models.Model):
+class PasswordChangeCode(BaseUpdate, BaseChange):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='password_change_codes',
     )
     new_password_hash = models.CharField(max_length=255)
-    code = models.CharField(max_length=6)
-    created_at = models.DateTimeField(auto_now_add=True)
-    expires_at = models.DateTimeField()
-    resend_available_at = models.DateTimeField()
-    is_used = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']
-
-    def is_expired(self):
-        return timezone.now() > self.expires_at

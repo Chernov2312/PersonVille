@@ -24,7 +24,6 @@ venv/
 env/
 .venv/
 
-
 .vscode/
 .idea/
 *.swp
@@ -111,5 +110,3 @@ ipython_config.py
 send_mail/
 static/
 *.pyc
-
-statistics/

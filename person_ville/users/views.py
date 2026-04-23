@@ -1,6 +1,5 @@
 __all__ = (
     'authorization',
-    'character',
     'change_email',
     'change_password',
     'history_detail',
@@ -45,10 +44,6 @@ from users.models import (
     User,
     UserResultHistory,
 )
-
-
-def character(request):
-    return render(request, 'user/character.html')
 
 
 def registration(request):

@@ -10,10 +10,11 @@
 <div class="table-test">
     <div class="test-card">
         <a
-            href="{% url 'quizzes:close' %}"
+            href="#"
             class="test-close"
             aria-label="Закрыть тест"
             title="Закрыть"
+            onclick="handleTestClose('{% url 'quizzes:close' %}'); return false;"
         >
             <span class="test-close-text">Закрыть</span>
         </a>
@@ -76,3 +77,4 @@
     </div>
 </div>
 {% endblock %}
+{% block script %}<script src="{% static 'js/close.js' %}"></script>{% endblock script %}

@@ -45,6 +45,12 @@ from users.models import (
     UserResultHistory,
 )
 
+EMAIL_CHANGE_COOLDOWN_MINUTES = 15
+PASSWORD_CHANGE_COOLDOWN_MINUTES = 10
+EMAIL_CHANGE_CODE_LIFETIME_MINUTES = 10
+PASSWORD_CHANGE_CODE_LIFETIME_MINUTES = 10
+MAX_CHANGE_REQUEST_ATTEMPTS = 2
+
 
 def registration(request):
     if request.method == 'POST':
@@ -349,6 +355,40 @@ def _get_active_password_request(user):
     return None
 
 
+def _count_recent_email_requests(user):
+    cutoff = timezone.now() - timedelta(
+        minutes=EMAIL_CHANGE_COOLDOWN_MINUTES,
+    )
+    return EmailChangeCode.objects.filter(
+        user=user,
+        created_at__gte=cutoff,
+    ).count()
+
+
+def _count_recent_password_requests(user):
+    cutoff = timezone.now() - timedelta(
+        minutes=PASSWORD_CHANGE_COOLDOWN_MINUTES,
+    )
+    return PasswordChangeCode.objects.filter(
+        user=user,
+        created_at__gte=cutoff,
+    ).count()
+
+
+def _set_email_change_cooldown(user):
+    user.email_change_cooldown_until = timezone.now() + timedelta(
+        minutes=EMAIL_CHANGE_COOLDOWN_MINUTES,
+    )
+    user.save(update_fields=['email_change_cooldown_until'])
+
+
+def _set_password_change_cooldown(user):
+    user.password_change_cooldown_until = timezone.now() + timedelta(
+        minutes=PASSWORD_CHANGE_COOLDOWN_MINUTES,
+    )
+    user.save(update_fields=['password_change_cooldown_until'])
+
+
 def _build_email_context(
     request,
     request_form,
@@ -357,18 +397,20 @@ def _build_email_context(
 ):
     cooldown_until = request.user.email_change_cooldown_until
     cooldown_seconds = _seconds_left(cooldown_until)
-    resend_seconds = (
-        _seconds_left(active_request.resend_available_at)
-        if active_request
-        else 0
-    )
+
+    if active_request:
+        title = 'Подтверждение'
+        subtitle = 'Введите код из письма, чтобы завершить изменение email.'
+    else:
+        title = 'Новый email'
+        subtitle = (
+            'Укажите новый адрес. Код подтверждения мы отправим '
+            'на вашу текущую почту.'
+        )
 
     return {
-        'title': 'Смена email',
-        'subtitle': (
-            'Введите новый email. Код подтверждения будет отправлен '
-            'на вашу текущую почту.'
-        ),
+        'title': title,
+        'subtitle': subtitle,
         'request_form': request_form,
         'code_form': code_form,
         'active_request': active_request,
@@ -376,11 +418,6 @@ def _build_email_context(
         'is_cooldown_active': cooldown_seconds > 0,
         'cooldown_seconds': cooldown_seconds,
         'cooldown_until_iso': _iso_datetime(cooldown_until),
-        'is_resend_blocked': resend_seconds > 0,
-        'resend_seconds': resend_seconds,
-        'resend_until_iso': _iso_datetime(
-            active_request.resend_available_at if active_request else None,
-        ),
     }
 
 
@@ -392,18 +429,20 @@ def _build_password_context(
 ):
     cooldown_until = request.user.password_change_cooldown_until
     cooldown_seconds = _seconds_left(cooldown_until)
-    resend_seconds = (
-        _seconds_left(active_request.resend_available_at)
-        if active_request
-        else 0
-    )
+
+    if active_request:
+        title = 'Подтверждение'
+        subtitle = 'Введите код из письма, чтобы завершить изменение пароля.'
+    else:
+        title = 'Новый пароль'
+        subtitle = (
+            'Укажите текущий и новый пароль. '
+            'Код подтверждения мы отправим на вашу текущую почту.'
+        )
 
     return {
-        'title': 'Смена пароля',
-        'subtitle': (
-            'Введите текущий и новый пароль. Код подтверждения будет '
-            'отправлен на вашу текущую почту.'
-        ),
+        'title': title,
+        'subtitle': subtitle,
         'request_form': request_form,
         'code_form': code_form,
         'active_request': active_request,
@@ -411,11 +450,6 @@ def _build_password_context(
         'is_cooldown_active': cooldown_seconds > 0,
         'cooldown_seconds': cooldown_seconds,
         'cooldown_until_iso': _iso_datetime(cooldown_until),
-        'is_resend_blocked': resend_seconds > 0,
-        'resend_seconds': resend_seconds,
-        'resend_until_iso': _iso_datetime(
-            active_request.resend_available_at if active_request else None,
-        ),
     }
 
 
@@ -439,11 +473,18 @@ def change_email(request):
                     code_form,
                     active_request,
                 )
-                return render(
+                return render(request, 'user/change_email.html', context)
+
+            recent_attempts = _count_recent_email_requests(request.user)
+            if recent_attempts >= MAX_CHANGE_REQUEST_ATTEMPTS:
+                _set_email_change_cooldown(request.user)
+                context = _build_email_context(
                     request,
-                    'user/change_email.html',
-                    context,
+                    request_form,
+                    code_form,
+                    active_request=None,
                 )
+                return render(request, 'user/change_email.html', context)
 
             request_form = ChangeEmailRequestForm(
                 request.POST,
@@ -458,7 +499,10 @@ def change_email(request):
                     user=request.user,
                     new_email=new_email,
                     code=code,
-                    expires_at=timezone.now() + timedelta(minutes=10),
+                    expires_at=timezone.now()
+                    + timedelta(
+                        minutes=EMAIL_CHANGE_CODE_LIFETIME_MINUTES,
+                    ),
                     resend_available_at=timezone.now() + timedelta(minutes=1),
                 )
 
@@ -474,42 +518,25 @@ def change_email(request):
                     fail_silently=False,
                 )
 
-        elif action == 'resend_code':
-            if active_request:
-                can_resend = (
-                    _seconds_left(active_request.resend_available_at) == 0
+        elif action == 'edit_request':
+            if not active_request:
+                return redirect('user:change_email')
+
+            previous_email = active_request.new_email
+            active_request.is_used = True
+            active_request.save(update_fields=['is_used'])
+            active_request = None
+
+            if (
+                _count_recent_email_requests(request.user)
+                >= MAX_CHANGE_REQUEST_ATTEMPTS
+            ):
+                _set_email_change_cooldown(request.user)
+            else:
+                request_form = ChangeEmailRequestForm(
+                    user=request.user,
+                    initial={'new_email': previous_email},
                 )
-
-                if can_resend:
-                    code = _generate_code()
-                    active_request.code = code
-                    active_request.expires_at = timezone.now() + timedelta(
-                        minutes=10,
-                    )
-                    active_request.resend_available_at = (
-                        timezone.now() + timedelta(minutes=1)
-                    )
-                    active_request.save(
-                        update_fields=[
-                            'code',
-                            'expires_at',
-                            'resend_available_at',
-                        ],
-                    )
-
-                    send_mail(
-                        subject=(
-                            'Новый код подтверждения смены email PersonVille'
-                        ),
-                        message=(
-                            f'Здравствуйте, {request.user.username}!\n\n'
-                            f'Новый код подтверждения смены email: {code}\n\n'
-                            'Если это были не вы, проигнорируйте письмо.'
-                        ),
-                        from_email=None,
-                        recipient_list=[request.user.email],
-                        fail_silently=False,
-                    )
 
         elif action == 'confirm_code':
             code_form = ChangeEmailConfirmForm(request.POST)
@@ -531,9 +558,15 @@ def change_email(request):
                 else:
                     request.user.email = active_request.new_email
                     request.user.email_change_cooldown_until = (
-                        timezone.now() + timedelta(minutes=15)
+                        timezone.now()
+                        + timedelta(minutes=EMAIL_CHANGE_COOLDOWN_MINUTES)
                     )
-                    request.user.save()
+                    request.user.save(
+                        update_fields=[
+                            'email',
+                            'email_change_cooldown_until',
+                        ],
+                    )
 
                     EmailChangeCode.objects.filter(
                         user=request.user,
@@ -579,11 +612,18 @@ def change_password(request):
                     code_form,
                     active_request,
                 )
-                return render(
+                return render(request, 'user/change_password.html', context)
+
+            recent_attempts = _count_recent_password_requests(request.user)
+            if recent_attempts >= MAX_CHANGE_REQUEST_ATTEMPTS:
+                _set_password_change_cooldown(request.user)
+                context = _build_password_context(
                     request,
-                    'user/change_password.html',
-                    context,
+                    request_form,
+                    code_form,
+                    active_request=None,
                 )
+                return render(request, 'user/change_password.html', context)
 
             request_form = ChangePasswordRequestForm(
                 request.POST,
@@ -600,7 +640,10 @@ def change_password(request):
                     user=request.user,
                     new_password_hash=password_hash,
                     code=code,
-                    expires_at=timezone.now() + timedelta(minutes=10),
+                    expires_at=timezone.now()
+                    + timedelta(
+                        minutes=PASSWORD_CHANGE_CODE_LIFETIME_MINUTES,
+                    ),
                     resend_available_at=timezone.now() + timedelta(minutes=1),
                 )
 
@@ -616,43 +659,19 @@ def change_password(request):
                     fail_silently=False,
                 )
 
-        elif action == 'resend_code':
-            if active_request:
-                can_resend = (
-                    _seconds_left(active_request.resend_available_at) == 0
-                )
+        elif action == 'edit_request':
+            if not active_request:
+                return redirect('user:change_password')
 
-                if can_resend:
-                    code = _generate_code()
-                    active_request.code = code
-                    active_request.expires_at = timezone.now() + timedelta(
-                        minutes=10,
-                    )
-                    active_request.resend_available_at = (
-                        timezone.now() + timedelta(minutes=1)
-                    )
-                    active_request.save(
-                        update_fields=[
-                            'code',
-                            'expires_at',
-                            'resend_available_at',
-                        ],
-                    )
+            active_request.is_used = True
+            active_request.save(update_fields=['is_used'])
+            active_request = None
 
-                    send_mail(
-                        subject=(
-                            'Новый код подтверждения смены пароля '
-                            'PersonVille'
-                        ),
-                        message=(
-                            f'Здравствуйте, {request.user.username}!\n\n'
-                            f'Новый код подтверждения смены пароля: {code}\n\n'
-                            'Если это были не вы, проигнорируйте письмо.'
-                        ),
-                        from_email=None,
-                        recipient_list=[request.user.email],
-                        fail_silently=False,
-                    )
+            if (
+                _count_recent_password_requests(request.user)
+                >= MAX_CHANGE_REQUEST_ATTEMPTS
+            ):
+                _set_password_change_cooldown(request.user)
 
         elif action == 'confirm_code':
             code_form = ChangePasswordConfirmForm(request.POST)
@@ -674,9 +693,15 @@ def change_password(request):
                 else:
                     request.user.password = active_request.new_password_hash
                     request.user.password_change_cooldown_until = (
-                        timezone.now() + timedelta(minutes=10)
+                        timezone.now()
+                        + timedelta(minutes=PASSWORD_CHANGE_COOLDOWN_MINUTES)
                     )
-                    request.user.save()
+                    request.user.save(
+                        update_fields=[
+                            'password',
+                            'password_change_cooldown_until',
+                        ],
+                    )
                     update_session_auth_hash(request, request.user)
 
                     PasswordChangeCode.objects.filter(

@@ -22,6 +22,16 @@
                     <span class="auth-close-text">Закрыть</span>
                 </a>
 
+                {% if active_request %}
+                <form method="post" class="secure-back-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="edit_request">
+                    <button type="submit" class="secure-back-link">
+                        ← Назад
+                    </button>
+                </form>
+                {% endif %}
+
                 <div class="scroll-content secure-scroll-content">
                     <h1 class="form-page-title">{{ title }}</h1>
                     <p class="form-page-subtitle">{{ subtitle }}</p>
@@ -39,6 +49,14 @@
                         <form method="post" class="secure-form-block">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="send_code">
+
+                            {% if request_form.non_field_errors %}
+                            <div class="alert-error mb-3">
+                                {% for error in request_form.non_field_errors %}
+                                <div>{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
 
                             <div class="mb-3">
                                 <label
@@ -70,16 +88,26 @@
                     {% else %}
                         <div class="secure-summary-box">
                             <div class="secure-summary-line">
-                                Текущая почта: <strong>{{ current_email_masked }}</strong>
+                                Текущая почта:
+                                <strong>{{ current_email_masked }}</strong>
                             </div>
                             <div class="secure-summary-line">
-                                Новый email: <strong>{{ active_request.new_email }}</strong>
+                                Новый адрес:
+                                <strong>{{ active_request.new_email }}</strong>
                             </div>
                         </div>
 
                         <form method="post" class="secure-form-block secure-code-block">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="confirm_code">
+
+                            {% if code_form.non_field_errors %}
+                            <div class="alert-error mb-3">
+                                {% for error in code_form.non_field_errors %}
+                                <div>{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
 
                             <div class="mb-3">
                                 <label
@@ -100,28 +128,11 @@
                                 {% endif %}
                             </div>
 
-                            <button type="submit" class="btn-submit secure-primary-button">
-                                Подтвердить смену email
-                            </button>
-                        </form>
-
-                        <form method="post" class="secure-resend-form">
-                            {% csrf_token %}
-                            <input type="hidden" name="action" value="resend_code">
-
                             <button
                                 type="submit"
-                                class="btn-submit secure-resend-button js-resend-button"
-                                {% if is_resend_blocked %}disabled{% endif %}
-                                data-base-label="Получить код снова"
-                                data-timer-label="Получить код снова через"
-                                data-resend-until="{{ resend_until_iso }}"
+                                class="btn-submit secure-primary-button"
                             >
-                                {% if is_resend_blocked %}
-                                    Получить код снова через
-                                {% else %}
-                                    Получить код снова
-                                {% endif %}
+                                Подтвердить
                             </button>
                         </form>
                     {% endif %}
@@ -131,7 +142,3 @@
     </div>
 </div>
 {% endblock %}
-
-{% block script %}
-<script src="{% static 'js/change_secure_data.js' %}"></script>
-{% endblock script %}

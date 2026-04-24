@@ -201,28 +201,27 @@ class ChangePasswordRequestForm(forms.Form):
 
     def clean(self):
         cleaned_data = super().clean()
-        password1 = cleaned_data.get('new_password1')
-        password2 = cleaned_data.get('new_password2')
         current_password = cleaned_data.get('current_password')
+        new_password1 = cleaned_data.get('new_password1')
+        new_password2 = cleaned_data.get('new_password2')
 
-        if not password1 or not password2:
+        if not new_password1 or not new_password2:
             return cleaned_data
 
-        if password1:
-            try:
-                validate_password(password1, user=self.user)
-                validate_password(password2, user=self.user)
-            except ValidationError as e:
-                raise forms.ValidationError(e.messages)
-
-        if password1 != password2:
+        if new_password1 != new_password2:
             self.add_error('new_password2', 'Пароли не совпадают.')
 
-        if current_password and password1 and current_password == password1:
+        if current_password and new_password1 == current_password:
             self.add_error(
                 'new_password1',
                 'Новый пароль должен отличаться от текущего.',
             )
+
+        try:
+            validate_password(new_password1, user=self.user)
+        except ValidationError as error:
+            for message in error.messages:
+                self.add_error('new_password1', message)
 
         return cleaned_data
 

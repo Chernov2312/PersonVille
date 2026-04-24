@@ -6,9 +6,9 @@ function handleTestClose(closeUrl) {
                 'X-CSRFToken': getCookie('csrftoken'),
             },
         }).then(response => {
-            window.location.href = '/quiz/';
+            window.location.href = '/';
         }).catch(() => {
-            window.location.href = '/quiz/';
+            window.location.href = '/';
         });
     }
     return false;

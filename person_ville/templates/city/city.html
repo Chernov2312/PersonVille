@@ -4,80 +4,80 @@
 {% block title %}Город{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/city.css' %}">
+  <link rel="stylesheet" href="{% static 'css/city.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="test test-2">
+  <div class="test test-2">
     <div class="city-map-shell">
-        <a
-            href="{% url 'main:main' %}"
-            class="city-close"
-            aria-label="На главную"
-        ></a>
+      <a
+        href="{% url 'main:main' %}"
+        class="city-close"
+        aria-label="На главную"
+      ></a>
 
-        {% for street in street_slots %}
+      {% for street in street_slots %}
         <a
-            href="{% url 'city:street' trait=street.trait %}"
-            class="city-street-link {{ street.slot_class }}"
+          href="{% url 'city:street' trait=street.trait %}"
+          class="city-street-link {{ street.slot_class }}"
         >
-            <span class="city-street-name">{{ street.name }}</span>
-            <span class="city-street-progress">
-                {{ street.answered_count }}/{{ street.houses_count }}
-            </span>
+          <span class="city-street-name">{{ street.name }}</span>
+          <span class="city-street-progress">
+            {{ street.answered_count }}/{{ street.houses_count }}
+          </span>
         </a>
-        {% endfor %}
+      {% endfor %}
 
-        <div class="city-center-box">
-            {% if character_available %}
-            <a
-                href="{% url 'city:character' %}"
-                class="city-character-button"
-            >
-                Персонаж
-            </a>
-            {% else %}
-            <button
-                type="button"
-                class="city-character-button"
-                onclick="showCharacterUnavailableAlert()"
-            >
-                Персонаж
-            </button>
-            {% endif %}
-        </div>
+      <div class="city-center-box">
+        {% if character_available %}
+          <a
+            href="{% url 'city:character' %}"
+            class="city-character-button"
+          >
+            Персонаж
+          </a>
+        {% else %}
+          <button
+            type="button"
+            class="city-character-button"
+            onclick="showCharacterUnavailableAlert()"
+          >
+            Персонаж
+          </button>
+        {% endif %}
+      </div>
 
-        <div class="city-finalize-box">
-            {% if city_result.is_finalized %}
-            <div class="city-finalize-state">
-                Город зафиксирован
-            </div>
-            {% elif city_result.all_completed %}
-            <form
-                method="post"
-                action="{% url 'city:finalize' %}"
-                onsubmit="return confirmFinalizeCity()"
-                class="city-finalize-form"
-            >
-                {% csrf_token %}
-                <button type="submit" class="city-finalize-button">
-                    Зафиксировать город
-                </button>
-            </form>
-            {% else %}
-            <button
-                type="button"
-                class="city-finalize-button is-disabled"
-                onclick="showIncompleteCityAlert()"
-            >
-                Зафиксировать город
+      <div class="city-finalize-box">
+        {% if city_result.is_finalized %}
+          <div class="city-finalize-state">
+            Город зафиксирован
+          </div>
+        {% elif city_result.all_completed %}
+          <form
+            method="post"
+            action="{% url 'city:finalize' %}"
+            onsubmit="return confirmFinalizeCity()"
+            class="city-finalize-form"
+          >
+            {% csrf_token %}
+            <button type="submit" class="city-finalize-button">
+              Зафиксировать город
             </button>
-            {% endif %}
-        </div>
+          </form>
+        {% else %}
+          <button
+            type="button"
+            class="city-finalize-button is-disabled"
+            onclick="showIncompleteCityAlert()"
+          >
+            Зафиксировать город
+          </button>
+        {% endif %}
+      </div>
     </div>
-</div>
+  </div>
 {% endblock %}
 
 {% block script %}
-<script src="{% static 'js/city.js' %}"></script>
+  <script src="{% static 'js/city.js' %}"></script>
 {% endblock script %}

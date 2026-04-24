@@ -4,67 +4,67 @@
 {% block title %}{{ character.title }}{% endblock title %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/character.css' %}">
+  <link rel="stylesheet" href="{% static 'css/character.css' %}">
 {% endblock head %}
 
 {% block content %}
-<div class="character-page">
+  <div class="character-page">
     <div class="character-toolbar" id="characterToolbar">
-        <button
-            type="button"
-            class="character-toolbar-button"
-            onclick="downloadCharacterCard()"
-        >
-            Скачать карточку
-        </button>
+      <button
+        type="button"
+        class="character-toolbar-button"
+        onclick="downloadCharacterCard()"
+      >
+        Скачать карточку
+      </button>
 
-        <a
-            href="{% url 'city:city' %}"
-            class="character-toolbar-button"
-        >
-            Вернуться в город
-        </a>
+      <a
+        href="{% url 'city:city' %}"
+        class="character-toolbar-button"
+      >
+        Вернуться в город
+      </a>
     </div>
 
     <div class="character-export-wrap">
-        <div class="character-card-shell" id="characterCardExport">
-            <div class="character-card-header">
-                <h1 class="character-card-title">{{ character.title }}</h1>
-                <div
-                    class="character-card-date"
-                    id="characterDate"
-                    data-server-date="{{ character.server_created_at }}"
-                >
-                    {{ character.server_created_at }}
-                </div>
-            </div>
-
-            <div class="character-card-grid">
-                <div class="character-content">
-                    <div class="character-trait-list">
-                        {% for item in character.trait_allegories %}
-                        <div class="character-trait-item">
-                            {{ item.text }}
-                        </div>
-                        {% endfor %}
-                    </div>
-
-                    <div class="character-summary-box">
-                        <h2 class="character-summary-title">
-                            Итог PersonVille
-                        </h2>
-                        <p class="character-summary-text">
-                            {{ character.city_summary }}
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="character-card-shell" id="characterCardExport">
+        <div class="character-card-header">
+          <h1 class="character-card-title">{{ character.title }}</h1>
+          <div
+            class="character-card-date"
+            id="characterDate"
+            data-server-date="{{ character.server_created_at }}"
+          >
+            {{ character.server_created_at }}
+          </div>
         </div>
+
+        <div class="character-card-grid">
+          <div class="character-content">
+            <div class="character-trait-list">
+              {% for item in character.trait_allegories %}
+                <div class="character-trait-item">
+                  {{ item.text }}
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="character-summary-box">
+              <h2 class="character-summary-title">
+                Итог PersonVille
+              </h2>
+              <p class="character-summary-text">
+                {{ character.city_summary }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 {% endblock content %}
 
 {% block script %}
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-<script src="{% static 'js/character.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="{% static 'js/character.js' %}"></script>
 {% endblock script %}

@@ -4,113 +4,113 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/user_form.css' %}">
+  <link rel="stylesheet" href="{% static 'css/user_form.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container-md-5 mt-4">
+  <div class="container-md-5 mt-4">
     <div class="row justify-content-md-center">
-        <div class="col-12">
-            <div class="bg-container">
-                <a
-                    href="{% url 'main:main' %}"
-                    class="auth-close"
-                    aria-label="Закрыть"
-                    title="Закрыть"
-                >
-                    <span class="auth-close-text">Закрыть</span>
-                </a>
+      <div class="col-12">
+        <div class="bg-container">
+          <a
+            href="{% url 'main:main' %}"
+            class="auth-close"
+            aria-label="Закрыть"
+            title="Закрыть"
+          >
+            <span class="auth-close-text">Закрыть</span>
+          </a>
 
-                <div class="scroll-content">
-                    <form action="" method="post" id="authForm">
-                        {% csrf_token %}
+          <div class="scroll-content">
+            <form action="" method="post" id="authForm">
+              {% csrf_token %}
 
-                        {% if title %}
-                        <h1 class="form-page-title">{{ title }}</h1>
-                        {% endif %}
+              {% if title %}
+                <h1 class="form-page-title">{{ title }}</h1>
+              {% endif %}
 
-                        {% if subtitle %}
-                        <p class="form-page-subtitle">{{ subtitle }}</p>
-                        {% endif %}
+              {% if subtitle %}
+                <p class="form-page-subtitle">{{ subtitle }}</p>
+              {% endif %}
 
-                        {% if form.non_field_errors %}
-                        <div class="alert-error mb-3">
-                            {% for error in form.non_field_errors %}
-                            {{ error }}
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-
-                        {% for field in form %}
-                        <div class="mb-3">
-                            <label
-                                for="{{ field.id_for_label }}"
-                                class="form-label"
-                            >
-                                {{ field.label }}
-                            </label>
-
-                            {% if field.name == 'password' or field.name == 'password1' or field.name == 'password2' or field.name == 'new_password1' or field.name == 'new_password2' %}
-                            <div class="password-wrapper">
-                                {{ field }}
-                                <button
-                                    type="button"
-                                    class="password-toggle"
-                                    data-field-id="{{ field.id_for_label }}"
-                                    aria-label="Показать пароль"
-                                    title="Показать пароль"
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke-width="1.8"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.644
-                                               C3.423 7.51 7.36 4.5 12 4.5
-                                               c4.638 0 8.573 3.007 9.963 7.178
-                                               .07.207.07.431 0 .644
-                                               C20.577 16.49 16.64 19.5 12 19.5
-                                               c-4.638 0-8.573-3.007-9.964-7.178Z"
-                                        />
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M15 12a3 3 0 1 1-6 0
-                                               3 3 0 0 1 6 0Z"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                            {% else %}
-                            {{ field }}
-                            {% endif %}
-
-                            {% if field.errors %}
-                            <ul class="errorlist">
-                                {% for error in field.errors %}
-                                <li>{{ error }}</li>
-                                {% endfor %}
-                            </ul>
-                            {% endif %}
-                        </div>
-                        {% endfor %}
-
-                        <button type="submit" class="btn-submit">
-                            {{ title }}
-                        </button>
-                    </form>
+              {% if form.non_field_errors %}
+                <div class="alert-error mb-3">
+                  {% for error in form.non_field_errors %}
+                    {{ error }}
+                  {% endfor %}
                 </div>
-            </div>
+              {% endif %}
+
+              {% for field in form %}
+                <div class="mb-3">
+                  <label
+                    for="{{ field.id_for_label }}"
+                    class="form-label"
+                  >
+                    {{ field.label }}
+                  </label>
+
+                  {% if field.name == 'password' or field.name == 'password1' or field.name == 'password2' or field.name == 'new_password1' or field.name == 'new_password2' %}
+                    <div class="password-wrapper">
+                      {{ field }}
+                      <button
+                        type="button"
+                        class="password-toggle"
+                        data-field-id="{{ field.id_for_label }}"
+                        aria-label="Показать пароль"
+                        title="Показать пароль"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.8"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.644
+                               C3.423 7.51 7.36 4.5 12 4.5
+                               c4.638 0 8.573 3.007 9.963 7.178
+                               .07.207.07.431 0 .644
+                               C20.577 16.49 16.64 19.5 12 19.5
+                               c-4.638 0-8.573-3.007-9.964-7.178Z"
+                          />
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M15 12a3 3 0 1 1-6 0
+                               3 3 0 0 1 6 0Z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  {% else %}
+                    {{ field }}
+                  {% endif %}
+
+                  {% if field.errors %}
+                    <ul class="errorlist">
+                      {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </div>
+              {% endfor %}
+
+              <button type="submit" class="btn-submit">
+                {{ title }}
+              </button>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 {% endblock %}
 
 {% block script %}
-<script src="{% static 'js/user_form.js' %}"></script>
+  <script src="{% static 'js/user_form.js' %}"></script>
 {% endblock script %}

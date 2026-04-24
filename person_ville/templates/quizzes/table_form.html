@@ -3,78 +3,81 @@
 {% block title %}Тест{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/table_form.css' %}">
+  <link rel="stylesheet" href="{% static 'css/table_form.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="table-test">
+  <div class="table-test">
     <div class="test-card">
-        <a
-            href="#"
-            class="test-close"
-            aria-label="Закрыть тест"
-            title="Закрыть"
-            onclick="handleTestClose('{% url 'quizzes:close' %}'); return false;"
-        >
-            <span class="test-close-text">Закрыть</span>
-        </a>
+      <a
+        href="#"
+        class="test-close"
+        aria-label="Закрыть тест"
+        title="Закрыть"
+        onclick="handleTestClose('{% url 'quizzes:close' %}'); return false;"
+      >
+        <span class="test-close-text">Закрыть</span>
+      </a>
 
-        <div class="test-inner">
-            <h2 class="test-title p-10">{{ test_title }}</h2>
+      <div class="test-inner">
+        <h2 class="test-title p-10">{{ test_title }}</h2>
 
-            {% if test_description %}
-                <p class="test-description">{{ test_description }}</p>
-            {% endif %}
+        {% if test_description %}
+          <p class="test-description">{{ test_description }}</p>
+        {% endif %}
 
-            <p class="question-text">{{ question_text }}</p>
+        <p class="question-text">{{ question_text }}</p>
 
-            <form method="post">
-                {% csrf_token %}
+        <form method="post">
+          {% csrf_token %}
 
-                {% if form.non_field_errors %}
-                    <div class="error-message">
-                        {% for error in form.non_field_errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
+          {% if form.non_field_errors %}
+            <div class="error-message">
+              {% for error in form.non_field_errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
 
-                {% for field in form %}
-                    {% for radio in field %}
-                        <div class="answer-option">
-                            {{ radio.tag }}
-                            <label
-                                class="form-check-label"
-                                for="{{ radio.id_for_label }}"
-                            >
-                                {{ radio.choice_label }}
-                            </label>
-                        </div>
-                    {% endfor %}
+          {% for field in form %}
+            {% for radio in field %}
+              <div class="answer-option">
+                {{ radio.tag }}
+                <label
+                  class="form-check-label"
+                  for="{{ radio.id_for_label }}"
+                >
+                  {{ radio.choice_label }}
+                </label>
+              </div>
+            {% endfor %}
 
-                    {% if field.errors %}
-                        <div class="error-message">
-                            {% for error in field.errors %}
-                                {{ error }}
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+            {% if field.errors %}
+              <div class="error-message">
+                {% for error in field.errors %}
+                  {{ error }}
                 {% endfor %}
+              </div>
+            {% endif %}
+          {% endfor %}
 
-                <button type="submit" class="btn-submit">
-                    {% if mode == 'street' %}
-                        Сохранить
-                    {% else %}
-                        Далее
-                    {% endif %}
-                </button>
+          <button type="submit" class="btn-submit">
+            {% if mode == 'street' %}
+              Сохранить
+            {% else %}
+              Далее
+            {% endif %}
+          </button>
 
-                <div class="question-meta question-meta-bottom">
-                    Вопрос {{ question_number }} из {{ total_questions }}
-                </div>
-            </form>
-        </div>
+          <div class="question-meta question-meta-bottom">
+            Вопрос {{ question_number }} из {{ total_questions }}
+          </div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
 {% endblock %}
-{% block script %}<script src="{% static 'js/close.js' %}"></script>{% endblock script %}
+
+{% block script %}
+  <script src="{% static 'js/close.js' %}"></script>
+{% endblock script %}

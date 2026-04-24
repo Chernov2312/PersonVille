@@ -4,42 +4,42 @@
 {% block title %}Ответить о себе{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/city.css' %}">
+  <link rel="stylesheet" href="{% static 'css/city.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="question-page">
+  <div class="question-page">
     <div class="question-board">
-        <a
-            href="{% url 'city:street' trait=street.trait %}"
-            class="question-close"
-            aria-label="Закрыть"
-        ></a>
+      <a
+        href="{% url 'city:street' trait=street.trait %}"
+        class="question-close"
+        aria-label="Закрыть"
+      ></a>
 
-        <div class="question-inner">
-            <div class="question-title">Ответить о себе</div>
-            <div class="question-subtitle">{{ question_text }}</div>
-            <div class="question-house-text">{{ house.base_text }}</div>
+      <div class="question-inner">
+        <div class="question-title">Ответить о себе</div>
+        <div class="question-subtitle">{{ question_text }}</div>
+        <div class="question-house-text">{{ house.base_text }}</div>
 
-            <form method="post" id="house-answer-form">
-                {% csrf_token %}
+        <form method="post" id="house-answer-form">
+          {% csrf_token %}
 
-                <div class="question-options">
-                    {% for option in answer_options %}
-                        <label class="question-option">
-                            <input
-                                type="radio"
-                                name="answer"
-                                value="{{ option.value }}"
-                                onchange="document.getElementById('house-answer-form').submit()"
-                                {% if house.answer_value == option.value %}checked{% endif %}
-                            >
-                            <span>{{ option.label }}</span>
-                        </label>
-                    {% endfor %}
-                </div>
-            </form>
-        </div>
+          <div class="question-options">
+            {% for option in answer_options %}
+              <label class="question-option">
+                <input
+                  type="radio"
+                  name="answer"
+                  value="{{ option.value }}"
+                  onchange="document.getElementById('house-answer-form').submit()"
+                  {% if house.answer_value == option.value %}checked{% endif %}
+                >
+                <span>{{ option.label }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
 {% endblock %}

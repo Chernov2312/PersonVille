@@ -4,53 +4,53 @@
 {% block title %}История прохождений{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/user_history.css' %}">
+  <link rel="stylesheet" href="{% static 'css/user_history.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="history-page">
+  <div class="history-page">
     <div class="history-wrap">
-        <div class="history-card">
-            <h1 class="history-title">История прохождений</h1>
+      <div class="history-card">
+        <h1 class="history-title">История прохождений</h1>
 
-            {% if history_items %}
-                <div class="history-list">
-                    {% for item in history_items %}
-                    <div class="history-item">
-                        <div
-                            class="history-item-date js-local-datetime"
-                            data-server-datetime="{{ item.created_at|date:'c' }}"
-                        >
-                            {{ item.created_at|date:"d.m.Y H:i" }}
-                        </div>
-
-                        <div class="history-item-name">
-                            PersonVille от {{ item.created_at|date:"d.m.Y" }}
-                        </div>
-
-                        <div class="history-item-summary">
-                            {{ item.short_summary }}
-                        </div>
-
-                        <a
-                            href="{% url 'user:history_detail' history_id=item.id %}"
-                            class="history-item-button"
-                        >
-                            Подробнее
-                        </a>
-                    </div>
-                    {% endfor %}
+        {% if history_items %}
+          <div class="history-list">
+            {% for item in history_items %}
+              <div class="history-item">
+                <div
+                  class="history-item-date js-local-datetime"
+                  data-server-datetime="{{ item.created_at|date:'c' }}"
+                >
+                  {{ item.created_at|date:"d.m.Y H:i" }}
                 </div>
-            {% else %}
-                <div class="history-empty">
-                    Пока нет зафиксированных прохождений.
+
+                <div class="history-item-name">
+                  PersonVille от {{ item.created_at|date:"d.m.Y" }}
                 </div>
-            {% endif %}
-        </div>
+
+                <div class="history-item-summary">
+                  {{ item.short_summary }}
+                </div>
+
+                <a
+                  href="{% url 'user:history_detail' history_id=item.id %}"
+                  class="history-item-button"
+                >
+                  Подробнее
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="history-empty">
+            Пока нет зафиксированных прохождений.
+          </div>
+        {% endif %}
+      </div>
     </div>
-</div>
+  </div>
 {% endblock %}
 
 {% block script %}
-<script src="{% static 'js/history_time.js' %}"></script>
+  <script src="{% static 'js/history_time.js' %}"></script>
 {% endblock %}

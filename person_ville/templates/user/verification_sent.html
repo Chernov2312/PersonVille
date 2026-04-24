@@ -2,18 +2,19 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/user_sent.css' %}">
+  <link rel="stylesheet" href="{% static 'css/user_sent.css' %}">
 {% endblock %}
+
 {% block content %}
-<div class="container">
+  <div class="container">
     <div class="page-sent">
-        <h3 class="text">Перейдите по ссылке, присланной на почту</h3>
-        <a
-            href="{% url 'main:main' %}"
-            class="sent-close"
-            aria-label="Закрыть"
-            title="Закрыть">
-        </a>
+      <h3 class="text">Перейдите по ссылке, присланной на почту</h3>
+      <a
+        href="{% url 'main:main' %}"
+        class="sent-close"
+        aria-label="Закрыть"
+        title="Закрыть">
+      </a>
     </div>
-</div>
+  </div>
 {% endblock content %}

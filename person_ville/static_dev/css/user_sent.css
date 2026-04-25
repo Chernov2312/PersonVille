@@ -12,17 +12,22 @@
     background-repeat: no-repeat;
     position: relative;
 }
+
 .text {
     position: absolute;
-    top: 44%;
+    top: 50%;
     left: 55%;
-    transform: translateX(-50%);
-    color: black;
-    padding: 12px 24px;
-    border-radius: 8px;
-    white-space: nowrap;
+    transform: translate(-50%, -150%);
+    width: min(58%, 980px);
+    text-align: center;
+    color: #2b241d;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.35rem;
+    font-weight: 700;
+    line-height: 1.08;
     z-index: 10;
 }
+
 .sent-close {
     position: absolute;
     top: 37%;

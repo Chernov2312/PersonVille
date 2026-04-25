@@ -108,5 +108,6 @@ profile_default/
 ipython_config.py
 
 send_mail/
-static/
+
 *.pyc
+collect_static/

@@ -139,8 +139,7 @@ def verify_email(request, uidb64, token):
         context = {
             'title': 'Почта подтверждена',
             'message': (
-                'Ваш аккаунт подтверждён. '
-                'Теперь вы можете войти в систему.'
+                'Ваш аккаунт подтверждён. ' 'Теперь вы можете войти в систему.'
             ),
             'login_url': reverse('user:authorization'),
         }
@@ -570,9 +569,7 @@ def _build_email_context(
         'active_request': active_request,
         'current_email_masked': _mask_email(request.user.email),
         'new_email_masked': (
-            _mask_email(active_request.new_email)
-            if active_request
-            else ''
+            _mask_email(active_request.new_email) if active_request else ''
         ),
         'is_cooldown_active': cooldown_seconds > 0,
         'cooldown_seconds': cooldown_seconds,

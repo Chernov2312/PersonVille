@@ -25,6 +25,7 @@ class CompletedQuizSession(models.Model):
     )
     duration_seconds = models.PositiveIntegerField(
         verbose_name='Длительность (сек)',
+        editable=False,
     )
     final_character = models.JSONField(
         null=True,
@@ -39,7 +40,3 @@ class CompletedQuizSession(models.Model):
     class Meta:
         verbose_name = 'Завершённая сессия теста'
         verbose_name_plural = 'Завершённые сессии тестов'
-        indexes = [
-            models.Index(fields=['session_key']),
-            models.Index(fields=['completed_at']),
-        ]

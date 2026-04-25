@@ -1,7 +1,8 @@
 __all__ = ()
 from datetime import datetime
 
-from django.utils.timezone import now
+from django.conf import settings
+from django.utils.timezone import make_aware, now
 
 from analytics.models import CompletedQuizSession
 
@@ -30,6 +31,9 @@ class QuizStatisticsMiddleware:
             return
 
         start_time = datetime.fromisoformat(start_str)
+        if settings.USE_TZ and start_time.tzinfo is None:
+            start_time = make_aware(start_time)
+
         end_time = now()
         duration = int((end_time - start_time).total_seconds())
 

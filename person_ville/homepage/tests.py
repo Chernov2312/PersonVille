@@ -1,4 +1,6 @@
 __all__ = ('HomepageUrlsTests',)
+import http
+
 from django.test import TestCase
 from django.urls import reverse
 
@@ -11,8 +13,8 @@ class HomepageUrlsTests(TestCase):
 
     def test_main_url_status_code_200(self):
         response = self.client.get(reverse('main:main'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
 
     def test_nonexistent_url_returns_404(self):
         response = self.client.get('/nonexistent/')
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, http.HTTPStatus.NOT_FOUND)

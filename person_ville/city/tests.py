@@ -5,6 +5,8 @@ __all__ = (
     'HouseQuestionViewTests',
     'CharacterViewTests',
 )
+import http
+
 from django.contrib.messages import get_messages
 from django.test import TestCase
 from django.urls import reverse
@@ -81,7 +83,7 @@ class CityViewTests(TestCase):
 
         response = self.client.get(reverse('city:city'))
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
         self.assertTemplateUsed(response, 'city/city.html')
         self.assertIn('city_result', response.context)
         self.assertIn('street_slots', response.context)
@@ -250,7 +252,7 @@ class StreetViewTests(TestCase):
             reverse('city:street', kwargs={'trait': 'negative_emotionality'}),
         )
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
         self.assertTemplateUsed(response, 'city/street.html')
         self.assertIn('street', response.context)
         self.assertEqual(
@@ -375,7 +377,7 @@ class HouseQuestionViewTests(TestCase):
                 },
             ),
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, http.HTTPStatus.NOT_FOUND)
 
     def test_house_question_view_with_invalid_house_returns_404(self):
         _ = self._login_with_session(
@@ -392,7 +394,7 @@ class HouseQuestionViewTests(TestCase):
                 },
             ),
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, http.HTTPStatus.NOT_FOUND)
 
     def test_house_question_get_request(self):
         _ = self._login_with_session(
@@ -410,7 +412,7 @@ class HouseQuestionViewTests(TestCase):
             ),
         )
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
         self.assertTemplateUsed(response, 'city/house_question.html')
         self.assertIn('house', response.context)
         self.assertIn('question_text', response.context)
@@ -532,7 +534,7 @@ class CharacterViewTests(TestCase):
 
         response = self.client.get(reverse('city:character'))
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
         self.assertTemplateUsed(response, 'city/character.html')
         self.assertIn('character', response.context)
         self.assertEqual(response.context['character'], self.final_character)

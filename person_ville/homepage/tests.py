@@ -1,4 +1,4 @@
-__all__ = ('HomepageUrlsTests',)
+__all__ = ()
 import http
 
 from django.test import TestCase

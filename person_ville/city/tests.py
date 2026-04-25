@@ -1,10 +1,4 @@
-__all__ = (
-    'CityViewTests',
-    'FinalizeCityViewTests',
-    'StreetViewTests',
-    'HouseQuestionViewTests',
-    'CharacterViewTests',
-)
+__all__ = ()
 import http
 
 from django.contrib.messages import get_messages

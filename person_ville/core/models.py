@@ -28,7 +28,7 @@ class BaseUpdate(models.Model):
 
 
 class BaseChange(models.Model):
-    code = models.CharField(max_length=6)
+    code = models.CharField(max_length=8)
     expires_at = models.DateTimeField(
         default=default_expires_at,
         verbose_name='Срок действия',

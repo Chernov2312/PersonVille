@@ -4,10 +4,12 @@ from users.views import (
     authorization,
     change_email,
     change_password,
+    forgot_password,
     history_detail,
     history_list,
     logout_view,
     registration,
+    reset_password_confirm,
     verify_email,
 )
 
@@ -21,6 +23,12 @@ urlpatterns = [
     path('history/<int:history_id>/', history_detail, name='history_detail'),
     path('change-email/', change_email, name='change_email'),
     path('change-password/', change_password, name='change_password'),
+    path('forgot-password/', forgot_password, name='forgot_password'),
+    path(
+        'reset-password/<uidb64>/<token>/',
+        reset_password_confirm,
+        name='reset_password_confirm',
+    ),
     path(
         'verify/<uidb64>/<token>/',
         verify_email,

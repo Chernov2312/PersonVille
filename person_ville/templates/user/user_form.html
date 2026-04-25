@@ -100,6 +100,17 @@
                 </div>
               {% endfor %}
 
+              {% if title == 'Авторизация' %}
+                <div class="forgot-password-link-wrap">
+                  <a
+                    href="{% url 'user:forgot_password' %}"
+                    class="forgot-password-link"
+                  >
+                    Забыли пароль?
+                  </a>
+                </div>
+              {% endif %}
+
               <button type="submit" class="btn-submit">
                 {{ title }}
               </button>

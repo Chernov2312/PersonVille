@@ -42,7 +42,7 @@ git clone https://github.com/Chernov2312/PersonVille
 2. Переход в папку проекта
 
 ```bash
-cd team-3
+cd PersonVille
 ```
 
 3. Создание виртуального окружения

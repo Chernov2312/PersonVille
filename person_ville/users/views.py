@@ -2,15 +2,17 @@ __all__ = (
     'authorization',
     'change_email',
     'change_password',
+    'forgot_password',
     'history_detail',
     'history_list',
     'logout_view',
     'registration',
+    'reset_password_confirm',
     'verify_email',
 )
 
 from datetime import timedelta
-import random
+import secrets
 
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -36,7 +38,9 @@ from users.forms import (
     ChangeEmailRequestForm,
     ChangePasswordConfirmForm,
     ChangePasswordRequestForm,
+    ForgotPasswordForm,
     RegisterForm,
+    SetNewPasswordForm,
 )
 from users.models import (
     EmailChangeCode,
@@ -135,7 +139,7 @@ def verify_email(request, uidb64, token):
         context = {
             'title': 'Почта подтверждена',
             'message': (
-                'Ваш аккаунт подтверждён. Теперь вы можете войти в систему.',
+                'Ваш аккаунт подтверждён. ' 'Теперь вы можете войти в систему.'
             ),
             'login_url': reverse('user:authorization'),
         }
@@ -177,6 +181,101 @@ def send_verification_email(request, user):
         recipient_list=[user.email],
         fail_silently=False,
     )
+
+
+def forgot_password(request):
+    if request.method == 'POST':
+        form = ForgotPasswordForm(request.POST)
+
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            user = User.objects.get(email=email)
+
+            current_site = get_current_site(request)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            token = default_token_generator.make_token(user)
+
+            reset_path = reverse(
+                'user:reset_password_confirm',
+                kwargs={
+                    'uidb64': uid,
+                    'token': token,
+                },
+            )
+            reset_url = request.build_absolute_uri(reset_path)
+
+            subject = 'Восстановление пароля PersonVille'
+            message = (
+                f'Здравствуйте, {user.username}!\n\n'
+                f'Для восстановления пароля на сайте '
+                f'{current_site.domain} перейдите по ссылке:\n'
+                f'{reset_url}\n\n'
+                'Если это были не вы, просто проигнорируйте письмо.'
+            )
+
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email=None,
+                recipient_list=[user.email],
+                fail_silently=False,
+            )
+
+            context = {
+                'title': 'Письмо отправлено',
+                'message': (
+                    'Мы отправили ссылку для восстановления пароля '
+                    'на вашу почту.'
+                ),
+            }
+            return render(request, 'user/verification_sent.html', context)
+    else:
+        form = ForgotPasswordForm()
+
+    context = {
+        'form': form,
+        'title': 'Восстановление пароля',
+        'subtitle': 'Введите email, привязанный к аккаунту.',
+    }
+    return render(request, 'user/user_form.html', context)
+
+
+def reset_password_confirm(request, uidb64, token):
+    try:
+        user_id = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=user_id)
+    except (User.DoesNotExist, ValueError, TypeError, OverflowError):
+        user = None
+
+    if not user or not default_token_generator.check_token(user, token):
+        context = {
+            'title': 'Ошибка восстановления',
+            'message': 'Ссылка недействительна или устарела.',
+        }
+        return render(request, 'user/verification_done.html', context)
+
+    if request.method == 'POST':
+        form = SetNewPasswordForm(request.POST, user=user)
+
+        if form.is_valid():
+            user.set_password(form.cleaned_data['new_password1'])
+            user.save()
+
+            context = {
+                'title': 'Пароль изменён',
+                'message': 'Ваш пароль успешно обновлён. Теперь можно войти.',
+                'login_url': reverse('user:authorization'),
+            }
+            return render(request, 'user/verification_done.html', context)
+    else:
+        form = SetNewPasswordForm(user=user)
+
+    context = {
+        'form': form,
+        'title': 'Новый пароль',
+        'subtitle': 'Задайте новый пароль для входа в аккаунт.',
+    }
+    return render(request, 'user/user_form.html', context)
 
 
 def _build_entry_answers_for_display(snapshot, quiz_data):
@@ -290,8 +389,9 @@ def history_detail(request, history_id):
     return render(request, 'user/history_detail.html', context)
 
 
-def _generate_code():
-    return f'{random.randint(100000, 999999)}'
+def _generate_code(length=8):
+    alphabet = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'
+    return ''.join(secrets.choice(alphabet) for _ in range(length))
 
 
 def _mask_email(email):
@@ -389,6 +489,56 @@ def _set_password_change_cooldown(user):
     user.save(update_fields=['password_change_cooldown_until'])
 
 
+def _send_email_change_code_to_new_email(user, new_email, code):
+    send_mail(
+        subject='Код подтверждения смены email PersonVille',
+        message=(
+            f'Здравствуйте, {user.username}!\n\n'
+            f'Вы запросили привязку этого email к аккаунту PersonVille.\n'
+            f'Код подтверждения: {code}\n\n'
+            'Если это были не вы, просто проигнорируйте письмо.'
+        ),
+        from_email=None,
+        recipient_list=[new_email],
+        fail_silently=False,
+    )
+
+
+def _send_email_change_request_notice_to_old_email(user, new_email):
+    send_mail(
+        subject='Запрос на смену email PersonVille',
+        message=(
+            f'Здравствуйте, {user.username}!\n\n'
+            f'Для вашего аккаунта был запрошен новый email: {new_email}\n\n'
+            'Если это были не вы, рекомендуем срочно сменить пароль.'
+        ),
+        from_email=None,
+        recipient_list=[user.email],
+        fail_silently=False,
+    )
+
+
+def _send_email_changed_notice_to_old_email(
+    username,
+    old_email,
+    new_email,
+):
+    send_mail(
+        subject='Email аккаунта PersonVille изменён',
+        message=(
+            f'Здравствуйте, {username}!\n\n'
+            f'Email вашего аккаунта был изменён.\n'
+            f'Старый email: {old_email}\n'
+            f'Новый email: {new_email}\n\n'
+            'Если это были не вы, срочно восстановите доступ '
+            'и смените пароль.'
+        ),
+        from_email=None,
+        recipient_list=[old_email],
+        fail_silently=False,
+    )
+
+
 def _build_email_context(
     request,
     request_form,
@@ -400,12 +550,15 @@ def _build_email_context(
 
     if active_request:
         title = 'Подтверждение'
-        subtitle = 'Введите код из письма, чтобы завершить изменение email.'
+        subtitle = (
+            'Введите код, отправленный на новый email, '
+            'чтобы завершить изменение адреса.'
+        )
     else:
         title = 'Новый email'
         subtitle = (
-            'Укажите новый адрес. Код подтверждения мы отправим '
-            'на вашу текущую почту.'
+            'Укажите новый адрес и текущий пароль. '
+            'Код подтверждения будет отправлен на новый email.'
         )
 
     return {
@@ -415,6 +568,9 @@ def _build_email_context(
         'code_form': code_form,
         'active_request': active_request,
         'current_email_masked': _mask_email(request.user.email),
+        'new_email_masked': (
+            _mask_email(active_request.new_email) if active_request else ''
+        ),
         'is_cooldown_active': cooldown_seconds > 0,
         'cooldown_seconds': cooldown_seconds,
         'cooldown_until_iso': _iso_datetime(cooldown_until),
@@ -506,16 +662,14 @@ def change_email(request):
                     resend_available_at=timezone.now() + timedelta(minutes=1),
                 )
 
-                send_mail(
-                    subject='Код подтверждения смены email PersonVille',
-                    message=(
-                        f'Здравствуйте, {request.user.username}!\n\n'
-                        f'Код подтверждения смены email: {code}\n\n'
-                        'Если это были не вы, проигнорируйте письмо.'
-                    ),
-                    from_email=None,
-                    recipient_list=[request.user.email],
-                    fail_silently=False,
+                _send_email_change_code_to_new_email(
+                    request.user,
+                    new_email,
+                    code,
+                )
+                _send_email_change_request_notice_to_old_email(
+                    request.user,
+                    new_email,
                 )
 
         elif action == 'edit_request':
@@ -556,7 +710,11 @@ def change_email(request):
                         'Неверный код подтверждения.',
                     )
                 else:
-                    request.user.email = active_request.new_email
+                    old_email = request.user.email
+                    new_email = active_request.new_email
+                    username = request.user.username
+
+                    request.user.email = new_email
                     request.user.email_change_cooldown_until = (
                         timezone.now()
                         + timedelta(minutes=EMAIL_CHANGE_COOLDOWN_MINUTES)
@@ -572,6 +730,12 @@ def change_email(request):
                         user=request.user,
                         is_used=False,
                     ).update(is_used=True)
+
+                    _send_email_changed_notice_to_old_email(
+                        username,
+                        old_email,
+                        new_email,
+                    )
 
                     context = {
                         'title': 'Email изменён',

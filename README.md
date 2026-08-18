@@ -36,7 +36,7 @@
 1. Клонирование репозитория
 
 ```bash
-git clone https://gitlab.crja72.ru/django/2026/spring/course/projects/team-3.git
+git clone https://github.com/Chernov2312/PersonVille
 ```
 
 2. Переход в папку проекта

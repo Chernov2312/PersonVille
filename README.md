@@ -1,6 +1,7 @@
 # PersonVille || team 3
 
-[![pipeline status](https://gitlab.crja72.ru/django/2026/spring/course/projects/team-3/badges/main/pipeline.svg?key_text=lint&test)](https://gitlab.crja72.ru/django/2026/spring/course/projects/team-3/-/commits/main)
+[![python_test](https://github.com/Chernov2312/PersonVille/actions/workflows/ci_python_test.yml/badge.svg)](https://github.com/Chernov2312/PersonVille/actions/workflows/ci_python_test.yml)
+[![linter_test](https://github.com/Chernov2312/PersonVille/actions/workflows/ci_linter_test.yml/badge.svg)](https://github.com/Chernov2312/PersonVille/actions/workflows/ci_linter_test.yml)
 
 [![Django](https://img.shields.io/badge/Django-5.2-092E20?logo=django)](https://www.djangoproject.com/)
 

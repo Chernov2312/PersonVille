@@ -94,32 +94,35 @@ Windows (PowerShell)
 ```powershell
 Copy-Item .env.example .env
 ```
-
-7. Применение миграций
+7. Переход в папку проекта
+```bash
+cd person_ville
+```
+8. Применение миграций
 
 ```bash
 python manage.py migrate
 ```
 
-8. Загрузка фикстур (опционально)
+9. Загрузка фикстур (опционально)
 
 ```bash
 python manage.py loaddata fixtures/data.json
 ```
 
-9. Создание суперпользователя
+10. Создание суперпользователя
 
 ```bash
 python manage.py createsuperuser
 ```
 
-10. Сборка статики
+11. Сборка статики
 
 ```bash
 python manage.py collectstatic --noinput
 ```
 
-11. Запуск сервера разработки
+12. Запуск сервера разработки
 
 ```bash
 python manage.py runserver
